@@ -6,9 +6,13 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、完整架构](#13)
 - [二、快速安装](#2)
 - [三、部署项目](#3)
-- &nbsp;&nbsp;&nbsp;&nbsp;[1、启动](#31)
-- &nbsp;&nbsp;&nbsp;&nbsp;[2、停止](#32)
-- &nbsp;&nbsp;&nbsp;&nbsp;[3、重启](#33)
+- &nbsp;&nbsp;&nbsp;&nbsp;[1、非容器化方案](#31)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1、启动](#311)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2、停止](#312)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3、重启](#313)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4、更新](#314)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5、运行](#315)
+- &nbsp;&nbsp;&nbsp;&nbsp;[2、容器化方案](#32)
 - [四、业务开发](#4)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、创建应用目录](#41)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、创建应用子目录](#42)
@@ -46,25 +50,45 @@ php deploy.php install
 ```
 
 ## 三、<span id="3">部署项目</span>
-ESUpdater的所有部署操作，都需要在```deploy```目录下进行
+ESUpdater的所有部署或运行操作，都是通过```/esupdater.php```入口文件完成
+
+### <span id="31">1、非容器化方案</span>
+
+#### <span id="311">(1) 启动</span>
+使用```nohup```命令以进程方式常驻内存
+
 ```bash
-cd ESUpdater/deploy
+nohup php esupdater.php start >>/home/log/ESUpdater.start.log 2>&1  &
 ```
 
-### <span id="31">1、启动</span>
+#### <span id="312">(2) 停止</span>
 ```bash
-php deploy.php start
+php esupdater.php stop
 ```
 
-### <span id="32">2、停止</span>
+#### <span id="313">(3) 重启</span>
+使用```nohup```命令以进程方式常驻内存
+
 ```bash
-php deploy.php stop
+nohup php esupdater.php restart >>/home/log/ESUpdater.restart.log 2>&1  &
 ```
 
-### <span id="33">3、重启</span>
+#### <span id="314">(4) 更新</span>
+使用```nohup```命令以进程方式常驻内存
+
 ```bash
-php deploy.php restart
+nohup php esupdater.php update >>/home/log/ESUpdater.update.log 2>&1  &
 ```
+
+#### <span id="315">(5) 运行</span>
+使用```run```命令并传递Canal解析binlog后生成的json数据(url编码)
+
+```bash
+php esupdater.php run '%7B%22data%22%3A%5B%7B%22userid%22%3A%2212323423%22%2C%22name%22%3A%22jack%22%2C%22age%22%3A20%7D%5D%2C%22database%22%3A%22user%22%2C%22es%22%3A1512020063092%2C%22id%22%3A1473252%2C%22isDdl%22%3Afalse%2C%22old%22%3Anull%2C%22sql%22%3A%22%22%2C%22table%22%3A%22user%22%2C%22ts%22%3A1613020317052%2C%22type%22%3A%22UPDATE%22%7D'
+```
+
+### <span id="32">2、容器化方案</span>
+
 
 ## <span id="4">四、业务开发</span>
 ESUpdater的业务开发模式和```MVC```模式类似
