@@ -11,5 +11,7 @@ test/testcases/*
 !test/testcases/core/
 !test/testcases/framework/
 
+Dockerfile
+
 # 忽略运行时目录
 # runtime/

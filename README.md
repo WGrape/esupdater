@@ -41,12 +41,12 @@ Canal提供了数据库增量订阅与消费的功能，借此可以通过不依
 ESUpdater提供了从数据库中变更数据的获取，到ES文档更新的一个完整业务架构，方便业务的扩展
 
 ## <span id="2">二、快速安装</span>
-获取项目后，请执行```install```命令以安装相应的依赖
+获取项目后，请运行```install.sh```脚本以完成依赖的安装
 
 ```bash
 git clone https://github.com/WGrape/ESUpdater
-cd ESUpdater/deploy
-php deploy.php install
+cd ESUpdater
+bash ./install.sh
 ```
 
 ## 三、<span id="3">部署项目</span>

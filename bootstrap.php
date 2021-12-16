@@ -12,11 +12,16 @@ const RUNTIME_CONSUMER_PID_FILE    = RUNTIME_PATH . 'consumer.pid';
 const RUNTIME_CONSUMER_STATUS_FILE = RUNTIME_PATH . 'consumer.status';
 
 // 定义数据常量
-const DEFAULT_PID                          = 0;
-const DEFAULT_MAX_CONSUME_INTERVAL_SECONDS = 2;
+const DEFAULT_PID                                   = 0;
+const DEFAULT_CHECK_CONSUME_STATUS_INTERVAL_SECONDS = 2;
+const DEFAULT_CONSUME_BROKER_LIST                           = [];
+const DEFAULT_CONSUME_PARTITION_LIST               = [0];
+const DEFAULT_CONSUME_TIMEOUT_MILLISECOND  = 1000; // 1000毫秒=1秒
+const DEFAULT_CONSUME_GROUP                = 'default_group';
+const DEFAULT_CONSUME_TOPIC                = 'default_topic';
 
 // 加载配置文件
-include_once CONFIG_PATH . 'consume.php';
+include_once CONFIG_PATH . 'consumer.php';
 include_once CONFIG_PATH . 'db.php';
 include_once CONFIG_PATH . 'es.php';
 include_once CONFIG_PATH . 'log.php';
