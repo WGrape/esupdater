@@ -1,15 +1,15 @@
-<p align="center">
-<img width="200px" alt="img" src="https://user-images.githubusercontent.com/35942268/147060426-f370cafa-7c31-4243-a3ea-30c48ae68340.png">
-</p>
+<div align="center" >
+<img width="200" alt="img" src="https://user-images.githubusercontent.com/35942268/147061994-f0d5a3ec-2d5f-4d72-af1c-139289547f25.png">
+</div>
+
+<div align="center">    
+    <p>基于Canal的ES文档更新组件</p>
+</div>
 
 <p align="center">
     <img src="https://img.shields.io/badge/PHP-7.0+-blue.svg">
     <a href="https://app.travis-ci.com/github/WGrape/esupdater"><img src="https://app.travis-ci.com/WGrape/esupdater.svg?branch=main"><a>
 </p>
-
-<div align="center">    
-    <p>基于Canal的ES文档更新组件</p>
-</div>
 
 ## 目录
 
