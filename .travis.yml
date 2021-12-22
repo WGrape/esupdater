@@ -5,7 +5,7 @@ php:
   - 7.0
 
 script:
-  - mkdir -p /home/log/esupdater/
+  - sudo mkdir -p /home/log/esupdater/
   - php test/run.php
 
 branches:
