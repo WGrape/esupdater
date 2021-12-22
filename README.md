@@ -1,3 +1,16 @@
+<p align="center">
+<img width="200px" alt="img" src="https://user-images.githubusercontent.com/35942268/147060426-f370cafa-7c31-4243-a3ea-30c48ae68340.png">
+</p>
+
+<p align="center">
+    <img src="https://img.shields.io/badge/PHP-7.0+-blue.svg">
+    <a href="https://app.travis-ci.com/github/WGrape/esupdater"><img src="https://app.travis-ci.com/WGrape/esupdater.svg?branch=main"><a>
+</p>
+
+<div align="center">    
+    <p>基于Canal的ES文档更新组件</p>
+</div>
+
 ## 目录
 
 - [一、介绍](#1)
