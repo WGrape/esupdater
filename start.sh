@@ -10,7 +10,7 @@ docker build -t esupdater .
 
 # Run container
 # docker run --name {ContainerName} -d -v {LocalPath:ContainerPath} {imageName}
-docker run --name esupdaterContainer -d -v /home/log/docker/esupdater/:/home/log/esupdater/ esupdater
+docker run --name esupdaterContainer -d -v /home/log/esupdater/:/home/log/esupdater/ esupdater
 if [ $? -ne 0 ]; then
   echo "启动失败"
 else
