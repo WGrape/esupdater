@@ -6,7 +6,7 @@ use test\TestLibrary;
 
 class TestCanal extends TestLibrary
 {
-    public function testIsSuccess(): bool
+    public function testCheckParsedCanalData(): bool
     {
         $caseList = [
             [

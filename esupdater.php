@@ -4,7 +4,7 @@ include_once 'bootstrap.php';
 
 $command = strtolower(isset($argv[1]) ? $argv[1] : '');
 if (empty($command)) {
-    echo "命令不能为空";
+    echo "Command empty!\n";
     return;
 }
 
@@ -14,20 +14,18 @@ switch ($command) {
         $manager->commandStart();
         break;
     case "stop":
-        $manager->commandStop();
+        $success = $manager->commandStop();
+        echo "{$success}\n";
         break;
-    case "restart":
-    case "update":
-        $manager->commandRestart();
-        break;
-    case "run":
+    case "work":
         $canalData = isset($argv[2]) ? $argv[2] : "";
         if (empty($canalData)) {
             return;
         }
-        (new \Framework\Router())->nextHop($canalData);
+        $success = $manager->commandWork($canalData);
+        echo "{$success}\n";
         break;
     default:
-        echo "不支持的命令: {$command}";
+        echo "Not support command: {$command}\n";
         return;
 }

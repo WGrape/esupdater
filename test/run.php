@@ -12,8 +12,8 @@ class ProjectTest
     {
         $this->baseDirectory = ROOT_PATH;
         global $test;
-        if (isset($test['directories']) && !empty($test['directories'])) {
-            $this->findTestDirectories($test['directories']);
+        if (isset($test['testcases_directory']) && !empty($test['testcases_directory'])) {
+            $this->findTestDirectories($test['testcases_directory']);
         }
     }
 
@@ -64,11 +64,13 @@ class ProjectTest
                         continue;
                     }
                     if (!$test->$method()) {
+                        echo "Unfortunately! You failed the test\n";
                         exit(1);
                     }
                 }
             }
         }
+        echo "Congratulations! All testcases passed!\n";
     }
 }
 

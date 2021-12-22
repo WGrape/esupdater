@@ -1,9 +1,9 @@
 <?php
 
 $log = [
-    'debug'   => '/home/log/ESUpdater/debug.log',
-    'info'    => '/home/log/ESUpdater/info.log',
-    'warning' => '/home/log/ESUpdater/warning.log',
-    'error'   => '/home/log/ESUpdater/error.log',
-    'fatal'   => '/home/log/ESUpdater/fatal.log',
+    'debug'   => '/home/log/esupdater/debug.log',
+    'info'    => '/home/log/esupdater/info.log',
+    'warning' => '/home/log/esupdater/warning.log',
+    'error'   => '/home/log/esupdater/error.log',
+    'fatal'   => '/home/log/esupdater/fatal.log',
 ];

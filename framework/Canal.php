@@ -4,9 +4,19 @@ namespace framework;
 
 class Canal
 {
+    public function encode(string $string): string
+    {
+        return urlencode($string);
+    }
+
+    public function decode(string $canalData): string
+    {
+        return urldecode($canalData);
+    }
+
     public function parse(string $canalData): array
     {
-        return json_decode(urldecode($canalData), true);
+        return json_decode($this->decode($canalData), true);
     }
 
     public function checkParsedCanalData(array $parsedCanalData): bool

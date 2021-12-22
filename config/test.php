@@ -1,5 +1,5 @@
 <?php
 
 $test = [
-    'directories' => 'test/testcases/',
+    'testcases_directory' => 'test/testcases/',
 ];

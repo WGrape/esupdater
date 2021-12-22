@@ -11,7 +11,7 @@ class Router
         Logger::setLogIdByParsedCanalData($parsedCanalData);
         if (!$canalParser->checkParsedCanalData($parsedCanalData)) {
             Logger::logFatal("Check canal data error");
-            exit();
+            exit(1);
         }
 
         global $router;
@@ -20,7 +20,7 @@ class Router
         $key      = "{$database}.{$table}";
         if (!isset($router[$key])) {
             Logger::logError("Not found the next hop");
-            exit();
+            exit(1);
         }
 
         $whichController = $router[$key];
@@ -28,7 +28,7 @@ class Router
         if (method_exists($controller, 'onReceiveParsedCanalData')) {
             Logger::logInfo("Call onReceiveParsedCanalData ======>: " . $canalData);
             $controller->onReceiveParsedCanalData($parsedCanalData);
-            Logger::logInfo("<====== END");
+            Logger::logInfo("<====== END onReceiveParsedCanalData");
         }
     }
 }

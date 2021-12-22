@@ -1,5 +1,5 @@
 <?php
 
 $router = [
-    'database.table' => 'app\xxx\controllers\xxx\XXXController',
+    'alpha.user'     => '\app\alpha\controllers\user\UserController',
 ];

@@ -13,6 +13,12 @@ class Logger
     private static $logId;
     private static $formula;
 
+    public static function setLogId(string $logIdParam, string $formulaParam)
+    {
+        self::$logId   = $logIdParam;
+        self::$formula = $formulaParam;
+    }
+
     public static function setLogIdByParsedCanalData(array $parsedCanalData)
     {
         $database = isset($parsedCanalData['database']) ? $parsedCanalData['database'] : '';

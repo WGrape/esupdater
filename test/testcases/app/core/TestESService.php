@@ -1,6 +1,6 @@
 <?php
 
-namespace test\testcases\core;
+namespace test\testcases\app\core;
 
 use test\TestLibrary;
 

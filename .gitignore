@@ -2,16 +2,15 @@
 logs
 .DS_Store
 
-# 忽略应用下 core 之外的目录
+# ignore directories of /app except core and alpha
 app/*
 !app/core/
+!app/alpha/
 
-# 忽略测试用例下 core和framework 之外的目录
-test/testcases/*
-!test/testcases/core/
-!test/testcases/framework/
+# ignore directories of /test/testcases/app except core and alpha
+test/testcases/app/*
+!test/testcases/app/core/
+!test/testcases/app/alpha/
 
-Dockerfile
-
-# 忽略运行时目录
+# ignore runtime directory
 # runtime/
