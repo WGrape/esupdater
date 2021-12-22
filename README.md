@@ -15,7 +15,7 @@
 ## <span id="1">一、介绍</span>
 ESUpdater是一个基于Canal的ES文档更新组件
 
-<img width="750" alt="Architecture" src="https://user-images.githubusercontent.com/35942268/145793762-a23899d6-c162-4527-ae72-643edc80bb18.png">
+<img width="900" alt="Architecture" src="https://user-images.githubusercontent.com/35942268/145793762-a23899d6-c162-4527-ae72-643edc80bb18.png">
 
 ### <span id="11">1、基于Canal</span>
 Canal提供了数据库增量订阅与消费的功能，借此可以通过不依赖业务代码的方式，获取到数据库的所有数据变更

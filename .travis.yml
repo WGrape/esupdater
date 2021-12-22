@@ -1,0 +1,12 @@
+language: php
+
+php:
+  - 7.0
+
+script:
+  - php test/run.php
+
+branches:
+  only:
+    - main
+    - testing
