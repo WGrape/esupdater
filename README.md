@@ -8,7 +8,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/PHP-7.0+-blue.svg">
-    <a href="https://app.travis-ci.com/github/WGrape/esupdater"><img src="https://app.travis-ci.com/WGrape/esupdater.svg?branch=main"><a>
+    <a href="https://app.travis-ci.com/github/WGrape/esupdater"><img src="https://app.travis-ci.com/WGrape/esupdater.svg?branch=master"><a>
 </p>
 
 ## 目录
