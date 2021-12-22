@@ -1,9 +1,11 @@
+# CI was triggered at pull request
 language: php
 
 php:
   - 7.0
 
 script:
+  - mkdir -p /home/log/esupdater/
   - php test/run.php
 
 branches:
