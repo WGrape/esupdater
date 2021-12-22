@@ -118,7 +118,7 @@ class Manager
      */
     public function commandWork($canalData): string
     {
-        (new \Framework\Router())->nextHop($canalData);
+        (new \framework\Router())->nextHop($canalData);
         return self::COMMAND_WORK_SUCCESS;
     }
 }
