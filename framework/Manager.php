@@ -127,7 +127,13 @@ class Manager
      */
     public function commandWork($canalData): string
     {
+        $pid           = getmypid();
+        $workerPIDFile = "runtime/" . RUNTIME_ESUPDATER_WORKER_PID_FILE_PREFIX . $pid . ".pid";
+        file_put_contents($workerPIDFile, intval($pid));
+
         (new \framework\Router())->nextHop($canalData);
+
+        unlink($workerPIDFile);
         return self::COMMAND_WORK_SUCCESS;
     }
 }
