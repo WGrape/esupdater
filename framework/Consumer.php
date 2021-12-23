@@ -167,7 +167,7 @@ class Consumer
 
                     $canalData = urlencode($message->payload);
                     $count     = $manager->getRunningWorkersCount();
-                    if ($count <= $this->maxWorkerCount) {
+                    if ($count !== false && $count <= $this->maxWorkerCount) {
                         Logger::logDebug('Consumer handle message : create non-block esupdater-run process');
                         exec("nohup php esupdater.php work {$canalData} >> log.txt &");
                     } else {
