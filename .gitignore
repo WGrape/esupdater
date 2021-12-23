@@ -1,3 +1,4 @@
+.git
 .idea
 logs
 .DS_Store
@@ -13,4 +14,4 @@ test/testcases/app/*
 !test/testcases/app/alpha/
 
 # ignore runtime directory
-# runtime/
+runtime/

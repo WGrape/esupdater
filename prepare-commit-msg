@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Run test
+result=`php test/run.php | grep 'Test Failed'`
+if [ -n "$result" ]; then
+    echo "Sorry, you would not commit if you failed the test "
+    exit 1
+fi

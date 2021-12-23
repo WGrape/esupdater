@@ -118,10 +118,29 @@ bash ./restart.sh
 关于如何开发，请参考[开发文档](./HOWTOCODE.md)
 
 ## <span id="5">五、单元测试</span>
+根目录下的```/test```目录是单元测试目录，其中有一个```/test/run.php```入口文件，它会自动扫描 [testcases_directory](#66) 目录下所有的测试用例，并依次执行。
+
 
 ### <span id="51">1、运行测试</span>
+
 ```bash
 php test/run.php
+```
+
+### (1) Travis CI
+根目录下的```.travis.yml```文件已配置Travis CI，每次代码提交到```testing```和```master```分支，会自动执行单测
+
+### (2) Git Commit Hook
+
+<img width="600" src="https://user-images.githubusercontent.com/35942268/147193803-3d31df4e-8085-429f-8cbb-08a3509f76e3.png">
+
+在本地开发时，为避免每次手动执行单元测试，可以配置在每次提交代码时，自动执行单元测试。
+
+项目自带了```/prepare-commit-msg```文件，在项目根目录下执行以下命令即可实现！
+
+```bash
+cp prepare-commit-msg ./.git/hooks
+chmod +x .git/hooks/prepare-commit-msg
 ```
 
 ### <span id="52">2、添加用例</span>
