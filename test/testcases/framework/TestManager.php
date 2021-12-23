@@ -14,7 +14,7 @@ class TestManager extends TestLibrary
         file_put_contents('runtime/esupdater-worker-3.pid', 3);
         file_put_contents('runtime/esupdater-worker-4.pid', 4);
         file_put_contents('runtime/esupdater-worker-5.pid', 5);
-        if ($manager->getRunningWorkersCount() != 5) {
+        if ($manager->getRunningWorkersCount() !== 5) {
             return $this->failed();
         }
         unlink('runtime/esupdater-worker-1.pid');

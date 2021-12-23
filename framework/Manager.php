@@ -10,19 +10,24 @@ class Manager
 
     /**
      * Get running workers count
-     * @param string $pidFile
+     * @notice You must do something when this function return false
      * @return false|int
      */
-    public function getRunningWorkersCount($pidFile = "runtime/esupdater-worker-*.pid")
+    public function getRunningWorkersCount()
     {
-        $tempFile = RUNTIME_IGNORE_ERROR_TEMP_FILE;
-        exec("ls {$pidFile} > {$tempFile} 2>&1 && wc -l {$tempFile}", $output);
-        @unlink($tempFile); // When call this function, temp file may not exist, so ignore error.
-        if (!isset($output[0])) {
+        $handle = opendir(RUNTIME_PATH);
+        if (!$handle) {
             return false;
         }
-        $pieces = explode(' ', trim($output[0]));
-        return intval($pieces[0]);
+
+        $count = 0;
+        while (($file = readdir($handle)) !== false) {
+            if (strpos($file, RUNTIME_ESUPDATER_WORKER_PID_FILE_PREFIX) === 0) {
+                ++$count;
+            }
+        }
+        closedir($handle);
+        return $count;
     }
 
     /**
@@ -60,7 +65,11 @@ class Manager
      */
     public function isWorkersStopped(): bool
     {
-        return $this->getRunningWorkersCount() < 1;
+        $count = $this->getRunningWorkersCount();
+        if ($count === false || $count > 0) {
+            return false;
+        }
+        return true;
     }
 
     /**
