@@ -1,0 +1,6 @@
+result=`php test/run.php | grep 'Test Failed'`
+if [ -n "$result" ]; then
+    echo 单测失败
+    exit 1
+fi
+echo 单测成功
