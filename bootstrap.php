@@ -14,6 +14,7 @@ const RUNTIME_PATH   = ROOT_PATH . 'runtime/';
 const RUNTIME_ESUPDATER_CONSUMER_PID_FILE      = RUNTIME_PATH . 'esupdater-consumer.pid';
 const RUNTIME_ESUPDATER_CONSUMER_STATUS_FILE   = RUNTIME_PATH . 'esupdater-consumer.status';
 const RUNTIME_IGNORE_ERROR_TEMP_FILE           = RUNTIME_PATH . 'ignore-error.temp';
+const CREATE_WORKER_LOG_FILE                   = RUNTIME_PATH . 'create-worker.log';
 const RUNTIME_ESUPDATER_WORKER_PID_FILE_PREFIX = 'esupdater-worker-';
 
 // Define data constants
