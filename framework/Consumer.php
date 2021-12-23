@@ -165,14 +165,14 @@ class Consumer
                         return $message->payload;
                     }
 
-                    var_dump($message);
-                    $count = $manager->getRunningWorkersCount();
+                    $canalData = urlencode($message->payload);
+                    $count     = $manager->getRunningWorkersCount();
                     if ($count <= $this->maxWorkerCount) {
                         Logger::logDebug('Consumer handle message : create non-block esupdater-run process');
-                        // exec("nohup php esupdater.php run  >> log.txt &");
+                        exec("nohup php esupdater.php work {$canalData} >> log.txt &");
                     } else {
                         Logger::logDebug('Consumer handle message : create block esupdater-run process');
-                        // exec("php esupdater.php run  >> log.txt &");
+                        exec("php esupdater.php work {$canalData} >> log.txt &");
                     }
                     break;
                 case RD_KAFKA_RESP_ERR__PARTITION_EOF:
