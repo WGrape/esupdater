@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/sh
 
 # Run test
 result=`php test/run.php | grep 'Test Failed'`
