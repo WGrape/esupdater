@@ -9,7 +9,7 @@ class ESService extends BaseService
     public $host;
     public $port;
     public $userPassword;
-    public $docType;
+    public $documentType;
 
     public $index;
 
@@ -24,16 +24,22 @@ class ESService extends BaseService
         $this->host         = $es['host'];
         $this->port         = $es['port'];
         $this->userPassword = $es['user_password'];
-        $this->docType      = $es['doc_type'];
+        $this->documentType = $es['doc_type'];
 
         $this->index = $index;
     }
 
-    public function updateDoc($docId, $updateList, $upsert = false): bool
+    public function isNeedToUpdate(array $changedFieldList, array $needToUpdateFieldList): bool
     {
-        $url     = "{$this->host}:{$this->port}/{$this->index}/{$this->docType}/{$docId}/_update";
+        $result = array_intersect($changedFieldList, $needToUpdateFieldList);
+        return !empty($result);
+    }
+
+    public function updateDoc($documentId, $updateList, $upsert = false): bool
+    {
+        $url     = "{$this->host}:{$this->port}/{$this->index}/{$this->documentType}/{$documentId}/_update";
         $message = json_encode([
-            'docId'      => $docId,
+            'docId'      => $documentId,
             'updateData' => $updateList,
             'url'        => $url,
         ], JSON_UNESCAPED_UNICODE);
@@ -49,17 +55,17 @@ class ESService extends BaseService
         return $this->curlRequest($url, self::METHOD_POST, $data);
     }
 
-    public function putDoc($docId, $doc): bool
+    public function putDoc($documentId, $document): bool
     {
-        $url     = "{$this->host}:{$this->port}/{$this->index}/{$this->docType}/{$docId}";
+        $url     = "{$this->host}:{$this->port}/{$this->index}/{$this->documentType}/{$documentId}";
         $message = json_encode([
-            'docId' => $docId,
-            'doc'   => $doc,
+            'docId' => $documentId,
+            'doc'   => $document,
             'url'   => $url,
         ], JSON_UNESCAPED_UNICODE);
         Logger::logInfo("putDoc data : {$message}");
 
-        $data = json_encode($doc);
+        $data = json_encode($document);
         return $this->curlRequest($url, self::METHOD_PUT, $data);
     }
 

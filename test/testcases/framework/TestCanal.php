@@ -14,7 +14,10 @@ class TestCanal extends TestLibrary
                 'except' => false,
             ],
             [
-                'data' => [
+                'data'   => [
+                    'data'     => [
+                        [],
+                    ],
                     'database' => 'test',
                     'table'    => '',
                     'type'     => 'update',
@@ -24,7 +27,7 @@ class TestCanal extends TestLibrary
                 'except' => true,
             ],
         ];
-        $service = new \framework\Canal();
+        $service  = new \framework\Canal();
         foreach ($caseList as $case) {
             $data   = $case['data'];
             $except = $case['except'];
