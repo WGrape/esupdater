@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">    
-    <p>基于Canal的ES文档更新组件</p>
+    <p>基于Canal的ES文档增量更新组件</p>
 </div>
 
 <p align="center">
@@ -21,12 +21,13 @@
 - [三、部署项目](#3)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、非容器化方案](#31)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、容器化方案](#32)
+- &nbsp;&nbsp;&nbsp;&nbsp;[3、容器运行配置](#33)  
 - [四、如何开发](#4)
 - [五、单元测试](#5)
 - [六、应用配置](#6)
 
 ## <span id="1">一、介绍</span>
-ESUpdater是一个基于Canal的ES文档更新组件
+ESUpdater是一个基于Canal的ES文档增量更新组件
 
 <img width="900" alt="Architecture" src="https://user-images.githubusercontent.com/35942268/145793762-a23899d6-c162-4527-ae72-643edc80bb18.png">
 
@@ -113,6 +114,16 @@ bash ./stop.sh
 ```bash
 bash ./restart.sh
 ```
+
+### <span id="33">3、容器运行配置</span>
+容器的运行时配置在```/start.sh```脚本中定义
+
+| Id | 配置名称 | 配置参数 | 参数值 | 默认值 | 释义 |
+| --- | :----:  | :----:  | :---: | :---: | :---: |
+| 1 | 核心数 | --cpus=2.5 | 39MB | 2.5 | 设置允许的最大核心数 |
+| 2 | CPU核心集 | ---cpuset-cpus="0,1,2,3" | 0,1,2... | 未设置 | 设置允许执行的CPU核心 |
+| 3 | 内存核心集 | --cpuset-mems="2,3" | 0,1,2... | 未设置 | 设置使用哪些核心的内存 |
+| 4 | 目录挂载 | -v  | {LocalPath:ContainerPath} | /home/log/esupdater | 设置容器挂载的目录 |
 
 ## <span id="4">四、业务开发</span>
 关于如何开发，请参考[开发文档](./HOWTOCODE.md)
