@@ -28,4 +28,33 @@ class TestESService extends TestLibrary
         }
         return $this->success();
     }
+
+    public function testIsNeedToUpdate(): bool
+    {
+        $caseList = [
+            [
+                'data'   => [
+                    ['name', 'age'],
+                    ['id', 'name', 'age'],
+                ],
+                'except' => true,
+            ],
+            [
+                'data'   => [
+                    ['school'],
+                    ['id', 'name', 'age'],
+                ],
+                'except' => false,
+            ],
+        ];
+        $service  = new \app\core\services\ESService('test');
+        foreach ($caseList as $case) {
+            $data   = $case['data'];
+            $except = $case['except'];
+            if ($except != $service->isNeedToUpdate($data[0], $data[1])) {
+                return $this->failed();
+            }
+        }
+        return $this->success();
+    }
 }

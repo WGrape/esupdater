@@ -122,10 +122,10 @@ class Manager
 
     /**
      * Command: work
-     * @param $canalData
+     * @param string $canalData
      * @return string
      */
-    public function commandWork($canalData): string
+    public function commandWork(string $canalData): string
     {
         $pid           = getmypid();
         $workerPIDFile = "runtime/" . RUNTIME_ESUPDATER_WORKER_PID_FILE_PREFIX . $pid . ".pid";

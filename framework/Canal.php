@@ -21,7 +21,7 @@ class Canal
 
     public function checkParsedCanalData(array $parsedCanalData): bool
     {
-        if (empty($parsedCanalData)) {
+        if (empty($parsedCanalData) || empty($parsedCanalData['data'])) {
             return false;
         }
         if (!isset($parsedCanalData['database']) || !isset($parsedCanalData['table']) || !isset($parsedCanalData['type'])) {

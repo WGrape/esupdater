@@ -9,8 +9,8 @@ git pull
 docker build -t esupdater .
 
 # Run container
-# docker run --name {ContainerName} -d -v {LocalPath:ContainerPath} {imageName}
-docker run --name esupdaterContainer -d -v /home/log/esupdater/:/home/log/esupdater/ esupdater
+# docker run ---cpuset-cpus="0,1" --cpus=1.5 --cpuset-mems="2,3" --name {ContainerName} -d -v {LocalPath:ContainerPath} {imageName}
+docker run --cpus=2.5 --name esupdaterContainer -d -v /home/log/esupdater/:/home/log/esupdater/ esupdater
 if [ $? -ne 0 ]; then
   echo "启动失败"
 else
