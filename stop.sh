@@ -10,7 +10,8 @@ docker container rm esupdaterContainer
 docker rmi esupdater
 
 if [ $? -ne 0 ]; then
-  echo "停止失败"
+  echo -e ">>>>>>>>Stop failure<<<<<<<<"
+  exit 1
 else
-  echo "停止成功"
+  echo -e "========Stop success========"
 fi
