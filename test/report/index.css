@@ -1,0 +1,67 @@
+#Container {
+    text-align: center;
+}
+
+.section{
+    margin-top: 30px;
+}
+
+#table-1 thead, #table-1 tr {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(230, 189, 189);
+}
+
+#table-1 {
+    width: 700px;
+    margin: 20px auto;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(230, 189, 189);
+}
+
+/* Padding and font style */
+#table-1 td, #table-1 th {
+    padding: 5px 10px;
+    font-size: 12px;
+    font-family: Verdana;
+    color: rgb(177, 106, 104);
+}
+
+/* Alternating background colors */
+#table-1 tr:nth-child(even) {
+    background: rgb(238, 211, 210)
+}
+
+#table-1 tr:nth-child(odd) {
+    background: #FFF
+}
+
+#table-2 thead, #table-2 tr {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(235, 242, 224);
+}
+#table-2 {
+    width: 700px;
+    margin: 20px auto;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(235, 242, 224);
+}
+
+/* Padding and font style */
+#table-2 td, #table-2 th {
+    padding: 5px 10px;
+    font-size: 12px;
+    font-family: Verdana;
+    color: rgb(149, 170, 109);
+}
+
+/* Alternating background colors */
+#table-2 tr:nth-child(even) {
+    background: rgb(230, 238, 214)
+}
+#table-2 tr:nth-child(odd) {
+    background: #FFF
+}
