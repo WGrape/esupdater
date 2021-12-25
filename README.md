@@ -25,6 +25,7 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、非容器化方案](#31)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、容器化方案](#32)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、容器运行配置](#33)  
+- &nbsp;&nbsp;&nbsp;&nbsp;[4、与Canal、Kafka、ES组件配合使用](#34)
 - [四、如何开发](#4)
 - [五、单元测试](#5)
 - [六、应用配置](#6)
@@ -35,18 +36,24 @@ ESUpdater是一个基于Canal的ES文档增量更新组件
 <img width="900" alt="Architecture" src="https://user-images.githubusercontent.com/35942268/145793762-a23899d6-c162-4527-ae72-643edc80bb18.png">
 
 ### <span id="11">1、基于Canal</span>
-Canal提供了数据库增量订阅与消费的功能，借此可以通过不依赖业务代码的方式，获取到数据库的所有数据变更
+Canal提供了数据库增量订阅与消费的功能，不需要业务代码的侵入和依赖，通过读取MQ，即可获取到数据库的增量更新
 
 ### <span id="12">2、ES文档更新</span>
-一般情况下，ES文档中的数据都会以数据库为数据源。这样当数据库出现变更时，就需要有相应的数据同步策略把变更的部分都同步至ES
+对于数据源为数据库（如MySQL）的ES文档更新，主要有全量更新和增量更新两种方案
+
+- 全量更新 ：脚本全量查询数据库，统一写入至ES中
+  
+- 增量更新 ：双写或读取```binlog```，实现ES的增量更新
+
+ESUpdater就是读取```binlog```，实现ES文档增量更新的一种解决方案
 
 ### <span id="13">3、完整架构</span>
-ESUpdater提供了从数据库中变更数据的获取，到ES文档更新的一个完整业务框架，方便业务的扩展。关于设计原理请[参考文档](./HOWTOCODE.md)。
+ESUpdater提供了从消费Kafka中的数据库增量数据，到ES文档增量更新的一个完整业务框架，方便业务的扩展。关于设计原理请[参考文档](./HOWTOCODE.md)。
 
 - ```Consumer``` 进程 ：订阅Kafka队列，实时获取数据库的增量变更
 - ```Worker``` 进程 ：操作业务逻辑，将数据更新至ES文档
 
-<img src="https://user-images.githubusercontent.com/35942268/147027126-1df83ddf-8698-44dd-a988-5499f7eeb063.png" width="700">
+<img src="https://user-images.githubusercontent.com/35942268/147027126-1df83ddf-8698-44dd-a988-5499f7eeb063.png" width="625">
 
 ## <span id="2">二、快速安装</span>
 
@@ -68,7 +75,13 @@ ESUpdater有下述依赖项，如果选择非容器化部署方案，需要自�
 - PHP扩展 ：```rdkafka-3.0.0```
 - Kafka库 ：```librdkafka-dev=0.9.3-1```
 
-如果选择容器化部署方案，在```/esupdater/image```目录中已提供了开箱可用的```phpkafka```镜像文件，只需要简单的执行```bash make.sh```命令即可快速生成```phpkafka```镜像。在成功生成```phpkafka```镜像后，至此所有的安装步骤就已经完成。
+如果选择容器化部署方案，在```/esupdater/image```目录中已提供了开箱可用的```phpkafka```镜像文件，只需要简单的执行```bash make.sh```命令即可快速生成```phpkafka```镜像。
+
+<img src="https://user-images.githubusercontent.com/35942268/147384280-edb54544-9510-40f8-b9d1-06ddaab7c5c6.png" width="650">
+
+如果出现上图提示，则表示```phpkafka```镜像生成成功，至此所有的安装步骤就已经完成。
+
+如果安装过程出错，请查看[镜像制作帮助](./image/HELP.md)文档。
 
 ## 三、<span id="3">部署项目</span>
 部署过程主要由```启动```，```停止```，```重启```三个操作组成
@@ -97,37 +110,59 @@ php esupdater.php stop
 
 ### <span id="32">2、容器化方案</span>
 
-> 容器化部署方案依赖于```phpkafka```镜像，所以请确保```phpkafka```镜像已经生成。为了避免重复构建，建议把```phpkafka```镜像推到Docker远程仓库中。
+> 容器化部署方案依赖于```phpkafka```镜像，所以请确保```phpkafka```镜像已经生成。为了避免重复构建耗时，建议把```phpkafka```镜像推到Docker远程仓库中。
 
-容器化部署方案主要通过根目录下的```/Dockerfile```文件实现，它会基于```phpkafka```镜像构建一个新的镜像，名为```esupdater```
+容器化部署方案主要通过根目录下的```/Dockerfile```镜像文件实现，它会基于```phpkafka```镜像构建一个新的镜像，名为```esupdater```。
 
 #### <span id="321">(1) 启动</span>
+当执行如下命令时，会使用```/Dockerfile```文件创建```esupdater```镜像，并创建```esupdaterContainer```容器，最后通过在容器中执行```php esupdater.php start```命令实现服务的启动
 
 ```bash
 bash ./start.sh
 ```
 
+启动成功后，除命令行输出```Start success```外，在宿主机```/home/log/esupdater/info.log.{date}```日志中会输出启动日志，如下图所示
+
+<img width="700" alt="img" src="https://user-images.githubusercontent.com/35942268/147385923-80cb29e5-225b-4c83-8637-2513d3e17a1d.png">
+
 #### <span id="322">(2) 停止</span>
+当执行以下命令时，会先在容器中执行```php esupdater.php stop```命令，等待容器内```Consumer```进程和```Worker```进程全部停止后，删除镜像和容器
 
 ```bash
 bash ./stop.sh
 ```
 
+停止成功后，除命令行输出```Stop success```外，同样的在宿主机```/home/log/esupdater/info.log.{date}```日志中会输出停止成功日志，如下图所示
+
+<img width="700" alt="img" src="https://user-images.githubusercontent.com/35942268/147386373-dd4b66ff-60b8-43ab-8c5a-f03148258f27.png">
+
 #### <span id="323">(3) 重启</span>
+当执行以下命令时，会先执行```bash stop.sh```命令，再执行```bash start.sh```命令，以防止出现重复启动的问题
 
 ```bash
 bash ./restart.sh
 ```
 
 ### <span id="33">3、容器运行配置</span>
-容器的运行时配置在```/start.sh```脚本中定义
+容器的运行时配置在```/start.sh```脚本中定义，请根据实际情况进行修改，或使用默认配置。
 
 | Id | 配置名称 | 配置参数 | 参数值 | 默认值 | 释义 |
 | --- | :----:  | :----:  | :---: | :---: | :---: |
-| 1 | 核心数 | --cpus=2.5 | 39MB | 2.5 | 设置允许的最大核心数 |
+| 1 | 核心数 | --cpus=1.5 | \>=0.5 | 1.5 | 设置允许的最大核心数 |
 | 2 | CPU核心集 | ---cpuset-cpus="0,1,2,3" | 0,1,2... | 未设置 | 设置允许执行的CPU核心 |
 | 3 | 内存核心集 | --cpuset-mems="2,3" | 0,1,2... | 未设置 | 设置使用哪些核心的内存 |
-| 4 | 目录挂载 | -v  | {LocalPath:ContainerPath} | /home/log/esupdater | 设置容器挂载的目录 |
+| 4 | 目录挂载 | -v  | 磁盘目录 | /home/log/esupdater | 设置容器挂载的目录 |
+
+### <span id="34">4、与Canal、Kafka、ES组件配合使用</span>
+
+#### <span id="341">(1) 配合Canal</span>
+查看官方文档，配置Canal订阅的数据库binlog，和消息投放的Kafka队列即可
+
+#### <span id="342">(2) 配合Kafka</span>
+在[消费配置](#61)中完成Kafka配置，否则ESUpdater组件无法成功消费
+
+#### <span id="343">(3) 配合ES</span>
+在[ES配置](#63)中完成ES配置，这样```/app/core/services/ESService.php```文件中的定义的ES服务才能成功写入至ES
 
 ## <span id="4">四、业务开发</span>
 关于如何开发，请参考[开发文档](./HOWTOCODE.md)
