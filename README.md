@@ -9,6 +9,9 @@
 <p align="center">
     <img src="https://img.shields.io/badge/PHP-7.0+-blue.svg">
     <a href="https://app.travis-ci.com/github/WGrape/esupdater"><img src="https://app.travis-ci.com/WGrape/esupdater.svg?branch=master"><a>
+    <a href="test/report/index.html"><img src="https://img.shields.io/badge/unitest-100%25-yellow.svg"></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg"></a>
+    <a href="HOWTOCODE.md"><img src="https://img.shields.io/badge/doc-中文-red.svg"></a>
 </p>
 
 ## 目录
@@ -157,6 +160,9 @@ chmod +x .git/hooks/prepare-commit-msg
 
 ### <span id="52">2、添加用例</span>
 在```test/testcases/app```目录下，先创建应用目录（如```alpha```），然后在此目录下以```Test*```开头创建单测文件即可，具体内容可参考 [TestUserService](./test/testcases/app/alpha/TestUserService.php) 单测文件
+
+### <span id="53">3、测试报告</span>
+在测试运行结束后，会自动生成一个测试报告```/test/report/index.html```文件，[点击这里](./test/report/index.html)查看报告
 
 ## <span id="6">六、应用配置</span>
 

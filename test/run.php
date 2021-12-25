@@ -35,9 +35,9 @@ class ProjectTest
         }
     }
 
-    public function run()
+    public function run(): array
     {
-        global $test;
+        $testResultMap = [];
         foreach ($this->testDirectories as $directory) {
             $path = "{$this->baseDirectory}/{$directory}";
             if (!is_dir($path)) {
@@ -48,9 +48,9 @@ class ProjectTest
                 if (!preg_match('/\.php$/', $filename)) {
                     continue;
                 }
-                $class = $directory . explode('.', $filename)[0];
-                $class = str_replace("/", "\\", $class);
-                $test  = new $class();
+                $class      = $directory . explode('.', $filename)[0];
+                $class      = str_replace("/", "\\", $class);
+                $testObject = new $class();
                 try {
                     $reflectClass = new \ReflectionClass($class);
                 } catch (ReflectionException $e) {
@@ -63,16 +63,46 @@ class ProjectTest
                     if ('TestBase' == $ownerClass || strpos($method, 'test') !== 0) {
                         continue;
                     }
-                    if (!$test->$method()) {
+
+                    if (!isset($testResultMap[$class])) {
+                        $testResultMap[$class] = [];
+                    }
+                    if (!isset($testResultMap[$class][$method])) {
+                        $testResultMap[$class][$method] = false;
+                    }
+
+                    if (!$testObject->$method()) {
                         echo "Unfortunately! You failed the test\n";
                         exit(1);
                     }
+
+                    $testResultMap[$class][$method] = true;
                 }
             }
         }
         echo "Congratulations! All testcases passed!\n";
+        return $testResultMap;
+    }
+
+    public function outputHTML(array $testResultMap)
+    {
+        $file = ROOT_PATH . "test/report/index.html";
+
+        $caseListHtml = '';
+        $id           = 0;
+        foreach ($testResultMap as $testClass => $item) {
+            foreach ($item as $testMethod => $testResult) {
+                ++$id;
+                $testResult   = $testResult ? 'success' : 'failed';
+                $caseListHtml .= "<tr><td>{$id}</td><td>{$testClass}</td><td>{$testMethod}</td><td>{$testResult}</td></tr>";
+            }
+        }
+        $html = "<html><head><link rel='stylesheet' href='index.css'></head><body><div id='Container'><div class='section'><h2>ESUpdater UnitTest</h2><table id='table-2'><tr><th>Id</th><th>TestClass</th><th>TestMethod</th><th>TestResult</th></tr>" . $caseListHtml . "</table></div></div></body></html>";
+
+        file_put_contents($file, $html);
     }
 }
 
-$projectTest = new ProjectTest();
-$projectTest->run();
+$projectTest   = new ProjectTest();
+$testResultMap = $projectTest->run();
+$projectTest->outputHTML($testResultMap);
