@@ -81,7 +81,7 @@ ESUpdater有下述依赖项，如果选择非容器化部署方案，需要自�
 
 如果出现上图提示，则表示```phpkafka```镜像生成成功，至此所有的安装步骤就已经完成。
 
-如果安装过程出错，请查看[镜像制作帮助](./image/HELP.md)文档。
+如果安装过程出错，请查看[镜像制作帮助](./HELP.md)文档。
 
 ## 三、<span id="3">部署项目</span>
 
@@ -105,9 +105,7 @@ php esupdater.php stop
 
 ### <span id="32">2、容器化方案</span>
 
-> 容器化部署方案依赖于```phpkafka```镜像，所以请确保```phpkafka```镜像已经生成。为了避免重复构建耗时，建议把```phpkafka```镜像推到Docker远程仓库中。
-
-容器化部署方案主要通过根目录下的```/Dockerfile```镜像文件实现，它会基于```phpkafka```镜像构建一个新的镜像，名为```esupdater```。
+容器化部署方案主要通过根目录下的```/Dockerfile```镜像文件实现，它会基于```phpkafka```镜像构建一个新的镜像，名为```esupdater```。如果部署出错，请参考[容器化部署帮助](./HELP.md)文档
 
 #### <span id="321">(1) 启动</span>
 当执行如下命令时，会使用```/Dockerfile```文件创建```esupdater```镜像，并创建```esupdaterContainer```容器，最后通过在容器中执行```php esupdater.php start```命令实现服务的启动
