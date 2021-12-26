@@ -18,7 +18,7 @@ class TestUserService extends TestLibrary
                 'except' => 635423205,
             ],
         ];
-        $service  = new \app\alpha\services\user\UserService();
+        $service  = new \app\alpha\user\UserService();
         foreach ($caseList as $case) {
             $data   = $case['data'];
             $except = $case['except'];

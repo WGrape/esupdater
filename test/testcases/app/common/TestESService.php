@@ -1,6 +1,6 @@
 <?php
 
-namespace test\testcases\app\core;
+namespace test\testcases\app\common;
 
 use test\TestLibrary;
 
@@ -18,7 +18,7 @@ class TestESService extends TestLibrary
                 'except' => false,
             ],
         ];
-        $service  = new \app\core\services\ESService('test');
+        $service  = new \app\common\ESService('test');
         foreach ($caseList as $case) {
             $data   = $case['data'];
             $except = $case['except'];
@@ -47,7 +47,7 @@ class TestESService extends TestLibrary
                 'except' => false,
             ],
         ];
-        $service  = new \app\core\services\ESService('test');
+        $service  = new \app\common\ESService('test');
         foreach ($caseList as $case) {
             $data   = $case['data'];
             $except = $case['except'];

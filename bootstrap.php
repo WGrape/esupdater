@@ -25,7 +25,7 @@ include_once CONFIG_PATH . 'consumer.php';
 include_once CONFIG_PATH . 'db.php';
 include_once CONFIG_PATH . 'es.php';
 include_once CONFIG_PATH . 'log.php';
-include_once CONFIG_PATH . 'router.php';
+include_once CONFIG_PATH . 'event.php';
 
 // register autoload callback
 function autoloadCallback($classname)

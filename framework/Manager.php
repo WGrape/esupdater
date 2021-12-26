@@ -131,7 +131,7 @@ class Manager
         $workerPIDFile = "runtime/" . RUNTIME_ESUPDATER_WORKER_PID_FILE_PREFIX . $pid . ".pid";
         file_put_contents($workerPIDFile, intval($pid));
 
-        (new \framework\Router())->nextHop($canalData);
+        (new \framework\Event())->dispatch($canalData);
 
         unlink($workerPIDFile);
         return self::COMMAND_WORK_SUCCESS;

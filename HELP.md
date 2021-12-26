@@ -1,6 +1,6 @@
 ### 目录
 - [一、镜像制作帮助](#1)
-- [二、容器化部署帮助](#2)
+- [二、容器部署帮助](#2)
 
 ## <span id="1">一、镜像制作帮助</span>
 自带的```/image/Dockerfile```镜像文件，已经过多台Unix机器上的多次测试，均可以顺利的成功制作。但是不排除在特殊情况下会存在制作失败的情况，下面会总结出常见的错误和解决方案。
@@ -37,7 +37,7 @@ Cannot retrieve channel.xml for channel "pecl.php.net" (File https://pecl.php.ne
 #### (3) 解决方案
 检查网络是否正常或关掉网络代理
 
-## <span id="2">二、容器化部署帮助</span>
+## <span id="2">二、容器部署帮助</span>
 
 > 容器化部署方案依赖于```phpkafka```镜像，所以请确保```phpkafka```镜像已经生成。为了避免重复构建耗时，建议把```phpkafka```镜像推到Docker远程仓库中。
 

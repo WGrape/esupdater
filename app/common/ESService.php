@@ -1,10 +1,10 @@
 <?php
 
-namespace app\core\services;
+namespace app\common;
 
 use framework\Logger;
 
-class ESService extends BaseService
+class ESService
 {
     public $host;
     public $port;
