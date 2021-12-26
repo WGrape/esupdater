@@ -3,14 +3,14 @@
 logs
 .DS_Store
 
-# ignore directories of /app except core and alpha
+# ignore directories of /app except common and alpha
 app/*
-!app/core/
+!app/common/
 !app/alpha/
 
-# ignore directories of /test/testcases/app except core and alpha
+# ignore directories of /test/testcases/app except common and alpha
 test/testcases/app/*
-!test/testcases/app/core/
+!test/testcases/app/common/
 !test/testcases/app/alpha/
 
 # ignore runtime directory

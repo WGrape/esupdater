@@ -1,11 +1,10 @@
 <?php
 
-namespace app\alpha\services\user;
+namespace app\alpha\user;
 
-use app\core\services\BaseService;
 use framework\Logger;
 
-class UserService extends BaseService
+class UserService
 {
     public function getUserId(int $userid): int
     {

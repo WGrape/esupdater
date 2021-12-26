@@ -1,11 +1,10 @@
 <?php
 
-namespace app\alpha\controllers\user;
+namespace app\alpha\user;
 
-use app\alpha\services\user\UserService;
-use app\core\controllers\BaseController;
+use app\alpha\user;
 
-class UserController extends BaseController
+class UserHandler
 {
     public function onInsert(array $parsedCanalData): bool
     {

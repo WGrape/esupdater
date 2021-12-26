@@ -1,8 +1,8 @@
 <?php
 
-namespace framework;
+namespace app\common;
 
-class DBFactory
+class DBService
 {
     private $host;
     private $port;

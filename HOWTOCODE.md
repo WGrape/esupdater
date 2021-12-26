@@ -1,4 +1,26 @@
-## 一、执行原理
+## 一、架构设计
+
+### <span id="11">1、基于Canal</span>
+Canal提供了数据库增量订阅与消费的功能，不需要业务代码的侵入和依赖，通过读取MQ，即可获取到数据库的增量更新
+
+### <span id="12">2、ES文档更新</span>
+对于数据源为数据库（如MySQL）的ES文档更新，主要有全量更新和增量更新两种方案
+
+- 全量更新 ：脚本全量查询数据库，统一写入至ES中
+
+- 增量更新 ：双写或读取```binlog```，实现ES的增量更新
+
+ESUpdater就是读取```binlog```，实现ES文档增量更新的一种解决方案
+
+### <span id="13">3、完整架构</span>
+ESUpdater提供了从消费Kafka中的数据库增量数据，到ES文档增量更新的一个完整业务框架，方便业务的扩展。关于设计原理请[参考文档](HOWTOCODE.md)。
+
+- ```Consumer``` 进程 ：订阅Kafka队列，实时获取数据库的增量变更
+- ```Worker``` 进程 ：操作业务逻辑，将数据更新至ES文档
+
+<img src="https://user-images.githubusercontent.com/35942268/147027126-1df83ddf-8698-44dd-a988-5499f7eeb063.png" width="625">
+
+## 二、执行原理
 ESUpdater的核心由```Consumer```进程和```Worker```进程组成，其中根目录下的```/esupdater.php```为入口文件
 
 ### 1、生命周期
@@ -34,28 +56,22 @@ ESUpdater的核心由```Consumer```进程和```Worker```进程组成，其中根
 #### (3) work
 当```Consumer```进程使用```php esupdater work```命令启动```Worker```进程时，```Worker```进程会记录下```/runtime/esupdater-worker-{pid}.pid```进程ID文件，只有当结束后才会删除此文件。
 
-## 二、业务开发
-ESUpdater的业务开发模式和```MVC```模式类似
-
-- [1、创建应用目录](#1)
-- [2、创建应用子目录](#2)
-- [3、创建新的Handlers](#3)
-- [4、附录-参考文档](#4)
+## 三、业务开发
+ESUpdater的业务开发模式核心是事件驱动。
 
 ### <span id="1">1、创建应用目录</span>
 > 如果应用目录已存在，跳过此操作即可
 
 在```app/```目录下，创建自己的应用目录，一般以业务名命名，如```app/alpha```
 
-### <span id="2">2、创建应用子目录</span>
-> 如果应用子目录已存在，跳过此操作即可
+### <span id="2">2、创建事件模块</span>
+在```app/alpha/```目录下，再创建事件模块，事件模块由```handler```和```service```等组成
 
-在```app/user/```目录下，分别创建```controllers```、```services```目录
+#### <span id="21">(1) 创建Handler</span>
 
-### <span id="3">3、创建新的Handlers</span>
-以```MVC```模式，分别创建```XXXController```、```XXXService```即可
+#### <span id="22">(2) 创建Service</span>
 
-### <span id="4">4、附录-参考文档</span>
+## <span id="4">四、参考文档</span>
 
 - 有关```php-rdkafka```的配置可以 [参考文档](https://github.com/arnaud-lb/php-rdkafka)
 - 有关```librdkafka```的配置可以 [参考文档](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md)
