@@ -30,7 +30,7 @@ class TestManager extends TestLibrary
         $manager = new \framework\Manager();
 
         $manager->stopConsumerByIPC();
-        if (file_get_contents(RUNTIME_ESUPDATER_CONSUMER_STATUS_FILE) !== \framework\Consumer::STOP_FLAG_STRING) {
+        if (file_exists(RUNTIME_ESUPDATER_CONSUMER_STATUS_FILE) && file_get_contents(RUNTIME_ESUPDATER_CONSUMER_STATUS_FILE) !== \framework\Consumer::STOP_FLAG_STRING) {
             return $this->failed();
         }
 

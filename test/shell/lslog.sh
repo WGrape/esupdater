@@ -1,0 +1,1 @@
+ls /home/log/esupdater/

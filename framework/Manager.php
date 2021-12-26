@@ -47,7 +47,10 @@ class Manager
      */
     public function stopConsumerByIPC()
     {
-        file_put_contents(RUNTIME_ESUPDATER_CONSUMER_STATUS_FILE, Consumer::STOP_FLAG_STRING);
+        // Consumer process may not been created, so communicate only when consumer was created, or will be mistaken for stop failed
+        if (file_exists(RUNTIME_ESUPDATER_CONSUMER_STATUS_FILE)) {
+            file_put_contents(RUNTIME_ESUPDATER_CONSUMER_STATUS_FILE, Consumer::STOP_FLAG_STRING);
+        }
     }
 
     /**

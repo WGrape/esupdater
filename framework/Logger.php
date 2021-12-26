@@ -31,6 +31,24 @@ class Logger
         self::$logId = md5($formula);
     }
 
+    public static function returnDumpData(): array
+    {
+        $result = [
+            'runtime_files' => [],
+        ];
+
+        $handle = opendir(RUNTIME_PATH);
+        while ($handle && ($file = readdir($handle)) !== false) {
+            if (!is_file($file)) {
+                continue;
+            }
+            $result['runtime_files'][] = $file;
+        }
+        closedir($handle);
+
+        return $result;
+    }
+
     public static function logDebug(string $data)
     {
         self::write(self::LEVEL_DEBUG, $data);
@@ -69,9 +87,14 @@ class Logger
         $formula  = self::$formula;
         $datetime = date('Y-m-d H:i:s');
 
-        $header  = "{$datetime} | logid = {$logId} = {$formula}";
-        $body    = $data;
-        $footer  = "";
+        $header = "{$datetime} | logid = {$logId} = {$formula}";
+        $body   = $data;
+        $footer = "";
+        if ($level === self::LEVEL_FATAL) {
+            $dumpData = self::returnDumpData();
+            $footer   .= "----------Dump is data as follows----------\n";
+            $footer   .= ("runtime_files: " . implode(', ', $dumpData['runtime_files']));
+        }
         $content = "{$header}\n{$body}\n{$footer}\n";
 
         $file = self::generateLogFile($level);
