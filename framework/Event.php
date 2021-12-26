@@ -14,7 +14,7 @@ class Event
         $parsedCanalData = $canalParser->parse($canalData);
         Logger::setLogIdByParsedCanalData($parsedCanalData);
         if (!$canalParser->checkParsedCanalData($parsedCanalData)) {
-            Logger::logFatal("Check canal data error");
+            Logger::logError("Check canal data error");
             return;
         }
 
