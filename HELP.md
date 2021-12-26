@@ -6,6 +6,7 @@
 - [二、容器部署帮助](#2)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、phpkafka镜像不存在](#21)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、/home/log/esupdater/目录不存在或无权限写](#22)
+- &nbsp;&nbsp;&nbsp;&nbsp;[3、KafkaConsumer创建失败](#23)
 
 ## <span id="1">一、镜像制作帮助</span>
 在```/esupdater/image```目录中已提供了开箱可用的```phpkafka```镜像文件，只需要简单的执行```bash make.sh```命令即可快速生成```phpkafka```镜像。
@@ -60,3 +61,6 @@ vi start.sh
 # 替换以下内容
 docker run --cpus=1.5 --name esupdaterContainer -d -v {你的宿主机目录}:/home/log/esupdater/ esupdater
 ```
+
+### <span id="23">3、KafkaConsumer创建失败</span>
+如果在```fatal.log```中出现```KafkaConsumer```创建失败的报错，请检查```consumer.php```中的```kafka```服务配置是否可以正常连接
