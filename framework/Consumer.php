@@ -139,8 +139,13 @@ class Consumer
         $consumerConfigObject->setDefaultTopicConf($topicConfigObject);
 
         // Create consumer object
-        $consumerObject = new \RdKafka\KafkaConsumer($consumerConfigObject);
-        $consumerObject->subscribe([$this->topic]);
+        try {
+            $consumerObject = new \RdKafka\KafkaConsumer($consumerConfigObject);
+            $consumerObject->subscribe([$this->topic]);
+        } catch (\Throwable $e) {
+            Logger::logFatal("Consumer failed to new KafkaConsumer: " . $e->getMessage());
+            return self::CONSUMER_EXIT_WITH_EMPTY_STRING;
+        }
 
         // Timer start
         \framework\Timer::start(self::TIMER_MARK);
