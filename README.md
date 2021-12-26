@@ -8,6 +8,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/PHP-7.0+-blue.svg">
+    <img src="https://img.shields.io/badge/Release-1.0.0-blue.svg">
     <a href="https://app.travis-ci.com/github/WGrape/esupdater"><img src="https://app.travis-ci.com/WGrape/esupdater.svg?branch=master"><a>
     <a href="https://wgrape.github.io/esupdater/report.html"><img src="https://img.shields.io/badge/unitest-100%25-yellow.svg"></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg"></a>
@@ -19,7 +20,7 @@
 - [一、介绍](#1)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、轻量级框架](#11)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、全面容器化](#12)
-- &nbsp;&nbsp;&nbsp;&nbsp;[3、事件式设计](#13)
+- &nbsp;&nbsp;&nbsp;&nbsp;[3、事件驱动化](#13)
 - [二、快速安装](#2)
 - [三、轻松管理](#3)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、容器部署](#31)
@@ -45,10 +46,11 @@ ESUpdater是一个基于Canal实现ES文档增量更新的轻量级框架。基�
 ### <span id="12">2、全面容器化</span>
 为解决各种依赖安装的复杂困难问题，已实现全面容器化，只需一条命令就可以轻松安装、部署、和维护。
 
-### <span id="13">3、事件式设计</span>
-通过数据表变更事件的注册与回调，完成业务逻辑的实时处理，这种事件式设计更符合增量更新的理念。
+### <span id="13">3、事件驱动化</span>
+通过数据表变更事件的注册与回调，完成业务逻辑的实时处理，这种事件驱动化设计更符合增量更新的理念。
 
 ## <span id="2">二、快速安装</span>
+安装过程会依赖Docker，所以请先安装并启动Docker，或者使用<a href="https://labs.play-with-docker.com/">在线Docker网站</a>，按如下步骤安装即可
 
 ### <span id="21">1、获取项目</span>
 
