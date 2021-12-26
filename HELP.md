@@ -1,14 +1,20 @@
 ### 目录
 - [一、镜像制作帮助](#1)
+- &nbsp;&nbsp;&nbsp;&nbsp;[1、Docker命令不存在](#11)
+- &nbsp;&nbsp;&nbsp;&nbsp;[2、无法连接Docker](#12)
+- &nbsp;&nbsp;&nbsp;&nbsp;[3、pecl.php.net更新失败](#13)
 - [二、容器部署帮助](#2)
+- &nbsp;&nbsp;&nbsp;&nbsp;[1、phpkafka镜像不存在](#21)
 
 ## <span id="1">一、镜像制作帮助</span>
+在```/esupdater/image```目录中已提供了开箱可用的```phpkafka```镜像文件，只需要简单的执行```bash make.sh```命令即可快速生成```phpkafka```镜像。
+
 自带的```/image/Dockerfile```镜像文件，已经过多台Unix机器上的多次测试，均可以顺利的成功制作。但是不排除在特殊情况下会存在制作失败的情况，下面会总结出常见的错误和解决方案。
 
-### 1、Docker命令不存在
-安装镜像必须依赖于```Docker```，所以请务必成功安装```Docker```，否则无法创建镜像
+### <span id="11">1、Docker命令不存在</span>
+安装镜像必须依赖于```Docker```，所以请务必成功安装```Docker```，否则无法创建镜像。
 
-### 2、无法连接Docker
+### <span id="12">2、无法连接Docker</span>
 
 #### (1) 错误提示
 ```text
@@ -21,7 +27,7 @@ Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docke
 #### (3) 解决方案
 开启本地Docker服务即可
 
-### 3、pecl.php.net更新失败
+### <span id="13">3、pecl.php.net更新失败</span>
 
 #### (1) 错误提示
 ```text
@@ -39,5 +45,6 @@ Cannot retrieve channel.xml for channel "pecl.php.net" (File https://pecl.php.ne
 
 ## <span id="2">二、容器部署帮助</span>
 
-> 容器化部署方案依赖于```phpkafka```镜像，所以请确保```phpkafka```镜像已经生成。为了避免重复构建耗时，建议把```phpkafka```镜像推到Docker远程仓库中。
+### <span id="21">1、phpkafka镜像不存在</span>
 
+容器化部署方案依赖于```phpkafka```镜像，如果提示此镜像不存在，参考[安装依赖](./README.md#22)文档，只需要一条命令就可以快速制作镜像
