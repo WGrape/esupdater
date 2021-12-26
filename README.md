@@ -27,8 +27,8 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、容器运行配置](#33)  
 - &nbsp;&nbsp;&nbsp;&nbsp;[4、与Canal、Kafka、ES组件配合使用](#34)
 - [四、如何开发](#4)
-- [五、单元测试](#5)
-- [六、应用配置](#6)
+- [五、应用配置](#5)
+- [六、单元测试](#6)
 
 ## <span id="1">一、介绍</span>
 ESUpdater是一个基于Canal的ES文档增量更新组件
@@ -48,7 +48,7 @@ Canal提供了数据库增量订阅与消费的功能，不需要业务代码的
 ESUpdater就是读取```binlog```，实现ES文档增量更新的一种解决方案
 
 ### <span id="13">3、完整架构</span>
-ESUpdater提供了从消费Kafka中的数据库增量数据，到ES文档增量更新的一个完整业务框架，方便业务的扩展。关于设计原理请[参考文档](./HOWTOCODE.md)。
+ESUpdater提供了从消费Kafka中的数据库增量数据，到ES文档增量更新的一个完整业务框架，方便业务的扩展。关于设计原理请[参考文档](HOWTOCODE.md)。
 
 - ```Consumer``` 进程 ：订阅Kafka队列，实时获取数据库的增量变更
 - ```Worker``` 进程 ：操作业务逻辑，将数据更新至ES文档
@@ -81,7 +81,7 @@ ESUpdater有下述依赖项，如果选择非容器化部署方案，需要自�
 
 如果出现上图提示，则表示```phpkafka```镜像生成成功，至此所有的安装步骤就已经完成。
 
-如果安装过程出错，请查看[镜像制作帮助](./HELP.md)文档。
+如果安装过程出错，请查看[镜像制作帮助](HELP.md)文档。
 
 ## 三、<span id="3">部署项目</span>
 
@@ -105,7 +105,7 @@ php esupdater.php stop
 
 ### <span id="32">2、容器化方案</span>
 
-容器化部署方案主要通过根目录下的```/Dockerfile```镜像文件实现，它会基于```phpkafka```镜像构建一个新的镜像，名为```esupdater```。如果部署出错，请参考[容器化部署帮助](./HELP.md)文档
+容器化部署方案主要通过根目录下的```/Dockerfile```镜像文件实现，它会基于```phpkafka```镜像构建一个新的镜像，名为```esupdater```。如果部署出错，请参考[容器化部署帮助](HELP.md)文档
 
 #### <span id="321">(1) 启动</span>
 当执行如下命令时，会使用```/Dockerfile```文件创建```esupdater```镜像，并创建```esupdaterContainer```容器，最后通过在容器中执行```php esupdater.php start```命令实现服务的启动
@@ -158,43 +158,11 @@ bash ./restart.sh
 在[ES配置](#63)中完成ES配置，这样```/app/core/services/ESService.php```文件中的定义的ES服务才能成功写入至ES
 
 ## <span id="4">四、业务开发</span>
-关于如何开发，请参考[开发文档](./HOWTOCODE.md)
+关于如何开发，请参考[开发文档](HOWTOCODE.md)
 
-## <span id="5">五、单元测试</span>
-根目录下的```/test```目录是单元测试目录，其中有一个```/test/run.php```入口文件，它会自动扫描 [testcases_directory](#66) 目录下所有的测试用例，并依次执行。
+## <span id="5">五、应用配置</span>
 
-
-### <span id="51">1、运行测试</span>
-
-```bash
-php test/run.php
-```
-
-### (1) Travis CI
-根目录下的```.travis.yml```文件已配置Travis CI，每次代码提交到```testing```和```master```分支，会自动执行单测
-
-### (2) Git Commit Hook
-
-<img width="600" src="https://user-images.githubusercontent.com/35942268/147193803-3d31df4e-8085-429f-8cbb-08a3509f76e3.png">
-
-在本地开发时，为避免每次手动执行单元测试，可以配置在每次提交代码时，自动执行单元测试。
-
-项目自带了```/prepare-commit-msg```文件，在项目根目录下执行以下命令即可实现！
-
-```bash
-cp prepare-commit-msg ./.git/hooks
-chmod +x .git/hooks/prepare-commit-msg
-```
-
-### <span id="52">2、添加用例</span>
-在```test/testcases/app```目录下，先创建应用目录（如```alpha```），然后在此目录下以```Test*```开头创建单测文件即可，具体内容可参考 [TestUserService](./test/testcases/app/alpha/TestUserService.php) 单测文件
-
-### <span id="53">3、测试报告</span>
-在测试运行结束后，会自动生成一个测试报告```/test/report/index.html```文件，<a href="https://wgrape.github.io/esupdater/report.html">点击这里</a>查看报告
-
-## <span id="6">六、应用配置</span>
-
-### <span id="61">1、消费配置</span>
+### <span id="51">1、消费配置</span>
 
 配置文件 ```/config/consumer.php```，设置消费Kafka的配置
 
@@ -219,7 +187,7 @@ $consumer = [
 ];
 ```
 
-### <span id="62">2、数据库配置</span>
+### <span id="52">2、数据库配置</span>
 配置文件 ```/config/db.php```，设置访问数据库的配置
 
 ```php
@@ -237,7 +205,7 @@ $db = [
 ];
 ```
 
-### <span id="63">3、ES配置</span>
+### <span id="53">3、ES配置</span>
 配置文件 ```/config/es.php```，设置访问ES的配置
 
 ```php
@@ -251,7 +219,7 @@ $es = [
 ];
 ```
 
-### <span id="64">4、日志配置</span>
+### <span id="54">4、日志配置</span>
 
 > 在```/start.sh```启动脚本中，```docker run -v ...``` 会把容器中配置的日志目录挂载到本机相应目录中
 
@@ -269,7 +237,7 @@ $log = [
 ];
 ```
 
-### <span id="65">5、路由配置</span>
+### <span id="55">5、路由配置</span>
 配置文件 ```/config/router.php```，如下所示
 
 - Key ：```数据库名.表名```
@@ -286,7 +254,7 @@ $router = [
 ];
 ```
 
-### <span id="66">6、单测配置</span>
+### <span id="56">6、单测配置</span>
 配置文件 ```config/test.php```，如下所示
 
 ```php
@@ -297,3 +265,35 @@ $test = [
     'testcases_directory' => 'test/testcases/',
 ];
 ```
+
+## <span id="6">六、单元测试</span>
+根目录下的```/test```目录是单元测试目录，其中有一个```/test/run.php```入口文件，它会自动扫描 [testcases_directory](#66) 目录下所有的测试用例，并依次执行。
+
+
+### <span id="61">1、运行测试</span>
+
+```bash
+php test/run.php
+```
+
+### (1) Travis CI
+根目录下的```.travis.yml```文件已配置Travis CI，每次代码提交到```testing```和```master```分支，会自动执行单测
+
+### (2) Git Commit Hook
+
+<img width="600" src="https://user-images.githubusercontent.com/35942268/147193803-3d31df4e-8085-429f-8cbb-08a3509f76e3.png">
+
+在本地开发时，为避免每次手动执行单元测试，可以配置在每次提交代码时，自动执行单元测试。
+
+项目自带了```/test/prepare-commit-msg```文件，在项目根目录下执行以下命令即可实现！
+
+```bash
+cp test/prepare-commit-msg ./.git/hooks
+chmod +x .git/hooks/prepare-commit-msg
+```
+
+### <span id="62">2、添加用例</span>
+在```test/testcases/app```目录下，先创建应用目录（如```alpha```），然后在此目录下以```Test*```开头创建单测文件即可，具体内容可参考 [TestUserService](./test/testcases/app/alpha/TestUserService.php) 单测文件
+
+### <span id="63">3、测试报告</span>
+在测试运行结束后，会自动生成一个测试报告```/test/report/index.html```文件，<a href="https://wgrape.github.io/esupdater/report.html">点击这里</a>查看报告

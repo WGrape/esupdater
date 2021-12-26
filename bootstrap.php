@@ -27,5 +27,29 @@ include_once CONFIG_PATH . 'es.php';
 include_once CONFIG_PATH . 'log.php';
 include_once CONFIG_PATH . 'router.php';
 
-// autoload
-include_once './autoload.php';
+// register autoload callback
+function autoloadCallback($classname)
+{
+    $classname = str_replace('\\', '/', $classname);
+
+    $file = ROOT_PATH . "{$classname}.php";
+    if (file_exists($file)) {
+        include_once $file;
+    } else {
+        echo 'class file' . $classname . 'not found!';
+    }
+}
+
+spl_autoload_register("autoloadCallback", true, true);
+
+// register shutdown callback
+function shutdownCallback()
+{
+    $manager = new \framework\Manager();
+    if (!$manager->isConsumerStopped() || !$manager->isWorkersStopped()) {
+        \framework\Logger::logFatal("Processes were not all stopped when shutdown");
+        return;
+    }
+}
+
+register_shutdown_function('shutdownCallback');
