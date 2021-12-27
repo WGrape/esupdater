@@ -45,11 +45,7 @@ spl_autoload_register("autoloadCallback", true, true);
 // register shutdown callback
 function shutdownCallback()
 {
-    $manager = new \framework\Manager();
-    if (!$manager->isConsumerStopped() || !$manager->isWorkersStopped()) {
-        \framework\Logger::logFatal("Processes were not all stopped when shutdown");
-        return;
-    }
+    // do something...
 }
 
 register_shutdown_function('shutdownCallback');
