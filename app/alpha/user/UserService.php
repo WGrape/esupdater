@@ -1,4 +1,10 @@
 <?php
+/**
+ * The service of user event module in alpha application.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
 
 namespace app\alpha\user;
 

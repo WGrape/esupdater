@@ -1,8 +1,14 @@
 <?php
+/**
+ * This is an event listener for calling(dispatching) handler when insert/update/delete event of database is triggered.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
 
 namespace framework;
 
-class Event
+class Listener
 {
     const TYPE_INSERT = 'INSERT';
     const TYPE_UPDATE = 'UPDATE';

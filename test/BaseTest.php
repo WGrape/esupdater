@@ -1,8 +1,14 @@
 <?php
+/**
+ * The base unit test class.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
 
 namespace test;
 
-class TestLibrary
+class BaseTest
 {
     protected function success(): bool
     {

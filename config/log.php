@@ -1,4 +1,10 @@
 <?php
+/**
+ * The log outputting configuration.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
 
 $log = [
     'debug'   => '/home/log/esupdater/debug.log',

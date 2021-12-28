@@ -1,4 +1,10 @@
 <?php
+/**
+ * It's a process manager, manage all processes, including worker and consumer.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
 
 namespace framework;
 
@@ -134,7 +140,7 @@ class Manager
         $workerPIDFile = "runtime/" . RUNTIME_ESUPDATER_WORKER_PID_FILE_PREFIX . $pid . ".pid";
         file_put_contents($workerPIDFile, intval($pid));
 
-        (new \framework\Event())->dispatch($canalData);
+        (new \framework\Listener())->dispatch($canalData);
 
         unlink($workerPIDFile);
         return self::COMMAND_WORK_SUCCESS;

@@ -1,10 +1,17 @@
 <?php
 
+/**
+ * The unit test class of Command.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
+
 namespace test\testcases\framework;
 
-use test\TestLibrary;
+use test\BaseTest;
 
-class TestCommand extends TestLibrary
+class TestCommand extends BaseTest
 {
     public function testWork(): bool
     {

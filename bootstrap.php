@@ -1,4 +1,10 @@
 <?php
+/**
+ * The bootloader file of esupdater, test and so on.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
 
 // PHP Configuration
 date_default_timezone_set('Asia/Shanghai');

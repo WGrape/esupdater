@@ -1,10 +1,17 @@
 <?php
 
+/**
+ * The unit test class of Manager.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
+
 namespace test\testcases\framework;
 
-use test\TestLibrary;
+use test\BaseTest;
 
-class TestManager extends TestLibrary
+class TestManager extends BaseTest
 {
     public function testGetRunningWorkersCount(): bool
     {
