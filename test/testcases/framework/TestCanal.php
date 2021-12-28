@@ -1,10 +1,17 @@
 <?php
 
+/**
+ * The unit test class of Canal.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
+
 namespace test\testcases\framework;
 
-use test\TestLibrary;
+use test\BaseTest;
 
-class TestCanal extends TestLibrary
+class TestCanal extends BaseTest
 {
     public function testCheckParsedCanalData(): bool
     {

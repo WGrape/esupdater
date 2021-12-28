@@ -1,4 +1,10 @@
 <?php
+/**
+ * Do something when you need to timing.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
 
 namespace framework;
 

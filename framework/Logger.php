@@ -1,4 +1,10 @@
 <?php
+/**
+ * This is the only one logger when you need to output logs.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
 
 namespace framework;
 

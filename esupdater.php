@@ -1,4 +1,10 @@
 <?php
+/**
+ * The main file of esupdater.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
 
 include_once 'bootstrap.php';
 

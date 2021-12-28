@@ -1,4 +1,10 @@
 <?php
+/**
+ * The database service in common application.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
 
 namespace app\common;
 

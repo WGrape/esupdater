@@ -1,10 +1,16 @@
 <?php
+/**
+ * The unit test class of app\common\ESService.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
 
 namespace test\testcases\app\common;
 
-use test\TestLibrary;
+use test\BaseTest;
 
-class TestESService extends TestLibrary
+class TestESService extends BaseTest
 {
     public function testIsSuccess(): bool
     {

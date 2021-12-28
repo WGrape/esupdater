@@ -1,4 +1,10 @@
 <?php
+/**
+ * The consumer process.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
 
 namespace framework;
 

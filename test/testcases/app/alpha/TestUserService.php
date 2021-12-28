@@ -1,10 +1,16 @@
 <?php
+/**
+ * The unit test class of app\alpha\user\UserService.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
 
 namespace test\testcases\app\alpha;
 
-use test\TestLibrary;
+use test\BaseTest;
 
-class TestUserService extends TestLibrary
+class TestUserService extends BaseTest
 {
     public function testGetUserId(): bool
     {

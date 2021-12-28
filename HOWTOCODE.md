@@ -203,7 +203,7 @@ git commit -m "add: xxx"
 ```
 
 ### <span id="43">3、添加用例</span>
-在```test/testcases/app```目录下，先创建应用目录（如```alpha```），然后在此目录下以```Test*```开头创建单测文件即可，具体内容可参考 [TestUserService](./test/testcases/app/alpha/TestUserService.php) 单测文件
+在```test/testcases/app```目录下，先创建应用目录（如```alpha```），然后在此目录下以```Test*```开头创建单测文件即可，具体内容可参考 [TestUserService](test/testcases/app/alpha/TestUserService.php) 单测文件
 
 ### <span id="44">4、测试报告</span>
 在测试运行结束后，会自动生成一个测试报告```/test/report/index.html```文件，<a href="https://wgrape.github.io/esupdater/report.html">点击这里</a>查看报告
