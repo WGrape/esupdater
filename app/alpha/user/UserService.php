@@ -12,26 +12,54 @@ use framework\Logger;
 
 class UserService
 {
+    /**
+     * Get userid of user.
+     *
+     * @param int $userid
+     *
+     * @return int
+     */
     public function getUserId(int $userid): int
     {
         return ($userid * 100) + 5;
     }
 
-    public function handleInsert(array $parsedCanalData): bool
+    /**
+     * Do insert business things.
+     *
+     * @param array $parsedCanalData
+     *
+     * @return bool
+     */
+    public function doInsert(array $parsedCanalData): bool
     {
-        Logger::logInfo("result(UserService -> handleInsert) : success");
+        Logger::logInfo("result(UserService -> doInsert) : success");
         return true;
     }
 
-    public function handleUpdate(array $parsedCanalData): bool
+    /**
+     * Do update business things.
+     *
+     * @param array $parsedCanalData
+     *
+     * @return bool
+     */
+    public function doUpdate(array $parsedCanalData): bool
     {
-        Logger::logInfo("result(UserService -> handleUpdate) : success");
+        Logger::logInfo("result(UserService -> doUpdate) : success");
         return true;
     }
 
-    public function handleDelete(array $parsedCanalData): bool
+    /**
+     * Do delete business things.
+     *
+     * @param array $parsedCanalData
+     *
+     * @return bool
+     */
+    public function doDelete(array $parsedCanalData): bool
     {
-        Logger::logInfo("result(UserService -> handleDelete) : success");
+        Logger::logInfo("result(UserService -> doDelete) : success");
         return true;
     }
 }

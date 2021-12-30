@@ -10,6 +10,11 @@ namespace test;
 
 class BaseTest
 {
+    /**
+     * Test success.
+     *
+     * @return bool
+     */
     protected function success(): bool
     {
         $debugTrace    = debug_backtrace();
@@ -19,6 +24,12 @@ class BaseTest
         return true;
     }
 
+    /**
+     * Test failed.
+     * @param string $err
+     *
+     * @return bool
+     */
     protected function failed($err = ""): bool
     {
         $debugTrace    = debug_backtrace();
@@ -31,17 +42,38 @@ class BaseTest
         return false;
     }
 
+    /**
+     * Return text with success color.
+     *
+     * @param $text
+     *
+     * @return string
+     */
     public function decorateSuccessText($text): string
     {
         return "\033[32m{$text}\033[0m";
     }
 
+    /**
+     * Return text with failed color.
+     *
+     * @param $text
+     *
+     * @return string
+     */
     public function decorateFailedText($text): string
     {
         return "\033[31;4m{$text}\033[0m";
     }
 
-    protected function getCallerFileName($debugTrace): string
+    /**
+     * Get file name of caller.
+     *
+     * @param array $debugTrace the data of debug_backtrace() return
+     *
+     * @return string
+     */
+    protected function getCallerFileName(array $debugTrace): string
     {
         if (empty($debugTrace)) {
             return '';
@@ -55,7 +87,14 @@ class BaseTest
         return $fileShortName;
     }
 
-    protected function getCallerFunctionName($debugTrace): string
+    /**
+     * Get function name of caller.
+     *
+     * @param array $debugTrace the data of debug_backtrace() return
+     *
+     * @return string
+     */
+    protected function getCallerFunctionName(array $debugTrace): string
     {
         if (!isset($debugTrace[1])) {
             return '';

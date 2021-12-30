@@ -3,9 +3,10 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、基于Canal](#11)  
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、ES文档更新](#12)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、完整架构](#13)
-- [二、执行原理](#2)
+- [二、底层原理](#2)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、生命周期](#21)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、命令执行](#22)
+- &nbsp;&nbsp;&nbsp;&nbsp;[3、binlog数据处理过程](#23)
 - [三、应用配置](#3)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、消费配置](#31)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、数据库配置](#32)
@@ -43,7 +44,7 @@ ESUpdater提供了从消费Kafka中的数据库增量数据，到ES文档增量�
 
 <img src="https://user-images.githubusercontent.com/35942268/147027126-1df83ddf-8698-44dd-a988-5499f7eeb063.png" width="625">
 
-## <span id="2">二、执行原理</span>
+## <span id="2">二、底层原理</span>
 ESUpdater的核心由```Consumer```进程和```Worker```进程组成，其中根目录下的```/esupdater.php```为入口文件
 
 ### <span id="21">1、生命周期</span>
@@ -78,6 +79,15 @@ ESUpdater的核心由```Consumer```进程和```Worker```进程组成，其中根
 
 #### <span id="223">(3) work</span>
 当```Consumer```进程使用```php esupdater work```命令启动```Worker```进程时，```Worker```进程会记录下```/runtime/esupdater-worker-{pid}.pid```进程ID文件，只有当结束后才会删除此文件。
+
+### <span id="23">3、binlog数据处理过程</span>
+处理过程为```binlog => canalData => urlencode(canalData)```，可以参考文件 [/framework/Canal.php](./framework/Canal.php)
+
+1. Canal将```binlog```数据解析为```json```格式并投递至kafka
+2. Consumer进程消费kafka，使用```urlencode```方式编码获取到的消息数据
+3. Consumer进程把编码后的消息数据，传递至Worker进程
+4. Worker进程再依次拆解数据即可
+
 
 ## <span id="3">三、应用配置</span>
 

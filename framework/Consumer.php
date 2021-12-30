@@ -118,6 +118,7 @@ class Consumer
      */
     public function highLevelConsuming($onlyForTest = false): string
     {
+        $canal   = new Canal();
         $manager = new Manager();
 
         // Create topic config object
@@ -177,7 +178,7 @@ class Consumer
                     }
 
                     $logFile   = CREATE_WORKER_LOG_FILE;
-                    $canalData = urlencode($message->payload);
+                    $canalData = $canal->encode($message->payload);
                     $count     = $manager->getRunningWorkersCount();
                     if ($count !== false && $count <= $this->maxWorkerCount) {
                         Logger::logDebug("Consumer handle message : create non-block worker process, current count is {$count}");

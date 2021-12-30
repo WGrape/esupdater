@@ -12,13 +12,44 @@ use framework\Logger;
 
 class ESService
 {
+    /**
+     * The host for accessing elasticsearch.
+     *
+     * @var string
+     */
     public $host;
+
+    /**
+     * The port for accessing elasticsearch.
+     *
+     * @var string
+     */
     public $port;
+
+    /**
+     * The user:password for accessing elasticsearch.
+     *
+     * @var string
+     */
     public $userPassword;
+
+    /**
+     * The field of _type for accessing elasticsearch.
+     *
+     * @var string
+     */
     public $documentType;
 
+    /**
+     * The index for accessing elasticsearch.
+     *
+     * @var string
+     */
     public $index;
 
+    /**
+     * The different curl method.
+     */
     const METHOD_GET = 'GET';
     const METHOD_POST = 'POST';
     const METHOD_PUT = 'PUT';
@@ -35,12 +66,32 @@ class ESService
         $this->index = $index;
     }
 
+    /**
+     * Is the changed filed need to update elasticsearch.
+     *
+     * @param array $changedFieldList
+     *
+     * @param array $needToUpdateFieldList
+     *
+     * @return bool
+     */
     public function isNeedToUpdate(array $changedFieldList, array $needToUpdateFieldList): bool
     {
         $result = array_intersect($changedFieldList, $needToUpdateFieldList);
         return !empty($result);
     }
 
+    /**
+     * Update a document.
+     *
+     * @param $documentId
+     *
+     * @param $updateList
+     *
+     * @param false $upsert
+     *
+     * @return bool
+     */
     public function updateDoc($documentId, $updateList, $upsert = false): bool
     {
         $url     = "{$this->host}:{$this->port}/{$this->index}/{$this->documentType}/{$documentId}/_update";
@@ -61,6 +112,15 @@ class ESService
         return $this->curlRequest($url, self::METHOD_POST, $data);
     }
 
+    /**
+     * Put a document.
+     *
+     * @param $documentId
+     *
+     * @param $document
+     *
+     * @return bool
+     */
     public function putDoc($documentId, $document): bool
     {
         $url     = "{$this->host}:{$this->port}/{$this->index}/{$this->documentType}/{$documentId}";
@@ -75,11 +135,29 @@ class ESService
         return $this->curlRequest($url, self::METHOD_PUT, $data);
     }
 
+    /**
+     * Is success or not.
+     *
+     * @param int $httpCode
+     *
+     * @return bool
+     */
     public function isSuccess(int $httpCode): bool
     {
         return intval($httpCode) >= 200 && intval($httpCode) < 300;
     }
 
+    /**
+     * Request the elasticsearch by http.
+     *
+     * @param string $url
+     *
+     * @param string $method
+     *
+     * @param string $data
+     *
+     * @return bool
+     */
     public function curlRequest(string $url, string $method, string $data): bool
     {
         $ch = curl_init();

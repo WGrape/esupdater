@@ -10,10 +10,25 @@ namespace framework;
 
 class Listener
 {
+    /**
+     * Database event type: insert.
+     */
     const TYPE_INSERT = 'INSERT';
+
+    /**
+     * Database event type: update.
+     */
     const TYPE_UPDATE = 'UPDATE';
+
+    /**
+     * Database event type: delete.
+     */
     const TYPE_DELETE = 'DELETE';
 
+    /**
+     * Find and
+     * @param string $canalData
+     */
     public function dispatch(string $canalData)
     {
         $canalParser     = new Canal();
