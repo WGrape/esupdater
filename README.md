@@ -139,5 +139,7 @@ bash ./restart.sh
 ### <span id="52">2、参与项目</span>
 项目源码设计简单易懂，如果你有更好的想法，非常欢迎提出宝贵的 [Pull request](https://github.com/WGrape/esupdater/pulls)
 
+<a href="https://starchart.cc/WGrape/esupdater"><img src="https://starchart.cc/WGrape/esupdater.svg" width="700"></a>
+
 ### <span id="53">3、提问渠道</span>
 如果在了解和使用过程中，有任何疑问，非常欢迎提出宝贵的 [Issue](https://github.com/WGrape/esupdater/issues/new)
