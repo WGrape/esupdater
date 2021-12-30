@@ -10,10 +10,16 @@ namespace framework;
 
 class Timer
 {
+    /**
+     * Store the benchmark of time.
+     *
+     * @var array
+     */
     public static $container = [];
 
     /**
-     * Return now nowSecondTimestampWithMicrosecond
+     * Return nowSecondTimestampWithMicrosecond.
+     *
      * @return float
      */
     public static function getNowSecondTimestampWithMicrosecond(): float
@@ -23,8 +29,10 @@ class Timer
     }
 
     /**
-     * Timer start and return nowSecondTimestampWithMicrosecond
+     * Timer start and return nowSecondTimestampWithMicrosecond.
+     *
      * @param string $mark
+     *
      * @return float
      */
     public static function start(string $mark): float
@@ -34,8 +42,10 @@ class Timer
     }
 
     /**
-     * Return elapsed milliseconds from start
+     * Return elapsed milliseconds from start.
+     *
      * @param string $mark
+     *
      * @return int
      */
     public static function elapsed(string $mark): int

@@ -15,8 +15,10 @@ class Manager
     const COMMAND_STOP_FAILED = 'failed';
 
     /**
-     * Get running workers count
+     * Get running workers count.
+     *
      * @notice You must do something when this function return false
+     *
      * @return false|int
      */
     public function getRunningWorkersCount()
@@ -37,7 +39,7 @@ class Manager
     }
 
     /**
-     * Start consumer and blocking
+     * Start consumer and blocking.
      */
     public function startConsumerAndBlocking()
     {
@@ -49,7 +51,7 @@ class Manager
     }
 
     /**
-     * Stop consumer by IPC(InterProcess Communication): Shared File
+     * Stop consumer by IPC(InterProcess Communication): Shared File.
      */
     public function stopConsumerByIPC()
     {
@@ -60,7 +62,8 @@ class Manager
     }
 
     /**
-     * Whether consumer was stopped or not
+     * Whether consumer was stopped or not.
+     *
      * @return bool
      */
     public function isConsumerStopped(): bool
@@ -69,7 +72,8 @@ class Manager
     }
 
     /**
-     * Whether all workers were stopped or not
+     * Whether all workers were stopped or not.
+     *
      * @return bool
      */
     public function isWorkersStopped(): bool
@@ -82,7 +86,7 @@ class Manager
     }
 
     /**
-     * Command: start
+     * Command: start.
      */
     public function commandStart()
     {
@@ -100,7 +104,8 @@ class Manager
     }
 
     /**
-     * Command: stop
+     * Command: stop.
+     *
      * @return string
      */
     public function commandStop(): string
@@ -130,8 +135,10 @@ class Manager
     }
 
     /**
-     * Command: work
+     * Command: work.
+     *
      * @param string $canalData
+     *
      * @return string
      */
     public function commandWork(string $canalData): string

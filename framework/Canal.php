@@ -10,21 +10,49 @@ namespace framework;
 
 class Canal
 {
-    public function encode(string $string): string
+    /**
+     * Encode the canal data to string.
+     *
+     * @param string $unEncodedCanalData the json format data in kafka queue (canal put it into kafka)
+     *
+     * @return string
+     */
+    public function encode(string $unEncodedCanalData): string
     {
-        return urlencode($string);
+        return urlencode($unEncodedCanalData);
     }
 
-    public function decode(string $canalData): string
+    /**
+     * Decode the canal data to string.
+     *
+     * @param string $encodedCanalData the urlencoded canal data
+     *
+     * @return string
+     */
+    public function decode(string $encodedCanalData): string
     {
-        return urldecode($canalData);
+        return urldecode($encodedCanalData);
     }
 
-    public function parse(string $canalData): array
+    /**
+     * Parse the canal data to array.
+     *
+     * @param string $encodedCanalData the urlencoded canal data
+     *
+     * @return array
+     */
+    public function parse(string $encodedCanalData): array
     {
-        return json_decode($this->decode($canalData), true);
+        return json_decode($this->decode($encodedCanalData), true);
     }
 
+    /**
+     * Check the canal data format.
+     *
+     * @param array $parsedCanalData
+     *
+     * @return bool
+     */
     public function checkParsedCanalData(array $parsedCanalData): bool
     {
         if (empty($parsedCanalData) || empty($parsedCanalData['data'])) {

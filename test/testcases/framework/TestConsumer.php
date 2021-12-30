@@ -14,9 +14,12 @@ use test\BaseTest;
 class TestConsumer extends BaseTest
 {
     /**
-     * Format snake string to camel string
+     * Format snake string to camel string.
+     *
      * @param $uncamelizedString
+     *
      * @param string $separator
+     *
      * @return string
      */
     public function camelize($uncamelizedString, $separator = '_'): string
@@ -26,9 +29,12 @@ class TestConsumer extends BaseTest
     }
 
     /**
-     * Produce message
+     * Produce message.
+     *
      * @param \framework\Consumer $consumerObject
+     *
      * @param string $message
+     *
      * @return bool
      */
     public function produceMessage(\framework\Consumer $consumerObject, string $message): bool

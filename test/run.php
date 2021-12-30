@@ -11,21 +11,40 @@ include_once __DIR__ . '/../config/test.php';
 
 class ProjectTest
 {
-    protected $baseDirectory = "";
+    /**
+     * The root directory.
+     *
+     * @var string
+     */
+    protected $rootDirectory = "";
+
+    /**
+     * The directories need to test.
+     *
+     * @var array
+     */
     protected $testDirectories = [];
 
+    /**
+     * ProjectTest constructor.
+     */
     function __construct()
     {
-        $this->baseDirectory = ROOT_PATH;
+        $this->rootDirectory = ROOT_PATH;
         global $test;
         if (isset($test['testcases_directory']) && !empty($test['testcases_directory'])) {
             $this->findTestDirectories($test['testcases_directory']);
         }
     }
 
+    /**
+     * Find all directories need to test.
+     *
+     * @param $directory
+     */
     protected function findTestDirectories($directory)
     {
-        $currentDirectory = "{$this->baseDirectory}{$directory}";
+        $currentDirectory = "{$this->rootDirectory}{$directory}";
         $handler          = opendir($currentDirectory);
         if ($handler === false) {
             return;
@@ -41,11 +60,16 @@ class ProjectTest
         }
     }
 
+    /**
+     * The main function of unit test.
+     *
+     * @return array
+     */
     public function run(): array
     {
         $testResultMap = [];
         foreach ($this->testDirectories as $directory) {
-            $path = "{$this->baseDirectory}/{$directory}";
+            $path = "{$this->rootDirectory}/{$directory}";
             if (!is_dir($path)) {
                 continue;
             }
@@ -90,6 +114,11 @@ class ProjectTest
         return $testResultMap;
     }
 
+    /**
+     * Output the test report of html format.
+     *
+     * @param array $testResultMap
+     */
     public function outputHTML(array $testResultMap)
     {
         $file = ROOT_PATH . "test/report/index.html";

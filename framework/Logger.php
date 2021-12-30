@@ -10,21 +10,47 @@ namespace framework;
 
 class Logger
 {
+    /**
+     * Support log level.
+     */
     const LEVEL_DEBUG = 'debug';
     const LEVEL_INFO = 'info';
     const LEVEL_WARNING = 'warning';
     const LEVEL_ERROR = 'error';
     const LEVEL_FATAL = 'fatal';
 
+    /**
+     * The unique id of log.
+     *
+     * @var string
+     */
     private static $logId;
+
+    /**
+     * The formula of logId.
+     *
+     * @var string
+     */
     private static $formula;
 
+    /**
+     * Setup the logId.
+     *
+     * @param string $logIdParam
+     *
+     * @param string $formulaParam
+     */
     public static function setLogId(string $logIdParam, string $formulaParam)
     {
         self::$logId   = $logIdParam;
         self::$formula = $formulaParam;
     }
 
+    /**
+     * Setup the logId according the parsed canal data.
+     *
+     * @param array $parsedCanalData
+     */
     public static function setLogIdByParsedCanalData(array $parsedCanalData)
     {
         $database = isset($parsedCanalData['database']) ? $parsedCanalData['database'] : '';
@@ -37,6 +63,11 @@ class Logger
         self::$logId = md5($formula);
     }
 
+    /**
+     * Return the debug data.
+     *
+     * @return array[]
+     */
     public static function returnDumpData(): array
     {
         $result = [
@@ -55,38 +86,77 @@ class Logger
         return $result;
     }
 
+    /**
+     * Write log in debug mode.
+     *
+     * @param string $data the message to write
+     */
     public static function logDebug(string $data)
     {
         self::write(self::LEVEL_DEBUG, $data);
     }
 
+    /**
+     * Write log in info mode.
+     *
+     * @param string $data the message to write
+     */
     public static function logInfo(string $data)
     {
         self::write(self::LEVEL_INFO, $data);
     }
 
+    /**
+     * Write log in warning mode.
+     *
+     * @param string $data the message to write
+     */
     public static function logWarning(string $data)
     {
         self::write(self::LEVEL_WARNING, $data);
     }
 
+    /**
+     * Write log in error mode.
+     *
+     * @param string $data the message to write
+     */
     public static function logError(string $data)
     {
         self::write(self::LEVEL_ERROR, $data);
     }
 
+    /**
+     * Write log in fatal mode.
+     *
+     * @param string $data the message to write
+     */
     public static function logFatal(string $data)
     {
         self::write(self::LEVEL_FATAL, $data);
     }
 
-    public static function generateLogFile($logLevel): string
+    /**
+     * Get the path of log file in different level mode.
+     *
+     * @param $logLevel
+     *
+     * @return string
+     */
+    public static function getLogFilePath($logLevel): string
     {
         global $log;
         $date = date('Ymd');
         return "{$log[$logLevel]}.{$date}";
     }
 
+    /**
+     * The common method for writing log.
+     *
+     * @param $level
+     *
+     * @param $data
+     */
     public static function write($level, $data)
     {
         $logId    = self::$logId;
@@ -103,7 +173,7 @@ class Logger
         }
         $content = "{$header}\n{$body}\n{$footer}\n";
 
-        $file = self::generateLogFile($level);
+        $file = self::getLogFilePath($level);
         file_put_contents($file, $content, FILE_APPEND | LOCK_EX);
     }
 }
