@@ -29,7 +29,8 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、修改配置](#41)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、创建应用](#42)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、创建事件模块](#43)
-- &nbsp;&nbsp;&nbsp;&nbsp;[4、部署项目](#44)
+- &nbsp;&nbsp;&nbsp;&nbsp;[4、注册事件回调](#44)  
+- &nbsp;&nbsp;&nbsp;&nbsp;[5、部署项目](#45)
 - [五、疑问解答](#5)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、项目文档](#51)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、参与项目](#52)
@@ -124,7 +125,16 @@ bash ./restart.sh
 - ```/app/alpha/user/UserHandler.php``` ，作用类似 ```Controller```
 - ```/app/alpha/user/UserService.php```，作用类似 ```Service```
 
-### <span id="44">4、部署项目</span>
+### <span id="44">4、注册事件回调</span>
+在```/config/event.php```配置文件中添加一个新的键值对，表示当```数据库.数据表```出现变更事件时，由对应的```事件Handler```响应处理。参考[事件配置](./HOWTOCODE.md#35)
+
+```php
+$event = [
+    'alpha.user' => '\app\alpha\user\UserHandler',
+];
+```
+
+### <span id="44">5、部署项目</span>
 至此业务接入部分已经完成，参考 [轻松管理](#3) 部分部署代码即可
 
 ## <span id="5">五、疑问解答</span>
