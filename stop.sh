@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Exec command: php esupdater.php stop
 # Use exec command with -i argument would run and return result synchronously: docker exec -i esupdaterContainer php -r "var_dump(123);"
 docker exec -i esupdaterContainer php esupdater.php stop

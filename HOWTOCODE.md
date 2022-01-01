@@ -7,6 +7,7 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、生命周期](#21)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、命令执行](#22)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、binlog数据处理过程](#23)
+- &nbsp;&nbsp;&nbsp;&nbsp;[4、目录结构规范](#24)
 - [三、应用配置](#3)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、消费配置](#31)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、数据库配置](#32)
@@ -88,6 +89,20 @@ ESUpdater的核心由```Consumer```进程和```Worker```进程组成，其中根
 3. Consumer进程把编码后的消息数据，传递至Worker进程
 4. Worker进程再依次拆解数据即可
 
+### <span id="24">4、目录结构规范</span>
+
+####  <span id="241">(1) 目录结构
+- ```app```目录 ：应用目录
+- ```config```目录 ：项目的唯一配置入口
+- ```framework```目录 ：项目的核心框架目录
+- ```images```目录 ：```phpkafka```镜像目录
+- ```runtime```目录 ：服务运行时产生的中间文件目录，如PID文件，但不包括日志文件
+- ```test```目录 ：单元测试目录  
+- ```/```目录 ：根目录下存放所有上述目录，和必要的一级文件如```.gitignore```文件
+
+####  <span id="242">(2) 文件规范
+- ```shell```脚本不能省略```.sh```后缀，且统一以```bash xxx.sh```的方式执行
+- 文档统一以大写英文命名，如```README.md``` / ```HELP.md```
 
 ## <span id="3">三、应用配置</span>
 

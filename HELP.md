@@ -1,22 +1,47 @@
 ### 目录
-- [一、镜像制作帮助](#1)
-- &nbsp;&nbsp;&nbsp;&nbsp;[1、Docker命令不存在](#11)
-- &nbsp;&nbsp;&nbsp;&nbsp;[2、无法连接Docker](#12)
-- &nbsp;&nbsp;&nbsp;&nbsp;[3、pecl.php.net更新失败](#13)
-- [二、容器部署帮助](#2)
-- &nbsp;&nbsp;&nbsp;&nbsp;[1、phpkafka镜像不存在](#21)
-- &nbsp;&nbsp;&nbsp;&nbsp;[2、/home/log/esupdater/目录不存在或无权限写](#22)
-- &nbsp;&nbsp;&nbsp;&nbsp;[3、KafkaConsumer创建失败](#23)
+- [一、安装过程帮助](#1)
+- &nbsp;&nbsp;&nbsp;&nbsp;[1、Git命令不存在](#11)
+- &nbsp;&nbsp;&nbsp;&nbsp;[2、无法正常Clone](#12)
+- &nbsp;&nbsp;&nbsp;&nbsp;[3、运行安装脚本出错](#13)
+- &nbsp;&nbsp;&nbsp;&nbsp;[4、Windows系统如何安装](#14)
+- [二、镜像制作帮助](#2)
+- &nbsp;&nbsp;&nbsp;&nbsp;[1、Docker命令不存在](#21)
+- &nbsp;&nbsp;&nbsp;&nbsp;[2、无法连接Docker](#22)
+- &nbsp;&nbsp;&nbsp;&nbsp;[3、pecl.php.net更新失败](#23)
+- [三、容器部署帮助](#3)
+- &nbsp;&nbsp;&nbsp;&nbsp;[1、phpkafka镜像不存在](#31)
+- &nbsp;&nbsp;&nbsp;&nbsp;[2、/home/log/esupdater/目录不存在或无权限写](#32)
+- &nbsp;&nbsp;&nbsp;&nbsp;[3、KafkaConsumer创建失败](#33)
 
-## <span id="1">一、镜像制作帮助</span>
+## <span id="1">一、安装过程帮助</span>
+请先通过 ```git clone``` 或 [下载Release包](https://github.com/WGrape/esupdater/releases) 的方式获取项目
+
+### <span id="11">1、Git命令不存在</span>
+检查git是否已正常安装，查看 [如何安装Git](https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)
+
+### <span id="12">2、无法正常Clone</span>
+针对于常见无法正常Clone的问题，有如下几种解决方案
+
+- 尝试使用```https```方式进行clone
+- 检查网络和网速是否正常，或使用 [esupdater国内版仓库](https://gitee.com/WGrape/esupdater)
+
+### <span id="13">3、运行安装脚本出错</span>
+如果获取项目已经成功，但是在```bash install.sh```运行安装脚本阶段出错的话，有如下几种解决方案
+
+- 制作镜像过程出错 ：参考 [镜像制作帮助](#2) 文档
+
+### <span id="14">4、Windows系统如何安装</span>
+目前暂不支持直接在Windows系统上操作，可以选择在Linux虚拟机、Docker环境中安装，如使用 <a href="https://labs.play-with-docker.com/">在线Docker网站</a>
+
+## <span id="2">二、镜像制作帮助</span>
 在```/esupdater/image```目录中已提供了开箱可用的```phpkafka```镜像文件，只需要简单的执行```bash make.sh```命令即可快速生成```phpkafka```镜像。
 
 自带的```/image/Dockerfile```镜像文件，已经过多台Unix机器上的多次测试，均可以顺利的成功制作。但是不排除在特殊情况下会存在制作失败的情况，下面会总结出常见的错误和解决方案。
 
-### <span id="11">1、Docker命令不存在</span>
+### <span id="21">1、Docker命令不存在</span>
 安装镜像必须依赖于```Docker```，所以请务必成功安装```Docker```，否则无法创建镜像。
 
-### <span id="12">2、无法连接Docker</span>
+### <span id="22">2、无法连接Docker</span>
 
 #### (1) 错误提示
 ```text
@@ -29,7 +54,7 @@ Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docke
 #### (3) 解决方案
 开启本地Docker服务即可
 
-### <span id="13">3、pecl.php.net更新失败</span>
+### <span id="23">3、pecl.php.net更新失败</span>
 
 #### (1) 错误提示
 ```text
@@ -45,12 +70,16 @@ Cannot retrieve channel.xml for channel "pecl.php.net" (File https://pecl.php.ne
 #### (3) 解决方案
 检查网络是否正常或关掉网络代理
 
-## <span id="2">二、容器部署帮助</span>
+## <span id="3">三、容器部署帮助</span>
 
-### <span id="21">1、phpkafka镜像不存在</span>
-容器化部署方案依赖于```phpkafka```镜像，如果提示此镜像不存在，参考[安装依赖](./README.md#22)文档，只需要一条命令就可以快速制作镜像
+### <span id="31">1、phpkafka镜像不存在</span>
+> pull access denied for phpkafka, repository does not exist ... ...
 
-### <span id="22">2、/home/log/esupdater/目录不存在或无权限写</span>
+出现这种错误是因为跳过了安装步骤，直接执行部署操作导致的。
+
+由于容器化部署方案依赖于```phpkafka```镜像，所以如果提示此镜像不存在，请先参考[开始安装](./README.md#22)文档执行安装操作，或直接手动执行```cd image && bash make.sh```完成镜像的制作。
+
+### <span id="32">2、/home/log/esupdater/目录不存在或无权限写</span>
 由于容器默认会把目录挂载到宿主机的 ```/home/log/esupdater/``` 相同目录下，所以请确保宿主机有此目录和写入权限
 
 或者也可以选择修改[容器的运行时配置](./README.md#32)中的```目录挂载```，修改方式如下
@@ -62,5 +91,7 @@ vi start.sh
 docker run --cpus=1.5 --name esupdaterContainer -d -v {你的宿主机目录}:/home/log/esupdater/ esupdater
 ```
 
-### <span id="23">3、KafkaConsumer创建失败</span>
+### <span id="33">3、KafkaConsumer创建失败</span>
+> Consumer failed to new KafkaConsumer: "group.id" must be configured
+
 如果在```fatal.log```中出现```KafkaConsumer```创建失败的报错，请检查```consumer.php```中的```kafka```服务配置是否可以正常连接
