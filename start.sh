@@ -22,7 +22,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Run container
-# docker run ---cpuset-cpus="0,1" --cpus=1.5 --cpuset-mems="2,3" --name {ContainerName} -d -v {LocalPath:ContainerPath} {imageName}
+# docker run --cpuset-cpus="0,1" --cpus=1.5 --cpuset-mems="2,3" --name {ContainerName} -d -v {LocalPath:ContainerPath} {imageName}
 docker run --cpus=1.5 --name esupdaterContainer -d -v /home/log/esupdater/:/home/log/esupdater/ esupdater
 if [ $? -ne 0 ]; then
   echo -e ">>>>>>>>Start failure: failed to run<<<<<<<<"

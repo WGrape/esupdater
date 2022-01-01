@@ -2,13 +2,14 @@
 <img width="200" alt="img" src="https://user-images.githubusercontent.com/35942268/147061994-f0d5a3ec-2d5f-4d72-af1c-139289547f25.png">
 </div>
 
-<div align="center">    
+<div align="center">
     <p>一个基于Canal实现ES文档增量更新的轻量级框架</p>
 </div>
 
 <p align="center">
     <img src="https://img.shields.io/badge/PHP-7.0+-blue.svg">
     <img src="https://img.shields.io/badge/Release-v1.0.1-blue.svg">
+    <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/wgrape/esupdater">
     <a href="https://app.travis-ci.com/github/WGrape/esupdater"><img src="https://app.travis-ci.com/WGrape/esupdater.svg?branch=master"><a>
     <a href="https://wgrape.github.io/esupdater/report.html"><img src="https://img.shields.io/badge/unitest-100%25-yellow.svg"></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg"></a>
@@ -29,12 +30,11 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、修改配置](#41)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、创建应用](#42)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、创建事件模块](#43)
-- &nbsp;&nbsp;&nbsp;&nbsp;[4、注册事件回调](#44)  
+- &nbsp;&nbsp;&nbsp;&nbsp;[4、注册事件回调](#44)
 - &nbsp;&nbsp;&nbsp;&nbsp;[5、部署项目](#45)
-- [五、疑问解答](#5)
+- [五、关于项目](#5)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、项目文档](#51)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、参与项目](#52)
-- &nbsp;&nbsp;&nbsp;&nbsp;[3、提问渠道](#53)
 
 ## <span id="1">一、介绍</span>
 ESUpdater是一个基于Canal实现ES文档增量更新的轻量级框架。基于以下优势，可以方便的完成业务接入与扩展。
@@ -42,7 +42,7 @@ ESUpdater是一个基于Canal实现ES文档增量更新的轻量级框架。基�
 <img width="900" alt="Architecture" src="https://user-images.githubusercontent.com/35942268/145793762-a23899d6-c162-4527-ae72-643edc80bb18.png">
 
 ### <span id="11">1、轻量级框架</span>
-从消费Kafka消息，到派发至业务层处理，框架设计清晰，源码简单易懂。
+无论安装使用，还是代码设计的从消费Kafka消息，到派发至业务层处理，整个框架都非常轻量，源码简单易懂。
 
 ### <span id="12">2、全面容器化</span>
 为解决各种依赖安装的复杂困难问题，已实现全面容器化，只需一条命令就可以轻松安装、部署、和维护。
@@ -91,14 +91,16 @@ bash ./restart.sh
 ```
 
 ### <span id="32">2、容器运行配置</span>
-容器的运行时配置在```/start.sh```脚本中定义，请根据实际情况进行修改，或使用默认配置。
+可以在```/start.sh```脚本中执行```docker run```时设置如下参数配置容器运行状态，或使用默认配置。
 
 | Id | 配置名称 | 配置参数 | 参数值 | 默认值 | 释义 |
 | --- | :----:  | :----:  | :---: | :---: | :---: |
-| 1 | 核心数 | --cpus | \>=0.5 | 1.5 | 设置允许的最大核心数 |
-| 2 | CPU核心集 | ---cpuset-cpus | 0,1,2... | 未设置 | 设置允许执行的CPU核心 |
-| 3 | 内存核心集 | --cpuset-mems | 0,1,2... | 未设置 | 设置使用哪些核心的内存 |
-| 4 | 目录挂载 | -v  | 磁盘目录 | /home/log/esupdater | 设置容器挂载的目录，以便在宿主机查看日志 |
+| 1 | 核心数 | --cpus | float | 1.5 | 设置允许的最大核心数 |
+| 2 | CPU核心集 | --cpuset-cpus | int | 未设置 | 设置允许执行的CPU核心 |
+| 3 | 内存核心集 | --cpuset-mems | int | 未设置 | 设置使用哪些核心的内存 |
+| 4 | 目录挂载 | -v  | string | /home/log/esupdater | 设置容器挂载的目录 |
+
+如果需要设置更多的容器参数，可以参考[官方文档](https://docs.docker.com/config/containers/resource_constraints/)
 
 ## <span id="4">四、业务接入</span>
 
@@ -129,19 +131,18 @@ $event = [
 ### <span id="44">5、部署项目</span>
 至此业务接入部分已经完成，参考 [轻松管理](#3) 部分部署代码即可
 
-## <span id="5">五、疑问解答</span>
+## <span id="5">五、关于项目</span>
 
 ### <span id="51">1、项目文档</span>
-项目共有如下3个的文档，以便查看了解
+项目共有如下6个文档，以方便对项目的快速了解
 
 - [README](./README.md) ：项目本身的文档，快速了解项目
-- [HOWTOCODE](./HOWTOCODE.md) ：更深的了解项目，包括架构设计、底层原理、应用配置、单元测试等
+- [CONTRIBUTING](./CONTRIBUTING.md) ：介绍如何参与此项目并贡献  
 - [HELP](./HELP.md) ：解决安装和部署过程中问题的帮助手册，包括镜像制作帮助、容器部署帮助等
+- [HOWTOCODE](./HOWTOCODE.md) ：更深的了解项目，包括架构设计、底层原理、应用配置、单元测试等
+- [QUESTION](./QUESTION.md) ：一些关于项目的疑问解释，如```这个项目有什么用```或```为什么不使用PHPunit和Composer```等
 
 ### <span id="52">2、参与项目</span>
-项目源码设计简单易懂，如果你有更好的想法，非常欢迎提出宝贵的 [Pull request](https://github.com/WGrape/esupdater/pulls)
+项目源码设计简单易懂，如有更好的想法，可参考[如何贡献](./CONTRIBUTING.md)文档，期待提出宝贵的 [Pull request](https://github.com/WGrape/esupdater/pulls) 
 
-<a href="https://starchart.cc/WGrape/esupdater"><img src="https://starchart.cc/WGrape/esupdater.svg" width="700"></a>
-
-### <span id="53">3、提问渠道</span>
-如果在了解和使用过程中，有任何疑问，非常欢迎提出宝贵的 [Issue](https://github.com/WGrape/esupdater/issues/new)
+如果在了解和使用过程中，有任何疑问，也欢迎提出宝贵的 [Issue](https://github.com/WGrape/esupdater/issues/new)

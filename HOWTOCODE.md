@@ -21,7 +21,8 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、添加用例](#43)
 - &nbsp;&nbsp;&nbsp;&nbsp;[4、测试报告](#44)
 - [五、部署过程](#5)
-- [六、参考文档](#6)
+- [六、如何支持composer](#6)
+- [七、参考文档](#7)
 
 ## <span id="1">一、架构设计</span>
 
@@ -268,7 +269,53 @@ bash ./stop.sh
 bash ./restart.sh
 ```
 
-## <span id="6">六、参考文档</span>
+## <span id="6">六、如何支持composer</span>
+首先在项目根目录下添加```composer.json```文件，内容如下
+
+```json
+{
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "app\\": "app/",
+      "framework\\": "framework/",
+      "test\\": "test/"
+    }
+  }
+}
+```
+
+添加完```composer.json```文件后，执行```composer install```等待自动生成```vendor```。最后修改```bootstrap.php```文件，内容如下
+
+```php
+
+// 加载composer的自动加载文件
+include_once ROOT_PATH . 'vendor/autoload.php';
+
+// 删除代码中如下的自动加载部分
+/**
+ * Register autoload callback.
+ *
+ * @param string $classname
+ */
+function autoloadCallback(string $classname)
+{
+    $classname = str_replace('\\', '/', $classname);
+
+    $file = ROOT_PATH . "{$classname}.php";
+    if (file_exists($file)) {
+        include_once $file;
+    } else {
+        echo 'class file' . $classname . 'not found!';
+    }
+}
+
+spl_autoload_register("autoloadCallback", true, true);
+```
+
+至此就完成了对Composer的支持，改动非常少，而且不会影响到核心代码
+
+## <span id="7">七、参考文档</span>
 
 - 有关```php-rdkafka```的配置可以 [参考文档](https://github.com/arnaud-lb/php-rdkafka)
 - 有关```librdkafka```的配置可以 [参考文档](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md)

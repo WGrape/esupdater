@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 docker build -t phpkafka .
 echo -e ""
 if [ $? -ne 0 ]; then
