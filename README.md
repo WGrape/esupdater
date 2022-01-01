@@ -29,7 +29,7 @@
 - [四、业务接入](#4)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、修改配置](#41)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、创建应用](#42)
-- &nbsp;&nbsp;&nbsp;&nbsp;[3、创建事件模块](#43)
+- &nbsp;&nbsp;&nbsp;&nbsp;[3、创建事件回调](#43)
 - &nbsp;&nbsp;&nbsp;&nbsp;[4、注册事件回调](#44)
 - &nbsp;&nbsp;&nbsp;&nbsp;[5、部署项目](#45)
 - [五、关于项目](#5)
@@ -70,7 +70,7 @@ bash install.sh
 
 ### <span id="31">1、容器部署</span>
 
-如果部署过程中出错，请参考[容器部署帮助](HELP.md#2)文档
+如果部署过程中出错，请参考[容器部署帮助](HELP.md#2)文档。
 
 #### <span id="311">(1) 启动</span>
 
@@ -100,36 +100,47 @@ bash ./restart.sh
 | 3 | 内存核心集 | --cpuset-mems | int | 未设置 | 设置使用哪些核心的内存 |
 | 4 | 目录挂载 | -v  | string | /home/log/esupdater | 设置容器挂载的目录 |
 
-如果需要设置更多的容器参数，可以参考[官方文档](https://docs.docker.com/config/containers/resource_constraints/)
+如果需要设置更多的容器参数，可以参考[官方文档](https://docs.docker.com/config/containers/resource_constraints/) 。
 
 ## <span id="4">四、业务接入</span>
 
 ### <span id="41">1、修改配置</span>
 只需要修改 [consumer.php](./config/consumer.php) 配置文件中的```broker_list_string```、```group_id```、```topic```这三个必须的配置项即可， 否则无法正常消费数据。
 
-其他非必须的配置请参考[应用配置](./HOWTOCODE.md#3)文档
+其他非必须的配置请参考[应用配置](./HOWTOCODE.md#3)文档。
 
 ### <span id="42">2、创建应用</span>
 
-在```/app/```目录下，创建一个以业务为命名规范的应用名称，如```/app/alpha/```
+在```/app/```目录下，创建一个以业务为命名规范的应用名称，如```/app/alpha/```。
 
-### <span id="43">3、创建事件模块</span>
-在上一步中创建的应用目录下，再创建一个由```Handler```和```Service```组成的事件模块，如 ：
+### <span id="43">3、创建事件回调</span>
+在上一步中创建的应用目录下，创建一个```Handler```事件回调类
 
-- ```/app/alpha/user/UserHandler.php``` ，作用类似 ```Controller```
-- ```/app/alpha/user/UserService.php```，作用类似 ```Service```
+- [/app/alpha/user/UserHandler.php](./app/alpha/user/UserHandler.php) ：作用类似 ```Controller```
+
+如果需要在事件回调中做大量复杂的业务操作，可以创建一个对应的```Service```业务处理类 ：
+
+- [/app/alpha/user/UserService.php](./app/alpha/user/UserService.php) ：作用类似 ```Service```
+
+建议无论业务是否复杂，都把业务放在```Service```中操作。
+
+> 1、在业务Service中可以自由的调用```common```应用下的```DBService```、```ESService```等服务
+> 
+> 2、如果业务更复杂，可以考虑在应用目录下设计属于自己的业务分层，如```daos```、```services```等
 
 ### <span id="44">4、注册事件回调</span>
-在```/config/event.php```配置文件中添加一个新的键值对，表示当```数据库.数据表```出现变更事件时，由对应的```事件Handler```响应处理。参考[事件配置](./HOWTOCODE.md#35)
+在```/config/event.php```配置文件中添加一个新的键值对，表示当```数据库.数据表```出现变更事件时，由对应的```事件Handler```响应处理。
 
 ```php
 $event = [
+    // 当alpha数据库中的user表发生INSERT/UPDATE/DELETE事件时,
+    // 系统会自动调用\app\alpha\user\UserHandler事件回调类处理。
     'alpha.user' => '\app\alpha\user\UserHandler',
 ];
 ```
 
-### <span id="44">5、部署项目</span>
-至此业务接入部分已经完成，参考 [轻松管理](#3) 部分部署代码即可
+### <span id="45">5、部署项目</span>
+至此业务接入部分已经完成，参考 [轻松管理](#3) 部分部署代码即可。
 
 ## <span id="5">五、关于项目</span>
 
@@ -143,6 +154,6 @@ $event = [
 - [QUESTION](./QUESTION.md) ：一些关于项目的疑问解释，如```这个项目有什么用```或```为什么不使用PHPunit和Composer```等
 
 ### <span id="52">2、参与项目</span>
-项目源码设计简单易懂，如有更好的想法，可参考[如何贡献](./CONTRIBUTING.md)文档，期待提出宝贵的 [Pull request](https://github.com/WGrape/esupdater/pulls) 
+项目源码设计简单易懂，如有更好的想法，可参考[如何贡献](./CONTRIBUTING.md)文档，期待提出宝贵的 [Pull request](https://github.com/WGrape/esupdater/pulls)  。
 
-如果在了解和使用过程中，有任何疑问，也欢迎提出宝贵的 [Issue](https://github.com/WGrape/esupdater/issues/new)
+如果在了解和使用过程中，有任何疑问，也欢迎提出宝贵的 [Issue](https://github.com/WGrape/esupdater/issues/new) 。
