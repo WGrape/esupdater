@@ -51,7 +51,7 @@ ESUpdater是一个基于Canal实现ES文档增量更新的轻量级框架。基�
 通过数据表变更事件的注册与回调，完成业务逻辑的实时处理，这种事件驱动化设计更符合增量更新的理念。
 
 ## <span id="2">二、快速安装</span>
-安装过程会依赖Docker，所以请先安装并启动Docker，或者使用<a href="https://labs.play-with-docker.com/">在线Docker网站</a>，按如下步骤安装即可
+安装过程会依赖Docker，所以请先安装并启动它，或者使用<a href="https://labs.play-with-docker.com/">在线Docker网站</a>，按如下步骤安装即可。如果安装过程中出错，请查看[安装过程帮助](HELP.md#1)文档。
 
 ### <span id="21">1、获取项目</span>
 
@@ -60,25 +60,17 @@ git clone https://github.com/WGrape/esupdater
 cd esupdater
 ```
 
-### <span id="22">2、安装依赖</span>
+### <span id="22">2、开始安装</span>
 
 ```bash
-cd image
-bash make.sh
+bash install.sh
 ```
-
-如果出现下图提示，则表示```phpkafka```镜像生成成功，至此所有的安装步骤就已经完成。
-
-<img src="https://user-images.githubusercontent.com/35942268/147384280-edb54544-9510-40f8-b9d1-06ddaab7c5c6.png" width="650">
-
-
-如果安装过程出错，请查看[镜像制作帮助](HELP.md#1)文档。
 
 ## 三、<span id="3">轻松管理</span>
 
 ### <span id="31">1、容器部署</span>
 
-如果部署出错，请参考[容器部署帮助](HELP.md#2)文档
+如果部署过程中出错，请参考[容器部署帮助](HELP.md#2)文档
 
 #### <span id="311">(1) 启动</span>
 

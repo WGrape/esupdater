@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Prevent start repeatedly
 containerCount=0
 for file in $(docker container ps -a -q)
