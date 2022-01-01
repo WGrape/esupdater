@@ -56,9 +56,6 @@ ESUpdater的核心由```Consumer```进程和```Worker```进程组成，其中根
 ```Consumer```进程由```php esupdater.php start```命令启动，由```php esupdater.php stop```命令停止
 
 #### <span id="212">(2) Worker</span>
-
-> 由于PHP开发不适合使用进程、多线程扩展来破坏程序的稳定性和简单性，所以目前使用```exec```配合```nohup```的方式来实现启动一个新的PHP后台进程执行异步任务。不过不排除以后会使用线程和进程来替代当前的方案的可能。
-
 当```Consumer```进程从Kafka中拿到消息后，会通过```exec```的方式执行```php esupdater work```命令，以启动一个新的PHP进程，即```Worker```进程。
 
 ```Worker```进程会分为后台和非后台两种执行方式，使用哪种执行方式取决于当前```Worker```进程的数量，如果少于配置的```max_worker_count```会使用后台执行的方式，否则使用非后台执行的方式。通过这种方式可以在加快消费速度的同时，保证稳定性。
