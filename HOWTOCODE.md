@@ -173,6 +173,10 @@ $es = [
 $log = [
     'debug'   => '/home/log/esupdater/debug.log',
     'info'    => '/home/log/esupdater/info.log',
+     'slow'    => [
+        'millisecond' => 500, // work进程处理耗时超过500ms则记录慢日志
+        'path'        => '/home/log/esupdater/slow.log',
+    ],
     'warning' => '/home/log/esupdater/warning.log',
     'error'   => '/home/log/esupdater/error.log',
     'fatal'   => '/home/log/esupdater/fatal.log',
@@ -194,6 +198,15 @@ $event = [
     'alpha.user' => '\app\alpha\user\UserHandler',
 ];
 ```
+
+#### <span id="351">(1) 高级事件配置</span>
+上面的这种Key所对应的Value为字符串的配置方式，是一种简单的自动回调配置。 如果Value是Map时，就会使用高级事件配置。
+
+这个Map会再次以如```onInsert```、```onUpdate```、```onDelete```不同的事件为key，value则由以下几种回调函数组成，分别为 ：
+
+- ```filter``` 过滤器 \[可选\] ：实现对Canal数据的过滤处理、对事件回调的拦截
+- ```callback``` 事件回调 \[可选\] ：实现事件的回调处理
+- ```finally``` 末尾执行 \[可选\] ：实现事件的兜底处理，可用于统计数据、记录日志等
 
 ### <span id="36">6、单测配置</span>
 配置文件 ```config/test.php```，如下所示
