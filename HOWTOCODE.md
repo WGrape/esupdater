@@ -173,7 +173,7 @@ $es = [
 $log = [
     'debug'   => '/home/log/esupdater/debug.log',
     'info'    => '/home/log/esupdater/info.log',
-     'slow'    => [
+    'slow'    => [
         'millisecond' => 500, // work进程处理耗时超过500ms则记录慢日志
         'path'        => '/home/log/esupdater/slow.log',
     ],
@@ -207,6 +207,8 @@ $event = [
 - ```filter``` 过滤器 \[可选\] ：实现对Canal数据的过滤处理、对事件回调的拦截
 - ```callback``` 事件回调 \[可选\] ：实现事件的回调处理
 - ```finally``` 末尾执行 \[可选\] ：实现事件的兜底处理，可用于统计数据、记录日志等
+
+关于高级事件配置可以参考 [高级配置示例](./config/event.php) 。
 
 ### <span id="36">6、单测配置</span>
 配置文件 ```config/test.php```，如下所示
