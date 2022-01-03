@@ -48,7 +48,7 @@ ESUpdater是一个基于Canal实现ES文档增量更新的轻量级框架。基�
 为解决各种依赖安装的复杂困难问题，已实现全面容器化，只需一条命令就可以轻松安装、部署、和维护。
 
 ### <span id="13">3、事件驱动化</span>
-通过数据表变更事件的注册与回调，完成业务逻辑的实时处理，这种事件驱动化设计更符合增量更新的理念。
+基于框架内部的事件驱动设计，可以轻松地注册数据表变更事件和回调，优雅地实现增量更新。
 
 ## <span id="2">二、快速安装</span>
 安装过程会依赖Docker，所以请先安装并启动它，或者使用<a href="https://labs.play-with-docker.com/">在线Docker网站</a>，按如下步骤安装即可。如果安装过程中出错，请查看[安装过程帮助](HELP.md#1)文档。
@@ -134,10 +134,13 @@ bash ./restart.sh
 ```php
 $event = [
     // 当alpha数据库中的user表发生INSERT/UPDATE/DELETE事件时,
-    // 系统会自动调用\app\alpha\user\UserHandler事件回调类处理。
+    // 系统会自动创建\app\alpha\user\UserHandler事件回调类,
+    // 并根据不同的事件类型调用不同的方法, 如INSERT事件则调用回调类的onInsert()方法
     'alpha.user' => '\app\alpha\user\UserHandler',
 ];
 ```
+
+除此之外，框架还支持更加强大的事件注册和驱动机制，如果需要请参考[高级事件配置](./HOWTOCODE.md#351)。
 
 ### <span id="45">5、部署项目</span>
 至此业务接入部分已经完成，参考 [轻松管理](#3) 部分部署代码即可。

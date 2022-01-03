@@ -15,6 +15,7 @@ class Logger
      */
     const LEVEL_DEBUG = 'debug';
     const LEVEL_INFO = 'info';
+    const LEVEL_SLOW = 'slow';
     const LEVEL_WARNING = 'warning';
     const LEVEL_ERROR = 'error';
     const LEVEL_FATAL = 'fatal';
@@ -107,6 +108,16 @@ class Logger
     }
 
     /**
+     * Write log in slow mode.
+     *
+     * @param string $data the message to write
+     */
+    public static function logSlow(string $data)
+    {
+        self::write(self::LEVEL_SLOW, $data);
+    }
+
+    /**
      * Write log in warning mode.
      *
      * @param string $data the message to write
@@ -147,6 +158,9 @@ class Logger
     {
         global $log;
         $date = date('Ymd');
+        if ($logLevel === self::LEVEL_SLOW) {
+            return "{$log[$logLevel]['path']}.{$date}";
+        }
         return "{$log[$logLevel]}.{$date}";
     }
 

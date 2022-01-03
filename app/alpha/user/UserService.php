@@ -33,7 +33,6 @@ class UserService
      */
     public function doInsert(array $parsedCanalData): bool
     {
-        Logger::logInfo("result(UserService -> doInsert) : success");
         return true;
     }
 
@@ -46,7 +45,6 @@ class UserService
      */
     public function doUpdate(array $parsedCanalData): bool
     {
-        Logger::logInfo("result(UserService -> doUpdate) : success");
         return true;
     }
 
@@ -59,7 +57,6 @@ class UserService
      */
     public function doDelete(array $parsedCanalData): bool
     {
-        Logger::logInfo("result(UserService -> doDelete) : success");
         return true;
     }
 }
