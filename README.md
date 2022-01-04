@@ -7,12 +7,12 @@
 </div>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/PHP-7.0+-blue.svg">
-    <img src="https://img.shields.io/badge/Release-v1.1.0-blue.svg">
-    <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/wgrape/esupdater">
+    <img src="https://img.shields.io/badge/php-7.0+-blue.svg">
+    <img src="https://img.shields.io/badge/release-v2.0.0-blue.svg">
+    <img src="https://img.shields.io/badge/version-2.x-blue.svg">
     <a href="https://app.travis-ci.com/github/WGrape/esupdater"><img src="https://app.travis-ci.com/WGrape/esupdater.svg?branch=master"><a>
     <a href="https://wgrape.github.io/esupdater/report.html"><img src="https://img.shields.io/badge/unitest-100%25-yellow.svg"></a>
-    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg"></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg"></a>
     <a href="HOWTOCODE.md"><img src="https://img.shields.io/badge/doc-中文-red.svg"></a>
 </p>
 
@@ -35,6 +35,7 @@
 - [五、关于项目](#5)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、项目文档](#51)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、参与项目](#52)
+- &nbsp;&nbsp;&nbsp;&nbsp;[3、版本选择](#53)
 
 ## <span id="1">一、介绍</span>
 ESUpdater是一个基于Canal实现ES文档增量更新的轻量级框架。基于以下优势，可以方便的完成业务接入与扩展。
@@ -160,3 +161,14 @@ $event = [
 项目源码设计简单易懂，如有更好的想法，可参考[如何贡献](./CONTRIBUTING.md)文档，期待提出宝贵的 [Pull request](https://github.com/WGrape/esupdater/pulls)  。
 
 如果在了解和使用过程中，有任何疑问，也欢迎提出宝贵的 [Issue](https://github.com/WGrape/esupdater/issues/new) 。
+
+### <span id="53">3、版本选择</span>
+项目版本号规则为```主版本```-```次版本```-```修订号```，其中主版本主要做重大功能升级，次版本主要做性能和功能优化，修订号则做问题修复和完善。
+
+所以```次版本```和```修订号```建议选择最新稳定版本的 [Release包](https://github.com/WGrape/esupdater/releases) ，```主版本```则根据以下对比信息选择合适的即可，可以查看更详细的 [版本对比](./CONTRIBUTING.md#5) 信息。
+
+| 主版本号 | Composer |
+| --- | :----:  |
+| v1.x | 不支持 |
+| v2.x | 支持 |
+
