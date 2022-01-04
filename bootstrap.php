@@ -15,6 +15,7 @@ const APP_PATH       = ROOT_PATH . 'app/';
 const CONFIG_PATH    = ROOT_PATH . 'config/';
 const FRAMEWORK_PATH = ROOT_PATH . 'framework/';
 const RUNTIME_PATH   = ROOT_PATH . 'runtime/';
+const VENDOR_PATH    = ROOT_PATH . 'vendor/';
 
 // Define file constants.
 const RUNTIME_ESUPDATER_CONSUMER_PID_FILE      = RUNTIME_PATH . 'esupdater-consumer.pid';
@@ -33,24 +34,8 @@ include_once CONFIG_PATH . 'es.php';
 include_once CONFIG_PATH . 'log.php';
 include_once CONFIG_PATH . 'event.php';
 
-/**
- * Register autoload callback.
- *
- * @param string $classname
- */
-function autoloadCallback(string $classname)
-{
-    $classname = str_replace('\\', '/', $classname);
-
-    $file = ROOT_PATH . "{$classname}.php";
-    if (file_exists($file)) {
-        include_once $file;
-    } else {
-        echo 'class file' . $classname . 'not found!';
-    }
-}
-
-spl_autoload_register("autoloadCallback", true, true);
+// 加载composer的自动加载文件
+include_once VENDOR_PATH . 'autoload.php';
 
 /**
  * Register shutdown callback.

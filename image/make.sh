@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 docker build -t phpkafka .
-echo -e ""
 if [ $? -ne 0 ]; then
+  echo -e ""
   echo -e ">>>>>>>>Make image failure<<<<<<<<"
   exit 1
 else
+  echo -e ""
   echo -e "========Make image success========"
   docker images
 fi

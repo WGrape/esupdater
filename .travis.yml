@@ -3,10 +3,12 @@ language: php
 
 php:
   - 7.0
+  - nightly
 
 script:
   - sudo mkdir -p /home/log/esupdater/
   - sudo chmod -R 777 /home/log/
+  - composer install
   - php test/run.php
 
 branches:

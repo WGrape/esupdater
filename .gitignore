@@ -2,6 +2,7 @@
 .idea
 logs
 .DS_Store
+composer.lock
 
 # Ignore directories of /app except common and alpha.
 app/*
@@ -15,3 +16,6 @@ test/testcases/app/*
 
 # Ignore runtime directory.
 runtime/
+
+# Ignore vendor directory.
+vendor/
