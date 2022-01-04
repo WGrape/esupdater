@@ -23,6 +23,7 @@ const RUNTIME_ESUPDATER_CONSUMER_STATUS_FILE   = RUNTIME_PATH . 'esupdater-consu
 const RUNTIME_IGNORE_ERROR_TEMP_FILE           = RUNTIME_PATH . 'ignore-error.temp';
 const CREATE_WORKER_LOG_FILE                   = RUNTIME_PATH . 'create-worker.log';
 const RUNTIME_ESUPDATER_WORKER_PID_FILE_PREFIX = 'esupdater-worker-';
+const COMPOSER_AUTOLOAD_FILE                   = VENDOR_PATH . 'autoload.php';
 
 // Define data constants.
 const DEFAULT_PID = 0;
@@ -34,8 +35,26 @@ include_once CONFIG_PATH . 'es.php';
 include_once CONFIG_PATH . 'log.php';
 include_once CONFIG_PATH . 'event.php';
 
-// 加载composer的自动加载文件
-include_once VENDOR_PATH . 'autoload.php';
+/**
+ * Include composer autoload file or register autoload.
+ */
+if (!file_exists(COMPOSER_AUTOLOAD_FILE)) {
+    function autoloadCallback(string $classname)
+    {
+        $classname = str_replace('\\', '/', $classname);
+
+        $file = ROOT_PATH . "{$classname}.php";
+        if (file_exists($file)) {
+            include_once $file;
+        } else {
+            echo 'class file' . $classname . 'not found!';
+        }
+    }
+
+    spl_autoload_register("autoloadCallback", true, true);
+} else {
+    include_once COMPOSER_AUTOLOAD_FILE;
+}
 
 /**
  * Register shutdown callback.
