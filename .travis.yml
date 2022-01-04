@@ -13,5 +13,5 @@ script:
 
 branches:
   only:
-    - master
-    - testing
+    - v1.x
+    - v2.x

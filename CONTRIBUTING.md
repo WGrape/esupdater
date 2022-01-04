@@ -6,8 +6,9 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、单测通过](#41)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、commit message 规范](#42)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、分支管理](#43)
-- [5、版本对比](#5)
-- [5、项目数据](#5)
+- [5、打包Release](#5)
+- [6、版本对比](#6)
+- [7、项目数据](#7)
 
 ## <span id="1">1、如何报告问题</span>
 如果在了解和使用过程中，有任何疑问，非常欢迎提出宝贵的 [Issue](https://github.com/WGrape/esupdater/issues/new)
@@ -35,9 +36,12 @@ PR的提交不限制范围，如代码、文档等修改均在允许范围内，
 - chore: 构建过程或辅助工具的变动，如dockerfile的修改
 
 ### <span id="43">(3) 分支管理</span>
-每次提交仅能提交到```testing```分支，且```CI```检查通过
+```v1```版本的开发提交到```v1.x```分支，```v2```版本的开发提交到```v2.x```分支，且```CI```检查通过
 
-## <span id="5">5、版本对比</span>
+## <span id="5">5、打包Release</span>
+基于```v1.x```和```v2.x```分支分别打包不同的Release版本。
+
+## <span id="6">6、版本对比</span>
 
 ### (1) Composer
 | 主版本号 | Composer | 优势 | 劣势 |
@@ -45,5 +49,5 @@ PR的提交不限制范围，如代码、文档等修改均在允许范围内，
 | v1.x | 不支持 | 不需要安装Composer也可以用 | 可能无法正常使用外部依赖 |
 | v2.x | 支持 | 可以方便的调用外部依赖 | 本地开发时需要安装Composer |
 
-## <span id="6">6、项目数据</span>
+## <span id="7">7、项目数据</span>
 <a href="https://starchart.cc/WGrape/esupdater"><img src="https://starchart.cc/WGrape/esupdater.svg" width="700"></a>
