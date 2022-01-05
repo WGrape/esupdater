@@ -86,6 +86,32 @@ class Manager
     }
 
     /**
+     * Whether the current process is consumer process.
+     */
+    public function isConsumerProcess()
+    {
+        $pid             = getmypid();
+        $consumerPIDFile = RUNTIME_ESUPDATER_CONSUMER_PID_FILE;
+        if (file_exists($consumerPIDFile) && file_get_contents($consumerPIDFile) == $pid) {
+            return $consumerPIDFile;
+        }
+        return false;
+    }
+
+    /**
+     * Whether the current process is worker process.
+     */
+    public function isWorkerProcess()
+    {
+        $pid           = getmypid();
+        $workerPIDFile = RUNTIME_PATH . RUNTIME_ESUPDATER_WORKER_PID_FILE_PREFIX . $pid . ".pid";
+        if (file_exists($workerPIDFile) && file_get_contents($workerPIDFile) == $pid) {
+            return $workerPIDFile;
+        }
+        return false;
+    }
+
+    /**
      * Command: start.
      */
     public function commandStart()
@@ -144,7 +170,7 @@ class Manager
     public function commandWork(string $canalData): string
     {
         $pid           = getmypid();
-        $workerPIDFile = "runtime/" . RUNTIME_ESUPDATER_WORKER_PID_FILE_PREFIX . $pid . ".pid";
+        $workerPIDFile = RUNTIME_PATH . RUNTIME_ESUPDATER_WORKER_PID_FILE_PREFIX . $pid . ".pid";
         file_put_contents($workerPIDFile, intval($pid));
 
         (new \framework\Listener())->dispatch($canalData);

@@ -61,7 +61,23 @@ if (!file_exists(COMPOSER_AUTOLOAD_FILE)) {
  */
 function shutdownCallback()
 {
-    // do something.
+    $manager = new \framework\Manager();
+
+    // Delete the files of consumer process if it exited without delete files.
+    if ($manager->isConsumerProcess()) {
+        if (file_exists(RUNTIME_ESUPDATER_CONSUMER_PID_FILE)) {
+            unlink(RUNTIME_ESUPDATER_CONSUMER_PID_FILE);
+        }
+        if (file_exists(RUNTIME_ESUPDATER_CONSUMER_STATUS_FILE)) {
+            unlink(RUNTIME_ESUPDATER_CONSUMER_STATUS_FILE);
+        }
+    }
+
+    // Delete the pid file of worker process if it exited without delete files.
+    $workerPIDFile = $manager->isWorkerProcess();
+    if ($workerPIDFile !== false && file_exists($workerPIDFile)) {
+        unlink($workerPIDFile);
+    }
 }
 
 register_shutdown_function('shutdownCallback');

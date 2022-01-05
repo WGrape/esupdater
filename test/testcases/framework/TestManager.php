@@ -16,19 +16,19 @@ class TestManager extends BaseTest
     public function testGetRunningWorkersCount(): bool
     {
         $manager = new \framework\Manager();
-        file_put_contents('runtime/esupdater-worker-1.pid', 1);
-        file_put_contents('runtime/esupdater-worker-2.pid', 2);
-        file_put_contents('runtime/esupdater-worker-3.pid', 3);
-        file_put_contents('runtime/esupdater-worker-4.pid', 4);
-        file_put_contents('runtime/esupdater-worker-5.pid', 5);
+        file_put_contents(RUNTIME_PATH . 'esupdater-worker-1.pid', 1);
+        file_put_contents(RUNTIME_PATH . 'esupdater-worker-2.pid', 2);
+        file_put_contents(RUNTIME_PATH . 'esupdater-worker-3.pid', 3);
+        file_put_contents(RUNTIME_PATH . 'esupdater-worker-4.pid', 4);
+        file_put_contents(RUNTIME_PATH . 'esupdater-worker-5.pid', 5);
         if ($manager->getRunningWorkersCount() !== 5) {
             return $this->failed();
         }
-        unlink('runtime/esupdater-worker-1.pid');
-        unlink('runtime/esupdater-worker-2.pid');
-        unlink('runtime/esupdater-worker-3.pid');
-        unlink('runtime/esupdater-worker-4.pid');
-        unlink('runtime/esupdater-worker-5.pid');
+        unlink(RUNTIME_PATH . 'esupdater-worker-1.pid');
+        unlink(RUNTIME_PATH . 'esupdater-worker-2.pid');
+        unlink(RUNTIME_PATH . 'esupdater-worker-3.pid');
+        unlink(RUNTIME_PATH . 'esupdater-worker-4.pid');
+        unlink(RUNTIME_PATH . 'esupdater-worker-5.pid');
         return $this->success();
     }
 
@@ -71,18 +71,50 @@ class TestManager extends BaseTest
             return $this->failed();
         }
 
-        file_put_contents('runtime/esupdater-worker-1.pid', 1);
-        file_put_contents('runtime/esupdater-worker-2.pid', 2);
+        file_put_contents(RUNTIME_PATH . 'esupdater-worker-1.pid', 1);
+        file_put_contents(RUNTIME_PATH . 'esupdater-worker-2.pid', 2);
         if ($manager->isWorkersStopped()) {
             return $this->failed();
         }
 
-        unlink('runtime/esupdater-worker-1.pid');
-        unlink('runtime/esupdater-worker-2.pid');
+        unlink(RUNTIME_PATH . 'esupdater-worker-1.pid');
+        unlink(RUNTIME_PATH . 'esupdater-worker-2.pid');
         if (!$manager->isWorkersStopped()) {
             return $this->failed();
         }
 
         return $this->success();
+    }
+
+    public function testIsConsumerProcess(): bool
+    {
+        $manager = new \framework\Manager();
+        $pid     = getmypid();
+        $file    = RUNTIME_ESUPDATER_CONSUMER_PID_FILE;
+        file_put_contents($file, $pid);
+
+        if ($manager->isConsumerProcess()) {
+            unlink($file);
+            return $this->success();
+        }
+
+        unlink($file);
+        return $this->failed();
+    }
+
+    public function testIsWorkerProcess(): bool
+    {
+        $manager = new \framework\Manager();
+        $pid     = getmypid();
+        $file    = RUNTIME_PATH . "esupdater-worker-{$pid}.pid";
+        file_put_contents($file, $pid);
+
+        if ($manager->isWorkerProcess()) {
+            unlink($file);
+            return $this->success();
+        }
+
+        unlink($file);
+        return $this->failed();
     }
 }

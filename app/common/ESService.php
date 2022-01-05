@@ -100,7 +100,7 @@ class ESService
             'updateData' => $updateList,
             'url'        => $url,
         ], JSON_UNESCAPED_UNICODE);
-        Logger::logInfo("updateDoc data : {$message}");
+        Logger::logInfo("Update document data: {$message}");
 
         $updateData = [
             'doc' => $updateList,
@@ -129,7 +129,7 @@ class ESService
             'doc'   => $document,
             'url'   => $url,
         ], JSON_UNESCAPED_UNICODE);
-        Logger::logInfo("putDoc data : {$message}");
+        Logger::logInfo("Put document data: {$message}");
 
         $data = json_encode($document);
         return $this->curlRequest($url, self::METHOD_PUT, $data);
@@ -198,11 +198,11 @@ class ESService
             'httpCode'  => $httpCode,
             'response'  => $response,
         ], JSON_UNESCAPED_UNICODE);
-        Logger::logInfo("curlRequest data : {$message}");
+        Logger::logInfo("Curl request data : {$message}");
 
         $isSuccess = $this->isSuccess($httpCode);
         if (!$isSuccess) {
-            Logger::logError("curlRequest error");
+            Logger::logError("Curl request error");
         }
         return $isSuccess;
     }
