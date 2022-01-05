@@ -38,7 +38,7 @@ Canal提供了数据库增量订阅与消费的功能，不需要业务代码的
 ESUpdater就是读取```binlog```，实现ES文档增量更新的一种解决方案
 
 ### <span id="13">3、完整架构</span>
-ESUpdater提供了从消费Kafka中的数据库增量数据，到ES文档增量更新的一个完整业务框架，方便业务的扩展。关于设计原理请[参考文档](HOWTOCODE.md)。
+ESUpdater提供了从消费Kafka中的数据库增量数据，到ES文档增量更新的一个完整业务框架，方便业务的扩展。
 
 - ```Consumer``` 进程 ：订阅Kafka队列，实时获取数据库的增量变更
 - ```Worker``` 进程 ：操作业务逻辑，将数据更新至ES文档
@@ -79,7 +79,7 @@ ESUpdater的核心由```Consumer```进程和```Worker```进程组成，其中根
 当```Consumer```进程使用```php esupdater work```命令启动```Worker```进程时，```Worker```进程会记录下```/runtime/esupdater-worker-{pid}.pid```进程ID文件，只有当结束后才会删除此文件。
 
 ### <span id="23">3、binlog数据处理过程</span>
-处理过程为```binlog => canalData => urlencode(canalData)```，可以参考文件 [/framework/Canal.php](./framework/Canal.php)
+处理过程为```binlog => canalData => urlencode(canalData)```，可以参考文件 [/framework/Canal.php](../framework/Canal.php)
 
 1. Canal将```binlog```数据解析为```json```格式并投递至kafka
 2. Consumer进程消费kafka，使用```urlencode```方式编码获取到的消息数据
@@ -91,8 +91,9 @@ ESUpdater的核心由```Consumer```进程和```Worker```进程组成，其中根
 ####  <span id="241">(1) 目录结构
 - ```app```目录 ：应用目录
 - ```config```目录 ：项目的唯一配置入口
+- ```doc```目录 ：项目文档目录
 - ```framework```目录 ：项目的核心框架目录
-- ```images```目录 ：```phpkafka```镜像目录
+- ```install```目录 ：安装目录
 - ```runtime```目录 ：服务运行时产生的中间文件目录，如PID文件，但不包括日志文件
 - ```test```目录 ：单元测试目录  
 - ```/```目录 ：根目录下存放所有上述目录，和必要的一级文件如```.gitignore```文件
@@ -207,7 +208,7 @@ $event = [
 - ```callback``` 事件回调 \[可选\] ：实现事件的回调处理
 - ```finally``` 末尾执行 \[可选\] ：实现事件的兜底处理，可用于统计数据、记录日志等
 
-关于高级事件配置可以参考 [高级配置示例](./config/event.php) 。
+关于高级事件配置可以参考 [高级配置示例](../config/event.php) 。
 
 ### <span id="36">6、单测配置</span>
 配置文件 ```config/test.php```，如下所示
@@ -222,7 +223,7 @@ $test = [
 ```
 
 ## <span id="4">四、单元测试</span>
-根目录下的```/test```目录是单元测试目录，其中有一个```/test/run.php```入口文件，它会自动执行 [testcases_directory](./HOWTOCODE.md#36) 目录下所有的测试用例。
+根目录下的```/test```目录是单元测试目录，其中有一个```/test/run.php```入口文件，它会自动执行 [testcases_directory](HOWTOCODE.md#36) 目录下所有的测试用例。
 
 ### <span id="41">1、手动测试</span>
 ```bash
@@ -240,7 +241,7 @@ git commit -m "add: xxx"
 ```
 
 ### <span id="43">3、添加用例</span>
-在```test/testcases/app```目录下，先创建应用目录（如```alpha```），然后在此目录下以```Test*```开头创建单测文件即可，具体内容可参考 [TestUserService](test/testcases/app/alpha/TestUserService.php) 单测文件
+在```test/testcases/app```目录下，先创建应用目录（如```alpha```），然后在此目录下以```Test*```开头创建单测文件即可，具体内容可参考 [TestUserService](../test/testcases/app/alpha/TestUserService.php) 单测文件
 
 ### <span id="44">4、测试报告</span>
 在测试运行结束后，会自动生成一个测试报告```/test/report/index.html```文件，<a href="https://wgrape.github.io/esupdater/report.html">点击这里</a>查看报告

@@ -17,7 +17,7 @@
 PR的提交不限制范围，如代码、文档等修改均在允许范围内，可 [参考这里](https://github.com/WGrape/esupdater/commit/186e229308463aa745c6b1cbfd02f77bc62ab9d4) 的PR提交
 
 ## <span id="3">3、如何理解项目</span>
-在[HOWTOCODE](./HOWTOCODE.md)文档中介绍了详细的实现原理和设计，帮助你了解项目
+在[HOWTOCODE](HOWTOCODE.md)文档中介绍了详细的实现原理和设计，帮助你了解项目
 
 ## <span id="4">4、代码提交规约</span>
 在提交代码前，至少需要做到以下几项

@@ -26,7 +26,7 @@
 - 检查网络和网速是否正常，或使用 [esupdater国内版仓库](https://gitee.com/WGrape/esupdater)
 
 ### <span id="13">3、运行安装脚本出错</span>
-如果获取项目已经成功，但是在```bash install.sh```运行安装脚本阶段出错的话，有如下几种解决方案
+如果获取项目已经成功，但是在运行```install.sh```安装脚本阶段出错的话，有如下几种解决方案
 
 - 制作镜像过程出错 ：参考 [镜像制作帮助](#2) 文档
 
@@ -34,9 +34,9 @@
 目前暂不支持直接在Windows系统上操作，可以选择在Linux虚拟机、Docker环境中安装，如使用 <a href="https://labs.play-with-docker.com/">在线Docker网站</a>
 
 ## <span id="2">二、镜像制作帮助</span>
-在```/esupdater/image```目录中已提供了开箱可用的```phpkafka```镜像文件，只需要简单的执行```bash make.sh```命令即可快速生成```phpkafka```镜像。
+在```install/image```目录中已提供了开箱可用的```phpkafka```镜像文件，只需要简单的执行```bash make.sh```命令即可快速生成```phpkafka```镜像。
 
-自带的```/image/Dockerfile```镜像文件，已经过多台Unix机器上的多次测试，均可以顺利的成功制作。但是不排除在特殊情况下会存在制作失败的情况，下面会总结出常见的错误和解决方案。
+自带的```install/image/Dockerfile```镜像文件，已经过多台Unix机器上的多次测试，均可以顺利的成功制作。但是不排除在特殊情况下会存在制作失败的情况，下面会总结出常见的错误和解决方案。
 
 ### <span id="21">1、Docker命令不存在</span>
 安装镜像必须依赖于```Docker```，所以请务必成功安装```Docker```，否则无法创建镜像。
@@ -77,12 +77,12 @@ Cannot retrieve channel.xml for channel "pecl.php.net" (File https://pecl.php.ne
 
 出现这种错误是因为跳过了安装步骤，直接执行部署操作导致的。
 
-由于容器化部署方案依赖于```phpkafka```镜像，所以如果提示此镜像不存在，请先参考[开始安装](./README.md#22)文档执行安装操作，或直接手动执行```cd image && bash make.sh```完成镜像的制作。
+由于容器化部署方案依赖于```phpkafka```镜像，所以如果提示此镜像不存在，请先参考[开始安装](../README.md#22)文档执行安装操作，或直接手动执行```cd image && bash make.sh```完成镜像的制作。
 
 ### <span id="32">2、/home/log/esupdater/目录不存在或无权限写</span>
 由于容器默认会把目录挂载到宿主机的 ```/home/log/esupdater/``` 相同目录下，所以请确保宿主机有此目录和写入权限
 
-或者也可以选择修改[容器的运行时配置](./README.md#32)中的```目录挂载```，修改方式如下
+或者也可以选择修改[容器的运行时配置](../README.md#32)中的```目录挂载```，修改方式如下
 
 ```bash
 vi start.sh

@@ -13,7 +13,7 @@
     <a href="https://app.travis-ci.com/github/WGrape/esupdater"><img src="https://app.travis-ci.com/WGrape/esupdater.svg?branch=master"><a>
     <a href="https://wgrape.github.io/esupdater/report.html"><img src="https://img.shields.io/badge/unitest-100%25-yellow.svg"></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg"></a>
-    <a href="HOWTOCODE.md"><img src="https://img.shields.io/badge/doc-中文-red.svg"></a>
+    <a href="doc/HOWTOCODE.md"><img src="https://img.shields.io/badge/doc-中文-red.svg"></a>
 </p>
 
 ## 目录
@@ -52,7 +52,7 @@ ESUpdater是一个基于Canal实现ES文档增量更新的轻量级框架。基�
 基于框架内部的事件驱动设计，可以轻松地注册数据表变更事件和回调，优雅地实现增量更新。
 
 ## <span id="2">二、快速安装</span>
-安装过程会依赖Docker，所以请先安装并启动它，或者使用<a href="https://labs.play-with-docker.com/">在线Docker网站</a>，按如下步骤安装即可。如果安装过程中出错，请查看[安装过程帮助](HELP.md#1)文档。
+安装过程会依赖Docker，所以请先安装并启动它，或者使用<a href="https://labs.play-with-docker.com/">在线Docker网站</a>，按如下步骤安装即可。如果安装过程中出错，请查看[安装过程帮助](doc/HELP.md#1)文档。
 
 ### <span id="21">1、获取项目</span>
 
@@ -64,6 +64,7 @@ cd esupdater
 ### <span id="22">2、开始安装</span>
 
 ```bash
+cd install
 bash install.sh
 ```
 
@@ -71,7 +72,7 @@ bash install.sh
 
 ### <span id="31">1、容器部署</span>
 
-如果部署过程中出错，请参考[容器部署帮助](HELP.md#2)文档。
+如果部署过程中出错，请参考[容器部署帮助](doc/HELP.md#2)文档。
 
 #### <span id="311">(1) 启动</span>
 
@@ -108,7 +109,7 @@ bash ./restart.sh
 ### <span id="41">1、修改配置</span>
 只需要修改 [consumer.php](./config/consumer.php) 配置文件中的```broker_list_string```、```group_id```、```topic```这三个必须的配置项即可， 否则无法正常消费数据。
 
-其他非必须的配置请参考[应用配置](./HOWTOCODE.md#3)文档。
+其他非必须的配置请参考[应用配置](doc/HOWTOCODE.md#3)文档。
 
 ### <span id="42">2、创建应用</span>
 
@@ -141,7 +142,7 @@ $event = [
 ];
 ```
 
-除此之外，框架还支持更加强大的事件注册和驱动机制，如果需要请参考[高级事件配置](./HOWTOCODE.md#351)。
+除此之外，框架还支持更加强大的事件注册和驱动机制，如果需要请参考[高级事件配置](doc/HOWTOCODE.md#351)。
 
 ### <span id="45">5、部署项目</span>
 至此业务接入部分已经完成，参考 [轻松管理](#3) 部分部署代码即可。
@@ -152,20 +153,21 @@ $event = [
 项目共有如下6个文档，以方便对项目的快速了解
 
 - [README](./README.md) ：项目本身的文档，快速了解项目
-- [CONTRIBUTING](./CONTRIBUTING.md) ：介绍如何参与此项目并贡献  
-- [HELP](./HELP.md) ：解决安装和部署过程中问题的帮助手册，包括镜像制作帮助、容器部署帮助等
-- [HOWTOCODE](./HOWTOCODE.md) ：更深的了解项目，包括架构设计、底层原理、应用配置、单元测试等
-- [QUESTION](./QUESTION.md) ：一些关于项目的疑问解释，如```这个项目有什么用```或```为什么不使用多线程、多进程扩展```等
+- [CONTRIBUTING](doc/CONTRIBUTING.md) ：介绍如何参与此项目并贡献
+- [CHANGELOG](doc/CHANGELOG.md) ：项目更新的详细日志信息，如版本和更新内容等
+- [HELP](doc/HELP.md) ：解决安装和部署过程中问题的帮助手册，包括镜像制作帮助、容器部署帮助等
+- [HOWTOCODE](doc/HOWTOCODE.md) ：更深的了解项目，包括架构设计、底层原理、应用配置、单元测试等
+- [QUESTION](doc/QUESTION.md) ：一些关于项目的疑问解释，如```这个项目有什么用```或```为什么不使用多线程、多进程扩展```等
 
 ### <span id="52">2、参与项目</span>
-项目源码设计简单易懂，如有更好的想法，可参考[如何贡献](./CONTRIBUTING.md)文档，期待提出宝贵的 [Pull request](https://github.com/WGrape/esupdater/pulls)  。
+项目源码设计简单易懂，如有更好的想法，可参考[如何贡献](doc/CONTRIBUTING.md)文档，期待提出宝贵的 [Pull request](https://github.com/WGrape/esupdater/pulls)  。
 
 如果在了解和使用过程中，有任何疑问，也欢迎提出宝贵的 [Issue](https://github.com/WGrape/esupdater/issues/new) 。
 
 ### <span id="53">3、版本选择</span>
 项目版本号规则为```主版本```-```次版本```-```修订号```，其中主版本主要做重大功能升级，次版本主要做性能和功能优化，修订号则做问题修复和完善。
 
-所以```次版本```和```修订号```建议选择最新稳定版本的 [Release包](https://github.com/WGrape/esupdater/releases) ，```主版本```则根据以下对比信息选择合适的即可，可以查看更详细的 [版本对比](./CONTRIBUTING.md#5) 信息。
+所以```次版本```和```修订号```建议选择最新稳定版本的 [Release包](https://github.com/WGrape/esupdater/releases) ，```主版本```则根据以下对比信息选择合适的即可，可以查看更详细的 [版本对比](doc/CONTRIBUTING.md#5) 信息。
 
 | 主版本号 | Composer |
 | --- | :----:  |
