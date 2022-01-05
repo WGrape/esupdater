@@ -8,43 +8,32 @@
 
 namespace app\alpha\user;
 
-use app\alpha\user;
-
 class UserHandler
 {
     /**
-     * The event callback on database insert.
-     *
+     * The event callback when table of user trigger insert event.
      * @param array $parsedCanalData
-     *
-     * @return bool
      */
-    public function onInsert(array $parsedCanalData): bool
+    public function onInsert(array $parsedCanalData)
     {
-        return (new UserService())->doInsert($parsedCanalData);
+        (new UserService())->doInsert($parsedCanalData);
     }
 
     /**
-     * The event callback on database update.
-     *
+     * The event callback when table of user trigger update event.
      * @param array $parsedCanalData
-     *
-     * @return bool
      */
-    public function onUpdate(array $parsedCanalData): bool
+    public function onUpdate(array $parsedCanalData)
     {
-        return (new UserService())->doUpdate($parsedCanalData);
+        (new UserService())->doUpdate($parsedCanalData);
     }
 
     /**
-     * The event callback on database delete.
-     *
+     * The event callback when table of user trigger delete event.
      * @param array $parsedCanalData
-     *
-     * @return bool
      */
-    public function onDelete(array $parsedCanalData): bool
+    public function onDelete(array $parsedCanalData)
     {
-        return (new UserService())->doDelete($parsedCanalData);
+        (new UserService())->doDelete($parsedCanalData);
     }
 }

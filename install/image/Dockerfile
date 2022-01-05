@@ -43,3 +43,6 @@ RUN apt-get update \
 RUN pecl channel-update pecl.php.net \
     && pecl install rdkafka-3.0.0 \
     && docker-php-ext-enable rdkafka
+
+# Install and enable mysqli extension
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
