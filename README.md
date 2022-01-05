@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-    <p>一个基于Canal实现ES文档增量更新的轻量级框架</p>
+    <p>一个基于Canal实现ES文档增量更新的高性能轻量框架</p>
 </div>
 
 <p align="center">
@@ -22,6 +22,7 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、轻量级框架](#11)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、全面容器化](#12)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、事件驱动化](#13)
+- &nbsp;&nbsp;&nbsp;&nbsp;[4、高性能消费](#14)  
 - [二、快速安装](#2)
 - [三、轻松管理](#3)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、容器部署](#31)
@@ -50,6 +51,9 @@ ESUpdater是一个基于Canal实现ES文档增量更新的轻量级框架。基�
 
 ### <span id="13">3、事件驱动化</span>
 基于框架内部的事件驱动设计，可以轻松地注册数据表变更事件和回调，优雅地实现增量更新。
+
+### <span id="14">4、高性能消费</span>
+通过一个```Consumer```进程和多个```Worker```进程的一对多模型，实现高性能消费。
 
 ## <span id="2">二、快速安装</span>
 安装过程会依赖Docker，所以请先安装并启动它，或者使用<a href="https://labs.play-with-docker.com/">在线Docker网站</a>，按如下步骤安装即可。如果安装过程中出错，请查看[安装过程帮助](doc/HELP.md#1)文档。
