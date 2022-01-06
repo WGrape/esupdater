@@ -39,7 +39,7 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、版本选择](#53)
 
 ## <span id="1">一、介绍</span>
-ESUpdater是一个基于Canal实现ES文档增量更新的轻量级框架。基于以下优势，可以方便的完成业务接入与扩展。
+ESUpdater是一个基于Canal实现ES文档增量更新的高性能轻量框架。基于以下优势，可以方便的完成业务接入与扩展。
 
 <img width="900" alt="Architecture" src="https://user-images.githubusercontent.com/35942268/145793762-a23899d6-c162-4527-ae72-643edc80bb18.png">
 
@@ -97,16 +97,7 @@ bash ./restart.sh
 ```
 
 ### <span id="32">2、容器运行配置</span>
-可以在```/start.sh```脚本中执行```docker run```时设置如下参数配置容器运行状态，或使用默认配置。
-
-| Id | 配置名称 | 配置参数 | 参数值 | 默认值 | 释义 |
-| --- | :----:  | :----:  | :---: | :---: | :---: |
-| 1 | 核心数 | --cpus | float | 1.5 | 设置允许的最大核心数 |
-| 2 | CPU核心集 | --cpuset-cpus | int | 未设置 | 设置允许执行的CPU核心 |
-| 3 | 内存核心集 | --cpuset-mems | int | 未设置 | 设置使用哪些核心的内存 |
-| 4 | 目录挂载 | -v  | string | /home/log/esupdater | 设置容器挂载的目录 |
-
-如果需要设置更多的容器参数，可以参考[官方文档](https://docs.docker.com/config/containers/resource_constraints/) 。
+可以在```/start.sh```脚本中执行```docker run```时设置```核心数```、```目录挂载```等参数，参考[容器运行时配置](./doc/HOWTOCODE.md#6)文档。
 
 ## <span id="4">四、业务接入</span>
 

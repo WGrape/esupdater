@@ -281,7 +281,17 @@ bash ./stop.sh
 bash ./restart.sh
 ```
 
-## <span id="6">六、参考文档</span>
+## <span id="6">六、容器运行时配置</span>
+如果需要设置更多的容器参数，可以参考[官方文档](https://docs.docker.com/config/containers/resource_constraints/) 。
+
+| Id | 配置名称 | 配置参数 | 参数值 | 默认值 | 释义 |
+| --- | :----:  | :----:  | :---: | :---: | :---: |
+| 1 | 核心数 | --cpus | float | 1.5 | 设置允许的最大核心数 |
+| 2 | CPU核心集 | --cpuset-cpus | int | 未设置 | 设置允许执行的CPU核心 |
+| 3 | 内存核心集 | --cpuset-mems | int | 未设置 | 设置使用哪些核心的内存 |
+| 4 | 目录挂载 | -v  | string | /home/log/esupdater | 设置容器挂载的目录 |
+
+## <span id="7">七、参考文档</span>
 
 - 有关```php-rdkafka```的配置可以 [参考文档](https://github.com/arnaud-lb/php-rdkafka)
 - 有关```librdkafka```的配置可以 [参考文档](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md)
