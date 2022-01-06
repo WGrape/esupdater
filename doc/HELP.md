@@ -12,6 +12,7 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、phpkafka镜像不存在](#31)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、/home/log/esupdater/目录不存在或无权限写](#32)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、KafkaConsumer创建失败](#33)
+- &nbsp;&nbsp;&nbsp;&nbsp;[4、Consumer highLevelConsuming fetch timeout](#34)
 
 ## <span id="1">一、安装过程帮助</span>
 请先通过 ```git clone``` 或 [下载Release包](https://github.com/WGrape/esupdater/releases) 的方式获取项目
@@ -95,3 +96,8 @@ docker run --cpus=1.5 --name esupdaterContainer -d -v {你的宿主机目录}:/h
 > Consumer failed to new KafkaConsumer: "group.id" must be configured
 
 如果在```fatal.log```中出现```KafkaConsumer```创建失败的报错，请检查```consumer.php```中的```kafka```服务配置是否可以正常连接
+
+### <span id="34">4、Consumer highLevelConsuming fetch timeout</span>
+重新启动后可能会报一段时间的```Consumer highLevelConsuming fetch timeout```问题，持续约为2~5秒。
+
+原因 ：重启后需要重新连接```kafka```消费数据，在第一次连接时需要建立TCP和一些额外资源等，所以导致耗时相对较长。
