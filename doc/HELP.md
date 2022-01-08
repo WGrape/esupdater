@@ -31,6 +31,8 @@
 
 - 制作镜像过程出错 ：参考 [镜像制作帮助](#2) 文档
 
+- 提示```Error response from daemon: Get "https://registry-1.docker.io/v2/": EOF``` 错误 ：检查网络连接，关闭网络代理即可
+
 ### <span id="14">4、Windows系统如何安装</span>
 目前暂不支持直接在Windows系统上操作，可以选择在Linux虚拟机、Docker环境中安装，如使用 <a href="https://labs.play-with-docker.com/">在线Docker网站</a>
 

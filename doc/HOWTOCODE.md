@@ -114,8 +114,8 @@ ESUpdater的核心由```Consumer```进程和```Worker```进程组成，其中根
 $consumer = [
     // 检测消费状态的触发数, 单位为秒
     'check_status_interval_seconds' => 2,
-    // broker服务器列表
-    'broker_list_string'            => '127.0.0.1:9092,127.0.0.1:9093',
+    // broker服务器列表,如果多个则以逗号分割，如127.0.0.1:9092,127.0.0.1:9093
+    'broker_list_string'            => '127.0.0.1:9092',
     // 消费分区
     'partition'                     => 0,
     // 消费超时时间, 单位毫秒
