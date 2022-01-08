@@ -16,8 +16,6 @@
     <a href="doc/HOWTOCODE.md"><img src="https://img.shields.io/badge/doc-中文-red.svg"></a>
 </p>
 
-****
-
 <details>
   <summary>目录</summary>
 
@@ -42,8 +40,6 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、版本选择](#53)
 
 </details>
-
-****
 
 ## <span id="1">一、介绍</span>
 ESUpdater是一个基于Canal实现ES文档增量更新的高性能轻量框架。基于以下优势，可以方便的完成业务接入与扩展。
