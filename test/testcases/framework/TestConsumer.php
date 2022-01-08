@@ -70,7 +70,7 @@ class TestConsumer extends BaseTest
     {
         $consumer = [
             'check_status_interval_seconds'   => 3,
-            'broker_list_string'              => '127.0.0.1:9002',
+            'broker_list_string'              => '192.168.0.18:9002',
             'partition'                       => 2,
             'timeout_millisecond'             => 200,
             'group_id'                        => 'test_consume_group',
