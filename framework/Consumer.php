@@ -25,13 +25,13 @@ class Consumer
 
     public function __construct($consumer)
     {
-        $this->checkStatusIntervalSeconds = isset($consumer['check_status_interval_seconds']) ? $consumer['check_status_interval_seconds'] : 2;
-        $this->brokerListString           = isset($consumer['broker_list_string']) ? $consumer['broker_list_string'] : '';
-        $this->partition                  = isset($consumer['partition']) ? $consumer['partition'] : 0;
-        $this->timeoutMillisecond         = isset($consumer['timeout_millisecond']) ? $consumer['timeout_millisecond'] : 2 * 1000;
-        $this->groupId                    = isset($consumer['group_id']) ? $consumer['group_id'] : 'default_group_id';
-        $this->topic                      = isset($consumer['topic']) ? $consumer['topic'] : 'default_topic';
-        $this->maxWorkerCount             = isset($consumer['max_worker_count']) ? $consumer['max_worker_count'] : 100;
+        $this->checkStatusIntervalSeconds = (isset($consumer['check_status_interval_seconds']) && !empty($consumer['check_status_interval_seconds'])) ? $consumer['check_status_interval_seconds'] : 2;
+        $this->brokerListString           = (isset($consumer['broker_list_string']) && !empty($consumer['broker_list_string'])) ? $consumer['broker_list_string'] : '';
+        $this->partition                  = (isset($consumer['partition']) && !empty($consumer['partition'])) ? $consumer['partition'] : 0;
+        $this->timeoutMillisecond         = (isset($consumer['timeout_millisecond']) && !empty($consumer['timeout_millisecond'])) ? $consumer['timeout_millisecond'] : 2 * 1000;
+        $this->groupId                    = (isset($consumer['group_id']) && !empty($consumer['group_id'])) ? $consumer['group_id'] : 'default_group';
+        $this->topic                      = (isset($consumer['topic']) && !empty($consumer['topic'])) ? $consumer['topic'] : 'default_topic';
+        $this->maxWorkerCount             = (isset($consumer['max_worker_count']) && !empty($consumer['max_worker_count'])) ? $consumer['max_worker_count'] : 100;
     }
 
     /**

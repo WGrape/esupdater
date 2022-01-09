@@ -8,10 +8,10 @@
 
 $consumer = [
     'check_status_interval_seconds' => 2,
-    'broker_list_string'            => '192.168.0.18:9092',
+    'broker_list_string'            => '',
     'partition'                     => 0,
     'timeout_millisecond'           => 2 * 1000,
-    'group_id'                      => 'test-group',
-    'topic'                         => 'test-topic',
+    'group_id'                      => '',
+    'topic'                         => '',
     'max_worker_count'              => 10,
 ];
