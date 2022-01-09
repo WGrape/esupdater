@@ -69,13 +69,13 @@ class TestConsumer extends BaseTest
     public function testConstruct(): bool
     {
         $consumer = [
-            'check_status_interval_seconds'   => 3,
-            'broker_list_string'              => '192.168.0.18:9002',
-            'partition'                       => 2,
-            'timeout_millisecond'             => 200,
-            'group_id'                        => 'test_consume_group',
-            'topic'                           => 'test_topic',
-            'max_worker_count' => 5,
+            'check_status_interval_seconds' => 3,
+            'broker_list_string'            => '192.168.0.18:9002',
+            'partition'                     => 2,
+            'timeout_millisecond'           => 200,
+            'group_id'                      => 'test_consume_group',
+            'topic'                         => 'test_topic',
+            'max_worker_count'              => 5,
         ];
 
         $consumerObject = new \framework\Consumer($consumer);
