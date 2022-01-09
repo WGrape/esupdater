@@ -41,9 +41,13 @@ class Consumer
     public function getLocalIP(): string
     {
         $command = "ifconfig -a | grep inet | grep -v 127.0.0.1 | grep -v inet6 | grep '192.168' | head -n 1 | awk '{print $2}' | tr -d \"addr:\"";
-        exec($command, $localIP);
-        if (stripos($localIP, '192.168')) {
-            $localIP = '127.0.0.1';
+        exec($command, $output);
+        $localIP = '127.0.0.1';
+        if (isset($output[0])) {
+            $localIP = $output[0];
+            if (stripos($localIP, '192.168')) {
+                $localIP = '127.0.0.1';
+            }
         }
         return $localIP;
     }
