@@ -20,14 +20,13 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、轻量级框架](#11)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、全面容器化](#12)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、事件驱动化](#13)
-- &nbsp;&nbsp;&nbsp;&nbsp;[4、高性能消费](#14)  
-- [二、快速使用](#2)
-- [三、轻松管理](#3)
-- &nbsp;&nbsp;&nbsp;&nbsp;[1、容器部署](#31)
-- &nbsp;&nbsp;&nbsp;&nbsp;[2、容器运行配置](#32)
-- [四、业务接入](#4)
-- [五、关于项目](#5)
-
+- &nbsp;&nbsp;&nbsp;&nbsp;[4、高性能消费](#14)
+- &nbsp;&nbsp;&nbsp;&nbsp;[5、完善的文档](#15)
+- [二、快速上手](#2)
+- [三、业务接入](#3)
+- [四、关于项目](#4)
+- &nbsp;&nbsp;&nbsp;&nbsp;[1、深入了解](#11)
+- &nbsp;&nbsp;&nbsp;&nbsp;[2、欢迎参与](#12)
 
 ## <span id="1">一、介绍</span>
 ESUpdater是一个基于Canal实现ES文档增量更新的高性能轻量框架。基于以下优势，可以让你快速上手和使用。
@@ -46,7 +45,10 @@ ESUpdater是一个基于Canal实现ES文档增量更新的高性能轻量框架�
 ### <span id="14">4、高性能消费</span>
 通过一个```Consumer```进程和多个```Worker```进程的一对多通信模型，实现高性能消费。
 
-## <span id="2">二、快速使用</span>
+### <span id="14">5、完善的文档</span>
+从如何上手使用、业务的接入、操作过程帮助，到底层实现原理等等，本项目都提供了非常完善的文档，以方便使用。
+
+## <span id="2">二、快速上手</span>
 如下过程中会依赖Docker，所以请先安装并启动它。如果只是试用则强烈建议你全程使用<a href="https://labs.play-with-docker.com/">在线Docker网站</a>，按如下步骤安装即可，非常方便。
 
 ### <span id="21">1、获取项目</span>
@@ -103,20 +105,20 @@ cd /opt/kafka/
 <img width="823" alt="img2" src="https://user-images.githubusercontent.com/35942268/148806227-25af15b9-5609-4de3-ac13-96fc83c7c99b.png">
 
 
-## <span id="4">四、业务接入</span>
+## <span id="3">三、业务接入</span>
 如果需要在你的业务中接入此项目，请参考[应用接入文档](./doc/APPLICATION.md)
 
-## <span id="5">五、关于项目</span>
+## <span id="4">四、关于项目</span>
 
-### <span id="51">1、项目文档</span>
-项目在 [doc目录](./doc) 下提供了如下丰富完善的项目文档，以方便上手和使用。
+### <span id="41">1、深入了解</span>
+如果想要深入了解本项目，在 [doc目录](./doc) 下提供了如下丰富完善的项目文档，一定会有帮助。
 
 - [APPLICATION](doc/APPLICATION.md) ：帮助你快速在业务中国接入此项目
 - [HOWTOCODE](doc/HOWTOCODE.md) ：更深的了解项目，包括架构设计、底层原理
 - [HELP](doc/HELP.md) ：解决安装和部署过程中问题的帮助手册，包括镜像制作帮助、容器部署帮助等
 - 还有 [QUESTION](doc/QUESTION.md) / [CHANGELOGG](doc/CHANGELOG.md) / [CONTRIBUTING](doc/CONTRIBUTING.md) 等文档
 
-### <span id="52">2、参与项目</span>
+### <span id="42">2、参与项目</span>
 项目源码设计简单易懂，如有更好的想法，可参考[如何贡献](doc/CONTRIBUTING.md)文档，期待提出宝贵的 [Pull request](https://github.com/WGrape/esupdater/pulls)  。
 
 如果在了解和使用过程中，有任何疑问，也欢迎提出宝贵的 [Issue](https://github.com/WGrape/esupdater/issues/new) 。
