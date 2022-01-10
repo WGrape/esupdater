@@ -67,12 +67,13 @@ cd ..
 ```
 
 ### <span id="23">3、修改配置</span>
+在上述安装过程中会在本地帮你自动创建并启动一个kafka，所以需要把 [config/consumer.php](./config/consumer.php) 配置文件中的 ```broker_list_string``` 的IP地址修改为你本机的IP。
+
+输入```ifconfig```即可查看, 一般以192.168开头, 而不是127.0.0.1
+
 ```bash
 vi config/consumer.php
 
-# 在上述安装过程中会在本地帮你自动创建并启动一个kafka
-# 所以需要把broker_list_string中的IP地址修改为你本机的IP
-# 输入ifconfig即可查看, 一般以192.168开头, 而不是127.0.0.1
 # broker_list_string => 192.168.x.x:9092
 ```
 
