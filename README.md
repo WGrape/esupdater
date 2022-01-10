@@ -121,4 +121,4 @@ cd /opt/kafka/
 
 如果在了解和使用过程中，有任何疑问，也欢迎提出宝贵的 [Issue](https://github.com/WGrape/esupdater/issues/new) 。
 
-开源不易，如果支持本项目欢迎```star```，以激励维护和更新的动力。
+开源不易，如果支持本项目 **欢迎Star ！** 以激励维护和更新的动力。
