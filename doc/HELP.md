@@ -13,6 +13,7 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、/home/log/esupdater/目录不存在或无权限写](#32)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、KafkaConsumer创建失败](#33)
 - &nbsp;&nbsp;&nbsp;&nbsp;[4、Consumer highLevelConsuming fetch timeout](#34)
+- [四、版本选择](#4)
 
 ## <span id="1">一、安装过程帮助</span>
 请先通过 ```git clone``` 或 [下载Release包](https://github.com/WGrape/esupdater/releases) 的方式获取项目
@@ -80,12 +81,12 @@ Cannot retrieve channel.xml for channel "pecl.php.net" (File https://pecl.php.ne
 
 出现这种错误是因为跳过了安装步骤，直接执行部署操作导致的。
 
-由于容器化部署方案依赖于```phpkafka```镜像，所以如果提示此镜像不存在，请先参考[开始安装](../README.md#22)文档执行安装操作，或直接手动执行```cd image && bash make.sh```完成镜像的制作。
+由于容器化部署方案依赖于```phpkafka```镜像，所以如果提示此镜像不存在，请先参考[快速使用-开始安装](../README.md#22)文档执行安装操作，或直接手动执行```cd image && bash make.sh```完成镜像的制作。
 
 ### <span id="32">2、/home/log/esupdater/目录不存在或无权限写</span>
 由于容器默认会把目录挂载到宿主机的 ```/home/log/esupdater/``` 相同目录下，所以请确保宿主机有此目录和写入权限
 
-或者也可以选择修改[容器的运行时配置](../README.md#32)中的```目录挂载```，修改方式如下
+或者也可以选择修改[容器的运行时配置](APPLICATION.md#32)中的```目录挂载```，修改方式如下
 
 ```bash
 vi start.sh
@@ -103,3 +104,14 @@ docker run --cpus=1.5 --name esupdaterContainer -d -v {你的宿主机目录}:/h
 重新启动后可能会报一段时间的```Consumer highLevelConsuming fetch timeout```问题，持续约为2~5秒。
 
 原因 ：重启后需要重新连接```kafka```消费数据，在第一次连接时需要建立TCP和一些额外资源等，所以导致耗时相对较长。
+
+## <span id="4">四、版本选择</span>
+
+项目版本号规则为```主版本```-```次版本```-```修订号```，其中主版本主要做重大功能升级，次版本主要做性能和功能优化，修订号则做问题修复和完善。
+
+所以```次版本```和```修订号```建议选择最新稳定版本的 [Release包](https://github.com/WGrape/esupdater/releases) ，```主版本```则根据以下对比信息选择合适的即可，可以查看更详细的 [版本对比](doc/CONTRIBUTING.md#5) 信息。
+
+| 主版本号 | Composer |
+| --- | :----:  |
+| v1.x | 不支持 |
+| v2.x | 支持 |

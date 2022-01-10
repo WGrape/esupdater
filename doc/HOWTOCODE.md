@@ -8,20 +8,8 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、命令执行](#22)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、binlog数据处理过程](#23)
 - &nbsp;&nbsp;&nbsp;&nbsp;[4、目录结构规范](#24)
-- [三、应用配置](#3)
-- &nbsp;&nbsp;&nbsp;&nbsp;[1、消费配置](#31)
-- &nbsp;&nbsp;&nbsp;&nbsp;[2、数据库配置](#32)
-- &nbsp;&nbsp;&nbsp;&nbsp;[3、ES配置](#33)
-- &nbsp;&nbsp;&nbsp;&nbsp;[4、日志配置](#34)
-- &nbsp;&nbsp;&nbsp;&nbsp;[5、事件配置](#35)
-- &nbsp;&nbsp;&nbsp;&nbsp;[6、单测配置](#36)
-- [四、单元测试](#4)
-- &nbsp;&nbsp;&nbsp;&nbsp;[1、手动测试](#41)
-- &nbsp;&nbsp;&nbsp;&nbsp;[2、自动测试](#42)
-- &nbsp;&nbsp;&nbsp;&nbsp;[3、添加用例](#43)
-- &nbsp;&nbsp;&nbsp;&nbsp;[4、测试报告](#44)
-- [五、部署过程](#5)
-- [六、参考文档](#6)
+- [三、部署过程](#3)
+- [四、参考文档](#4)
 
 ## <span id="1">一、架构设计</span>
 
@@ -102,157 +90,13 @@ ESUpdater的核心由```Consumer```进程和```Worker```进程组成，其中根
 - ```shell```脚本不能省略```.sh```后缀，且统一以```bash xxx.sh```的方式执行
 - 文档统一以大写英文命名，如```README.md``` / ```HELP.md```
 
-## <span id="3">三、应用配置</span>
-
-### <span id="31">1、消费配置</span>
-
-配置文件 ```/config/consumer.php```，设置Kafka的消费配置
-
-```php
-<?php
-
-$consumer = [
-    // 检测消费状态的触发数, 单位为秒
-    'check_status_interval_seconds' => 2,
-    // broker服务器列表,如果多个则以逗号分割，如192.168.0.18:9092,192.168.0.18:9093
-    'broker_list_string'            => '192.168.0.18:9092',
-    // 消费分区
-    'partition'                     => 0,
-    // 消费超时时间, 单位毫秒
-    'timeout_millisecond'           => 2 * 1000,
-    // 消费组id
-    'group_id'                      => '',
-    // 消费主题
-    'topic'                         => '',
-    // worker的最大进程数
-    'max_worker_count'              => 10,
-];
-```
-
-### <span id="32">2、数据库配置</span>
-配置文件 ```/config/db.php```，设置访问数据库的配置
-
-```php
-<?php
-
-$db = [
-    'database' => [
-        'host'     => '数据库地址',
-        'port'     => 3306,
-        'username' => '用户名',
-        'password' => '密码',
-        'database' => '数据库',
-        'charset'  => 'utf8mb4',
-    ]
-];
-```
-
-### <span id="33">3、ES配置</span>
-配置文件 ```/config/es.php```，设置访问ES的配置
-
-```php
-<?php
-
-$es = [
-    'host'          => 'ES服务host',
-    'port'          => 'ES服务端口',
-    'user_password' => 'ES服务凭证',
-    'doc_type'      => '_doc'
-];
-```
-
-### <span id="34">4、日志配置</span>
-
-> 在```/start.sh```启动脚本中，```docker run -v ...``` 会把容器中配置的日志目录挂载到本机相应目录中
-
-配置文件 ```/config/log.php```，配置了不同日志级别的文件路径，如下所示
-
-```php
-<?php
-
-$log = [
-    'debug'   => '/home/log/esupdater/debug.log',
-    'info'    => '/home/log/esupdater/info.log',
-    'slow'    => [
-        'millisecond' => 500, // work进程处理耗时超过500ms则记录慢日志
-        'path'        => '/home/log/esupdater/slow.log',
-    ],
-    'warning' => '/home/log/esupdater/warning.log',
-    'error'   => '/home/log/esupdater/error.log',
-    'fatal'   => '/home/log/esupdater/fatal.log',
-];
-```
-
-### <span id="35">5、事件配置</span>
-配置文件 ```/config/event.php```，如下所示
-
-- Key ：```数据库名.表名```
-- Value : ```Handler```
-
-表示当此数据表的数据更新时，由对应的```Handler```处理
-
-```php
-<?php
-
-$event = [
-    'alpha.user' => '\app\alpha\user\UserHandler',
-];
-```
-
-#### <span id="351">(1) 高级事件配置</span>
-上面的这种Key所对应的Value为字符串的配置方式，是一种简单的自动回调配置。 如果Value是Map时，就会使用高级事件配置。
-
-这个Map会再次以如```onInsert```、```onUpdate```、```onDelete```不同的事件为key，value则由以下几种回调函数组成，分别为 ：
-
-- ```filter``` 过滤器 \[可选\] ：实现对Canal数据的过滤处理、对事件回调的拦截
-- ```callback``` 事件回调 \[可选\] ：实现事件的回调处理
-- ```finally``` 末尾执行 \[可选\] ：实现事件的兜底处理，可用于统计数据、记录日志等
-
-关于高级事件配置可以参考 [高级配置示例](../config/event.php) 。
-
-### <span id="36">6、单测配置</span>
-配置文件 ```config/test.php```，如下所示
-
-```php
-<?php
-
-$test = [
-    // 所有单元测试用例所在的统一目录
-    'testcases_directory' => 'test/testcases/',
-];
-```
-
-## <span id="4">四、单元测试</span>
-根目录下的```/test```目录是单元测试目录，其中有一个```/test/run.php```入口文件，它会自动执行 [testcases_directory](HOWTOCODE.md#36) 目录下所有的测试用例。
-
-### <span id="41">1、手动测试</span>
-```bash
-php test/run.php
-```
-
-### <span id="42">2、自动测试</span>
-```bash
-cp test/prepare-commit-msg ./.git/hooks
-chmod +x .git/hooks/prepare-commit-msg
-
-# 此后提交代码会自动执行单元测试，只有单测成功才会允许提交代码
-git add .
-git commit -m "add: xxx"
-```
-
-### <span id="43">3、添加用例</span>
-在```test/testcases/app```目录下，先创建应用目录（如```alpha```），然后在此目录下以```Test*```开头创建单测文件即可，具体内容可参考 [TestUserService](../test/testcases/app/alpha/TestUserService.php) 单测文件
-
-### <span id="44">4、测试报告</span>
-在测试运行结束后，会自动生成一个测试报告```/test/report/index.html```文件，<a href="https://wgrape.github.io/esupdater/report.html">点击这里</a>查看报告
-
-## <span id="5">五、部署过程</span>
+## <span id="3">三、部署过程</span>
 
 > 容器化部署方案依赖于```phpkafka```镜像，所以请确保```phpkafka```镜像已经生成。为了避免重复构建耗时，建议把```phpkafka```镜像推到Docker远程仓库中。
 
 容器构建主要通过根目录下的```/Dockerfile```镜像文件，它会基于```phpkafka```镜像构建一个新的镜像，名为```esupdater```。
 
-### <span id="51">1、启动</span>
+### <span id="31">1、启动</span>
 当执行如下命令时，会使用```/Dockerfile```文件创建```esupdater```镜像，并创建```esupdaterContainer```容器，最后通过在容器中执行```php esupdater.php start```命令实现服务的启动
 
 ```bash
@@ -263,7 +107,7 @@ bash ./start.sh
 
 <img width="700" alt="img" src="https://user-images.githubusercontent.com/35942268/147385923-80cb29e5-225b-4c83-8637-2513d3e17a1d.png">
 
-### <span id="52">2、停止</span>
+### <span id="32">2、停止</span>
 当执行以下命令时，会先在容器中执行```php esupdater.php stop```命令，等待容器内```Consumer```进程和```Worker```进程全部停止后，删除镜像和容器
 
 ```bash
@@ -274,24 +118,14 @@ bash ./stop.sh
 
 <img width="700" alt="img" src="https://user-images.githubusercontent.com/35942268/147386373-dd4b66ff-60b8-43ab-8c5a-f03148258f27.png">
 
-### <span id="53">3、重启</span>
+### <span id="33">3、重启</span>
 当执行以下命令时，会先执行```bash stop.sh```命令，再执行```bash start.sh```命令，以防止出现重复启动的问题
 
 ```bash
 bash ./restart.sh
 ```
 
-## <span id="6">六、容器运行时配置</span>
-如果需要设置更多的容器参数，可以参考[官方文档](https://docs.docker.com/config/containers/resource_constraints/) 。
-
-| Id | 配置名称 | 配置参数 | 参数值 | 默认值 | 释义 |
-| --- | :----:  | :----:  | :---: | :---: | :---: |
-| 1 | 核心数 | --cpus | float | 1.5 | 设置允许的最大核心数 |
-| 2 | CPU核心集 | --cpuset-cpus | int | 未设置 | 设置允许执行的CPU核心 |
-| 3 | 内存核心集 | --cpuset-mems | int | 未设置 | 设置使用哪些核心的内存 |
-| 4 | 目录挂载 | -v  | string | /home/log/esupdater | 设置容器挂载的目录 |
-
-## <span id="7">七、参考文档</span>
+## <span id="4">四、参考文档</span>
 
 - 有关```php-rdkafka```的配置可以 [参考文档](https://github.com/arnaud-lb/php-rdkafka)
 - 有关```librdkafka```的配置可以 [参考文档](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md)
