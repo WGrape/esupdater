@@ -60,7 +60,7 @@ cd esupdater
 ```
 
 ### <span id="22">2、开始安装</span>
-执行```install.sh```脚本安装时，需要传递如下参数。如果出错请参考[安装过程帮助](doc/HELP.md#13)文档。
+执行```install```目录下的```install.sh```安装脚本时，需要传递如下参数以实现[设置环境变量](./doc/APPLICATION.md#3)。如果出错请参考[安装过程帮助](doc/HELP.md#13)文档。
 
 - ```your_local_ip``` ：本机IP参数，通过```ifconfig```查看，通常为192.168开头，而不是127.0.0.1
 
@@ -71,7 +71,7 @@ cd ..
 ```
 
 ### <span id="24">3、运行项目</span>
-如果出错请参考[运行过程帮助](doc/HELP.md#3)文档。
+安装成功后，执行根目录下的```start.sh```启动脚本即可。如果出错请参考[运行过程帮助](doc/HELP.md#3)文档。
 
 ```bash
 bash start.sh
@@ -86,6 +86,8 @@ tail -f /home/log/esupdater/debug.log.20220111
 ```bash
 docker exec -it kafkaContainer /bin/bash
 cd /opt/kafka/
+
+# 启动时可能会出现warn, 忽略即可
 ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic default_topic
 ```
 

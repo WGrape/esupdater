@@ -13,14 +13,15 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[4、日志配置](#24)
 - &nbsp;&nbsp;&nbsp;&nbsp;[5、事件配置](#25)
 - &nbsp;&nbsp;&nbsp;&nbsp;[6、单测配置](#26)
-- [三、部署管理](#3)
-- &nbsp;&nbsp;&nbsp;&nbsp;[1、容器化部署](#31)
-- &nbsp;&nbsp;&nbsp;&nbsp;[2、运行时配置](#32)
-- [四、单元测试](#4)
-- &nbsp;&nbsp;&nbsp;&nbsp;[1、手动测试](#41)
-- &nbsp;&nbsp;&nbsp;&nbsp;[2、自动测试](#42)
-- &nbsp;&nbsp;&nbsp;&nbsp;[3、添加用例](#43)
-- &nbsp;&nbsp;&nbsp;&nbsp;[4、测试报告](#44)
+- [三、系统变量](#3)
+- [四、部署管理](#4)
+- &nbsp;&nbsp;&nbsp;&nbsp;[1、容器化部署](#41)
+- &nbsp;&nbsp;&nbsp;&nbsp;[2、运行时配置](#42)
+- [五、单元测试](#5)
+- &nbsp;&nbsp;&nbsp;&nbsp;[1、手动测试](#51)
+- &nbsp;&nbsp;&nbsp;&nbsp;[2、自动测试](#52)
+- &nbsp;&nbsp;&nbsp;&nbsp;[3、添加用例](#53)
+- &nbsp;&nbsp;&nbsp;&nbsp;[4、测试报告](#54)
 
 ## 一、快速接入
 
@@ -185,31 +186,34 @@ $test = [
 ];
 ```
 
-## <span id="3">三、部署管理</span>
+## <span id="3">三、系统变量</span>
+在```/.env```文件中记录了服务所需要的所有系统变量，在执行```install.sh```安装脚本时完成系统变量的设置，并由```/framework/Environment.php```类解析并处理。
 
-### <span id="31">1、容器化部署</span>
+## <span id="4">四、部署管理</span>
+
+### <span id="41">1、容器化部署</span>
 
 如果部署过程中出错，请参考[容器部署帮助](HELP.md#3)文档。
 
-#### <span id="311">(1) 启动</span>
+#### <span id="411">(1) 启动</span>
 
 ```bash
 bash ./start.sh
 ```
 
-#### <span id="312">(2) 停止</span>
+#### <span id="412">(2) 停止</span>
 
 ```bash
 bash ./stop.sh
 ```
 
-#### <span id="313">(3) 重启</span>
+#### <span id="413">(3) 重启</span>
 
 ```bash
 bash ./restart.sh
 ```
 
-### <span id="32">2、运行时配置</span>
+### <span id="42">2、运行时配置</span>
 可以在```/start.sh```脚本中执行```docker run```时设置```核心数```、```目录挂载```等参数，请自定义修改。
 
 如果需要设置更多的容器参数，可以参考[官方文档](https://docs.docker.com/config/containers/resource_constraints/) 。
@@ -221,15 +225,15 @@ bash ./restart.sh
 | 3 | 内存核心集 | --cpuset-mems | int | 未设置 | 设置使用哪些核心的内存 |
 | 4 | 目录挂载 | -v  | string | /home/log/esupdater | 设置容器挂载的目录 |
 
-## <span id="4">四、单元测试</span>
+## <span id="5">五、单元测试</span>
 根目录下的```/test```目录是单元测试目录，其中有一个```/test/run.php```入口文件，它会自动执行 [testcases_directory](HOWTOCODE.md#36) 目录下所有的测试用例。
 
-### <span id="41">1、手动测试</span>
+### <span id="51">1、手动测试</span>
 ```bash
 php test/run.php
 ```
 
-### <span id="42">2、自动测试</span>
+### <span id="52">2、自动测试</span>
 ```bash
 cp test/prepare-commit-msg ./.git/hooks
 chmod +x .git/hooks/prepare-commit-msg
@@ -239,8 +243,8 @@ git add .
 git commit -m "add: xxx"
 ```
 
-### <span id="43">3、添加用例</span>
+### <span id="53">3、添加用例</span>
 在```test/testcases/app```目录下，先创建应用目录（如```alpha```），然后在此目录下以```Test*```开头创建单测文件即可，具体内容可参考 [TestUserService](../test/testcases/app/alpha/TestUserService.php) 单测文件
 
-### <span id="44">4、测试报告</span>
+### <span id="54">4、测试报告</span>
 在测试运行结束后，会自动生成一个测试报告```/test/report/index.html```文件，<a href="https://wgrape.github.io/esupdater/report.html">点击这里</a>查看报告
