@@ -49,7 +49,7 @@ ESUpdater是一个基于Canal实现ES文档增量更新的高性能轻量框架�
 从如何上手使用、业务的接入、操作过程帮助，到底层实现原理等等，本项目都提供了非常完善的文档，以方便使用。
 
 ## <span id="2">二、快速上手</span>
-如下过程中会依赖Docker，所以请先安装并启动它。如果只是试用则强烈建议你全程使用<a href="https://labs.play-with-docker.com/">在线Docker网站</a>，按如下步骤安装即可，非常方便。
+以下过程中会依赖Docker，所以请先安装并启动它。如果只是试用则强烈建议你全程使用<a href="https://labs.play-with-docker.com/">在线Docker网站</a>，按如下步骤安装即可，非常方便。
 
 ### <span id="21">1、获取项目</span>
 如果出错请参考[获取过程帮助](doc/HELP.md#12)文档。
@@ -106,7 +106,7 @@ cd /opt/kafka/
 
 
 ## <span id="3">三、业务接入</span>
-如果需要在你的业务中接入此项目，请参考[应用接入文档](./doc/APPLICATION.md)
+如果需要在你的业务中接入此项目，请参考[应用接入文档](./doc/APPLICATION.md)。
 
 ## <span id="4">四、关于项目</span>
 
