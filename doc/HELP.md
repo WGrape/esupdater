@@ -4,6 +4,7 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、无法正常Clone](#12)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、运行安装脚本出错](#13)
 - &nbsp;&nbsp;&nbsp;&nbsp;[4、Windows系统如何安装](#14)
+- &nbsp;&nbsp;&nbsp;&nbsp;[5、out of capacity错误](#15)
 - [二、镜像制作帮助](#2)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、Docker命令不存在](#21)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、无法连接Docker](#22)
@@ -36,6 +37,13 @@
 
 ### <span id="14">4、Windows系统如何安装</span>
 目前暂不支持直接在Windows系统上操作，可以选择在Linux虚拟机、Docker环境中安装，如使用 <a href="https://labs.play-with-docker.com/">在线Docker网站</a>
+
+### <span id="15">5、out of capacity错误</span>
+
+We are really sorry but we are out of capacity and cannot create your session at the moment. Please try again later.
+
+访问 ```https://labs.play-with-docker.com/``` 时如果出现上述错误，暂无解决方案，需要多尝试几次。
+
 
 ## <span id="2">二、镜像制作帮助</span>
 在```install/image```目录中已提供了开箱可用的```phpkafka```镜像文件，只需要简单的执行```bash make.sh```命令即可快速生成```phpkafka```镜像。

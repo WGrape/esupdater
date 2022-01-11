@@ -24,6 +24,7 @@ const RUNTIME_IGNORE_ERROR_TEMP_FILE           = RUNTIME_PATH . 'ignore-error.te
 const CREATE_WORKER_LOG_FILE                   = RUNTIME_PATH . 'create-worker.log';
 const RUNTIME_ESUPDATER_WORKER_PID_FILE_PREFIX = 'esupdater-worker-';
 const COMPOSER_AUTOLOAD_FILE                   = VENDOR_PATH . 'autoload.php';
+const ENVIRONMENT_FILE                         = ROOT_PATH . '.env';
 
 // Define data constants.
 const DEFAULT_PID = 0;

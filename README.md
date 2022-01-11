@@ -52,7 +52,7 @@ ESUpdater是一个基于Canal实现ES文档增量更新的高性能轻量框架�
 以下过程中会依赖Docker，所以请先安装并启动它。如果只是试用则强烈建议你全程使用<a href="https://labs.play-with-docker.com/">在线Docker网站</a>，按如下步骤安装即可，非常方便。
 
 ### <span id="21">1、获取项目</span>
-如果出错请参考[获取过程帮助](doc/HELP.md#12)文档。
+通过```git clone```或下载Release包即可获取项目，如果出错请参考[获取过程帮助](doc/HELP.md#12)文档。
 
 ```bash
 git clone https://github.com/WGrape/esupdater
@@ -60,26 +60,17 @@ cd esupdater
 ```
 
 ### <span id="22">2、开始安装</span>
-如果出错请参考[安装过程帮助](doc/HELP.md#13)文档。
+执行```install.sh```脚本安装时，需要传递如下参数。如果出错请参考[安装过程帮助](doc/HELP.md#13)文档。
+
+- ```your_local_ip``` ：本机IP参数，通过```ifconfig```查看，通常为192.168开头，而不是127.0.0.1
 
 ```bash
 cd install
-bash install.sh
+bash install.sh ${your_local_ip}
 cd ..
 ```
 
-### <span id="23">3、修改配置</span>
-在上述安装过程中会在本地帮你自动创建并启动一个```kafkaContainer```容器，所以需要把 [config/consumer.php](./config/consumer.php) 配置文件中的 ```broker_list_string``` 的IP地址修改为你本机的IP，否则无法成功消费。
-
-输入```ifconfig```即可查看, 一般以192.168开头, 而不是127.0.0.1
-
-```bash
-vi config/consumer.php
-
-# broker_list_string => 192.168.x.x:9092
-```
-
-### <span id="24">4、运行项目</span>
+### <span id="24">3、运行项目</span>
 如果出错请参考[运行过程帮助](doc/HELP.md#3)文档。
 
 ```bash
@@ -89,7 +80,7 @@ bash start.sh
 tail -f /home/log/esupdater/debug.log.20220111
 ```
 
-### <span id="25">5、测试运行</span>
+### <span id="25">4、测试运行</span>
 在另一个窗口进入```kafkaContainer```容器中，按如下操作启动```Kafka生产者```
 
 ```bash

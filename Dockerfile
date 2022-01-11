@@ -2,7 +2,6 @@ FROM phpkafka
 
 WORKDIR /dist
 COPY . /dist/
-ENV ESUPDATER_ENVIRONMENT=prod
 RUN mkdir -p /home/log/esupdater \
    && composer install --quiet
 
