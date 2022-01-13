@@ -50,6 +50,15 @@ We are really sorry but we are out of capacity and cannot create your session at
 
 自带的```install/image/Dockerfile```镜像文件，已经过多台Unix机器上的多次测试，均可以顺利的成功制作。但是不排除在特殊情况下会存在制作失败的情况，下面会总结出常见的错误和解决方案。
 
+如果还无法解决，可以直接使用已经推到 [Docker Hub](https://hub.docker.com/repository/docker/lvsid/phpkafka) 上的```lvsid/phpkafka:v1.0``` ，修改方式如下 ：
+
+```bash
+# 打开根目录下的Dockerfile文件
+cd esupdater
+vi Dockerfile
+# 把 FROM phpkafka 替换为 FROM lvsid/phpkafka:v1.0 即可
+```
+
 ### <span id="21">1、Docker命令不存在</span>
 安装镜像必须依赖于```Docker```，所以请务必成功安装```Docker```，否则无法创建镜像。
 

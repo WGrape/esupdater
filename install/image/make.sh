@@ -11,5 +11,7 @@ else
 fi
 
 # Push to docker repository
-# docker tag {imageId} {host}:{version}
-# docker push {host}:{version}
+# docker login
+# input your name and password
+# docker tag adf2495d561e lvsid/phpkafka:v1.0
+# docker push lvsid/phpkafka:v1.0
