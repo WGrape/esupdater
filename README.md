@@ -21,12 +21,12 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、全面容器化](#12)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、事件驱动化](#13)
 - &nbsp;&nbsp;&nbsp;&nbsp;[4、高性能消费](#14)
-- &nbsp;&nbsp;&nbsp;&nbsp;[5、完善的文档](#15)
 - [二、快速上手](#2)
 - [三、业务接入](#3)
 - [四、关于项目](#4)
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、深入了解](#21)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、欢迎参与](#42)
+- [五、贡献列表](#5)
 
 ## <span id="1">一、介绍</span>
 ESUpdater是一个基于Canal实现ES文档增量更新的高性能轻量框架。基于以下优势，可以让你快速上手和使用。
@@ -45,11 +45,10 @@ ESUpdater是一个基于Canal实现ES文档增量更新的高性能轻量框架�
 ### <span id="14">4、高性能消费</span>
 通过一个```Consumer```进程和多个```Worker```进程的一对多通信模型，实现高性能消费。
 
-### <span id="15">5、完善的文档</span>
-从如何上手使用、业务的接入、操作过程帮助，到底层实现原理等等，本项目都提供了非常完善的文档，以方便使用。
-
 ## <span id="2">二、快速上手</span>
-以下过程中会依赖Docker，所以请先安装并启动它。如果只是试用则强烈建议你全程使用<a href="https://labs.play-with-docker.com/">在线Docker网站</a>，按如下步骤安装即可，非常方便。
+> 预计只需要 **3分钟** 即可完成 ！
+
+以下操作中会依赖Docker，所以请先安装并启动它。如果只是试用则强烈建议你全程使用<a href="https://labs.play-with-docker.com/">在线Docker网站</a>，按如下步骤安装即可，非常方便。
 
 ### <span id="21">1、获取项目</span>
 通过```git clone```或下载Release包即可获取项目，如果出错请参考[获取过程帮助](doc/HELP.md#12)文档。
@@ -117,3 +116,8 @@ cd /opt/kafka/
 如果在了解和使用过程中，有任何疑问，也欢迎提出宝贵的 [Issue](https://github.com/WGrape/esupdater/issues/new) 。
 
 开源不易，如果支持本项目 **欢迎Star ！** 以激励维护和更新的动力。
+
+## <span id="5">五、贡献列表</span>
+所有对本项目有过重要贡献的用户，会收录在此贡献者列表中。
+
+- 感谢 [sick-cat](https://github.com/sick-cat) 提出的Issue ：[启动配置](https://github.com/WGrape/esupdater/issues/41)
