@@ -108,7 +108,7 @@ cd /opt/kafka/
 - [APPLICATION](doc/APPLICATION.md) ：帮助你快速在业务中国接入此项目
 - [HOWTOCODE](doc/HOWTOCODE.md) ：更深的了解项目，包括架构设计、底层原理
 - [HELP](doc/HELP.md) ：解决安装和部署过程中问题的帮助手册，包括镜像制作帮助、容器部署帮助等
-- 还有 [QUESTION](doc/QUESTION.md) / [CHANGELOGG](doc/CHANGELOG.md) / [CONTRIBUTING](doc/CONTRIBUTING.md) 等文档
+- 还有 [CHANGELOG](doc/CHANGELOG.md) / [CONTRIBUTING](doc/CONTRIBUTING.md) 等文档
 
 ### <span id="42">2、参与项目</span>
 项目源码设计简单易懂，如有更好的想法，可参考[如何贡献](doc/CONTRIBUTING.md)文档，期待提出宝贵的 [Pull request](https://github.com/WGrape/esupdater/pulls)  。
