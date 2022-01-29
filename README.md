@@ -10,6 +10,7 @@
     <img src="https://img.shields.io/badge/php-7.0+-blue.svg">
     <img src="https://img.shields.io/badge/release-v2.0.5-blue.svg">
     <img src="https://img.shields.io/badge/version-2.x-blue.svg">
+    <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/lvsid/phpkafka">
     <a href="https://app.travis-ci.com/github/WGrape/esupdater"><img src="https://app.travis-ci.com/WGrape/esupdater.svg?branch=master"><a>
     <a href="https://wgrape.github.io/esupdater/report.html"><img src="https://img.shields.io/badge/unitest-100%25-yellow.svg"></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg"></a>
