@@ -38,6 +38,9 @@ PR的提交不限制范围，如代码、文档等修改均在允许范围内，
 ### <span id="43">(3) 分支管理</span>
 ```v1```版本的开发提交到```v1.x```分支，```v2```版本的开发提交到```v2.x```分支，且```CI```检查通过
 
+### <span id="43">(4) 提交内容注释</span>
+对于重要代码部分，请以评论的方式写清楚原因，可以参考 [test: 添加环境变量的测试用例](https://github.com/WGrape/esupdater/commit/f9e4b4fe867889f398f3ec175af0d5dfc16de4a0) 、[feat: 支持Composer和修复制作镜像失败时误提示成功的bug](https://github.com/WGrape/esupdater/pull/37/files#r800161416)
+
 ## <span id="5">5、打包Release</span>
 基于```v1.x```和```v2.x```分支分别打包不同的Release版本。
 

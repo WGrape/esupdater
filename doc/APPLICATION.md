@@ -243,6 +243,10 @@ git add .
 git commit -m "add: xxx"
 ```
 
+如下图实际使用中，每次Commit代码会自动执行测试。
+
+<img width="500" alt="img" src="https://user-images.githubusercontent.com/35942268/152677495-1aae134b-93b2-443f-b5cf-8daa719f35f6.png">
+
 ### <span id="53">3、添加用例</span>
 在```test/testcases/app```目录下，先创建应用目录（如```alpha```），然后在此目录下以```Test*```开头创建单测文件即可，具体内容可参考 [TestUserService](../test/testcases/app/alpha/TestUserService.php) 单测文件
 
