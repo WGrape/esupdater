@@ -7,7 +7,8 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、生命周期](#21)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、命令执行](#22)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、binlog数据处理过程](#23)
-- &nbsp;&nbsp;&nbsp;&nbsp;[4、目录结构规范](#24)
+- &nbsp;&nbsp;&nbsp;&nbsp;[4、文件目录规范](#24)
+- &nbsp;&nbsp;&nbsp;&nbsp;[5、程序设计规范](#25)
 - [三、部署过程](#3)
 - [四、参考文档](#4)
 
@@ -74,7 +75,7 @@ ESUpdater的核心由```Consumer```进程和```Worker```进程组成，其中根
 3. Consumer进程把编码后的消息数据，传递至Worker进程
 4. Worker进程再依次拆解数据即可
 
-### <span id="24">4、目录结构规范</span>
+### <span id="24">4、文件目录规范</span>
 
 ####  <span id="241">(1) 目录结构
 - ```app```目录 ：应用目录
@@ -89,6 +90,11 @@ ESUpdater的核心由```Consumer```进程和```Worker```进程组成，其中根
 ####  <span id="242">(2) 文件规范
 - ```shell```脚本不能省略```.sh```后缀，且统一以```bash xxx.sh```的方式执行
 - 文档统一以大写英文命名，如```README.md``` / ```HELP.md```
+
+### <span id="25">5、程序设计规范</span>
+关于设计规范可以参考文章 [漫谈编程之编程规范](https://github.com/WGrape/Blog/issues/25)
+
+- 调用类的时候使用命名空间前缀，不使用在头部声明```use```的方式
 
 ## <span id="3">三、部署过程</span>
 

@@ -106,7 +106,7 @@ cd /opt/kafka/
 ### <span id="41">1、深入了解</span>
 如果想要深入了解本项目，在 [doc目录](./doc) 下提供了如下丰富完善的项目文档，欢迎阅读。
 
-- [APPLICATION](doc/APPLICATION.md) ：帮助你快速在业务中国接入此项目
+- [APPLICATION](doc/APPLICATION.md) ：帮助你快速在业务中接入此项目
 - [HOWTOCODE](doc/HOWTOCODE.md) ：更深的了解项目，包括架构设计、底层原理
 - [HELP](doc/HELP.md) ：解决安装和部署过程中问题的帮助手册，包括镜像制作帮助、容器部署帮助等
 
