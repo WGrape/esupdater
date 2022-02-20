@@ -13,27 +13,30 @@ class UserHandler
     /**
      * The event callback when table of user trigger insert event.
      * @param array $parsedCanalData
+     * @return bool
      */
-    public function onInsert(array $parsedCanalData)
+    public function onInsert(array $parsedCanalData): bool
     {
-        (new UserService())->doInsert($parsedCanalData);
+        return (new UserService())->doInsert($parsedCanalData);
     }
 
     /**
      * The event callback when table of user trigger update event.
      * @param array $parsedCanalData
+     * @return bool
      */
-    public function onUpdate(array $parsedCanalData)
+    public function onUpdate(array $parsedCanalData): bool
     {
-        (new UserService())->doUpdate($parsedCanalData);
+        return (new UserService())->doUpdate($parsedCanalData);
     }
 
     /**
      * The event callback when table of user trigger delete event.
      * @param array $parsedCanalData
+     * @return bool
      */
-    public function onDelete(array $parsedCanalData)
+    public function onDelete(array $parsedCanalData): bool
     {
-        (new UserService())->doDelete($parsedCanalData);
+        return (new UserService())->doDelete($parsedCanalData);
     }
 }

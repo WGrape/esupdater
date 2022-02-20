@@ -11,7 +11,7 @@ $event = [
     // You can choose the autoCallback, it's very simple.
     // 'alpha.user' => '\app\alpha\user\UserHandler',
 
-    // You can choose the manualCallback, it's a bit complicated but powerful.
+    // You can also choose the manualCallback, it's a bit complicated but powerful.
     'alpha.user' => [
         'onInsert' => [
             'callback' => function ($parsedCanalData) {
@@ -20,9 +20,12 @@ $event = [
         ],
         'onUpdate' => [
             'filter'   => function ($parsedCanalData) {
+                // Return false if you need skip this kind of canal data.
                 if (!isset($parsedCanalData['data'][0]) || $parsedCanalData['data'][0]['id'] < 10000000) {
                     return false;
                 }
+
+                // Return the filtered canal data.
                 $parsedCanalData['data'][0]['name'] .= '_filtered';
                 return $parsedCanalData;
             },

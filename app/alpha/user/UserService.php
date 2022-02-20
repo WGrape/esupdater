@@ -13,94 +13,127 @@ class UserService
     /**
      * Update different indexes when insert.
      * @param array $parsedCanalData
+     * @return bool
      */
-    public function doInsert(array $parsedCanalData)
+    public function doInsert(array $parsedCanalData): bool
     {
-        $this->updateAIndexWhenInsert($parsedCanalData);
+        $success = true;
 
-        $this->updateBIndexWhenInsert($parsedCanalData);
+        if (!$this->updateAIndexWhenInsert($parsedCanalData)) {
+            $success = false;
+        }
+
+        if (!$this->updateBIndexWhenInsert($parsedCanalData)) {
+            $success = false;
+        }
 
         // update some other indexes...
+
+        return $success;
     }
 
     /**
      * Update different indexes when update.
      * @param array $parsedCanalData
+     * @return bool
      */
-    public function doUpdate(array $parsedCanalData)
+    public function doUpdate(array $parsedCanalData): bool
     {
-        $this->updateAIndexWhenUpdate($parsedCanalData);
+        $success = true;
 
-        $this->updateBIndexWhenUpdate($parsedCanalData);
+        if (!$this->updateAIndexWhenUpdate($parsedCanalData)) {
+            $success = false;
+        }
+
+        if (!$this->updateBIndexWhenUpdate($parsedCanalData)) {
+            $success = false;
+        }
 
         // update some other indexes...
+
+        return $success;
     }
 
     /**
      * Update different indexes when delete.
      * @param array $parsedCanalData
+     * @return bool
      */
-    public function doDelete(array $parsedCanalData)
+    public function doDelete(array $parsedCanalData): bool
     {
-        $this->updateAIndexWhenDelete($parsedCanalData);
+        $success = true;
 
-        $this->updateBIndexWhenDelete($parsedCanalData);
+        if (!$this->updateAIndexWhenDelete($parsedCanalData)) {
+            $success = false;
+        }
+
+        if (!$this->updateBIndexWhenDelete($parsedCanalData)) {
+            $success = false;
+        }
 
         // update some other indexes...
+
+        return $success;
     }
 
     /**
      * Update a index: event of insert
      * @param array $parsedCanalData
+     * @return bool
      */
-    public function updateAIndexWhenInsert(array $parsedCanalData)
+    public function updateAIndexWhenInsert(array $parsedCanalData): bool
     {
-
+        return true;
     }
 
     /**
      * Update b index: event of insert
      * @param array $parsedCanalData
+     * @return bool
      */
-    public function updateBIndexWhenInsert(array $parsedCanalData)
+    public function updateBIndexWhenInsert(array $parsedCanalData): bool
     {
-
+        return true;
     }
 
     /**
      * Update a index: event of update
      * @param array $parsedCanalData
+     * @return bool
      */
-    public function updateAIndexWhenUpdate(array $parsedCanalData)
+    public function updateAIndexWhenUpdate(array $parsedCanalData): bool
     {
-
+        return true;
     }
 
     /**
      * Update b index: event of update
      * @param array $parsedCanalData
+     * @return bool
      */
-    public function updateBIndexWhenUpdate(array $parsedCanalData)
+    public function updateBIndexWhenUpdate(array $parsedCanalData): bool
     {
-
+        return true;
     }
 
     /**
      * Update a index: event of delete
      * @param array $parsedCanalData
+     * @return bool
      */
-    public function updateAIndexWhenDelete(array $parsedCanalData)
+    public function updateAIndexWhenDelete(array $parsedCanalData): bool
     {
-
+        return true;
     }
 
     /**
      * Update b index: event of delete
      * @param array $parsedCanalData
+     * @return bool
      */
-    public function updateBIndexWhenDelete(array $parsedCanalData)
+    public function updateBIndexWhenDelete(array $parsedCanalData): bool
     {
-
+        return true;
     }
 
     /**
