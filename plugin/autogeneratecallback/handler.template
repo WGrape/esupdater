@@ -1,0 +1,42 @@
+<?php
+/**
+ * The handler of {{moduleName}} event module in alpha application.
+ *
+ * @author  wgrape <https://github.com/WGrape>
+ * @license https://github.com/WGrape/esupdater/blob/master/LICENSE MIT Licence
+ */
+
+namespace {{namespace}};
+
+class {{moduleName}}Handler
+{
+    /**
+     * The event callback when table of {{moduleName}} trigger insert event.
+     * @param array $parsedCanalData
+     * @return bool
+     */
+    public function onInsert(array $parsedCanalData): bool
+    {
+        return (new {{moduleName}}Service())->doInsert($parsedCanalData);
+    }
+
+    /**
+     * The event callback when table of {{moduleName}} trigger update event.
+     * @param array $parsedCanalData
+     * @return bool
+     */
+    public function onUpdate(array $parsedCanalData): bool
+    {
+        return (new {{moduleName}}Service())->doUpdate($parsedCanalData);
+    }
+
+    /**
+     * The event callback when table of {{moduleName}} trigger delete event.
+     * @param array $parsedCanalData
+     * @return bool
+     */
+    public function onDelete(array $parsedCanalData): bool
+    {
+        return (new {{moduleName}}Service())->doDelete($parsedCanalData);
+    }
+}

@@ -21,13 +21,15 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[1、轻量级框架](#11)
 - &nbsp;&nbsp;&nbsp;&nbsp;[2、全面容器化](#12)
 - &nbsp;&nbsp;&nbsp;&nbsp;[3、事件驱动化](#13)
-- &nbsp;&nbsp;&nbsp;&nbsp;[4、高性能消费](#14)
+- &nbsp;&nbsp;&nbsp;&nbsp;[4、插件化扩展](#14)
+- &nbsp;&nbsp;&nbsp;&nbsp;[5、高性能消费](#15)
 - [二、快速上手](#2)
 - [三、业务接入](#3)
-- [四、关于项目](#4)
-- &nbsp;&nbsp;&nbsp;&nbsp;[1、深入了解](#21)
-- &nbsp;&nbsp;&nbsp;&nbsp;[2、欢迎参与](#42)
-- [五、贡献列表](#5)
+- [四、扩展列表](#4)
+- [五、关于项目](#5)
+- &nbsp;&nbsp;&nbsp;&nbsp;[1、深入了解](#51)
+- &nbsp;&nbsp;&nbsp;&nbsp;[2、欢迎参与](#52)
+- [六、贡献列表](#6)
 
 ## <span id="1">一、介绍</span>
 ESUpdater是一个基于Canal实现ES文档增量更新的高性能轻量框架。基于以下优势，可以让你快速上手和使用。
@@ -43,7 +45,10 @@ ESUpdater是一个基于Canal实现ES文档增量更新的高性能轻量框架�
 ### <span id="13">3、事件驱动化</span>
 基于框架内部的事件驱动设计，可以轻松地注册不同数据表的变更事件和回调，优雅地实现增量更新。
 
-### <span id="14">4、高性能消费</span>
+### <span id="14">4、插件化扩展</span>
+基于不影响源程序的前提下，支持插件化扩展，实现对内部行为的自定义扩展。
+
+### <span id="15">5、高性能消费</span>
 通过一个```Consumer```进程和多个```Worker```进程的一对多通信模型，实现高性能消费。
 
 ## <span id="2">二、快速上手</span>
@@ -97,27 +102,34 @@ cd /opt/kafka/
 
 <img width="823" alt="img2" src="https://user-images.githubusercontent.com/35942268/148806227-25af15b9-5609-4de3-ac13-96fc83c7c99b.png">
 
-
 ## <span id="3">三、业务接入</span>
 如果需要在你的业务中接入此项目，请参考[应用接入文档](./doc/APPLICATION.md)。
 
-## <span id="4">四、关于项目</span>
+## <span id="4">四、扩展列表</span>
+基于插件化扩展开发，项目提供了一系列开箱即用的扩展。
 
-### <span id="41">1、深入了解</span>
+### 1、AutoGenerateCallback
+一个自动生成```Handler```和```Service```的事件回调模块的扩展。具体使用见[使用介绍](./plugin/autogeneratecallback/README.md)
+
+
+## <span id="5">五、关于项目</span>
+
+### <span id="51">1、深入了解</span>
 如果想要深入了解本项目，在 [doc目录](./doc) 下提供了如下丰富完善的项目文档，欢迎阅读。
 
 - [APPLICATION](doc/APPLICATION.md) ：帮助你快速在业务中接入此项目
 - [HOWTOCODE](doc/HOWTOCODE.md) ：更深的了解项目，包括架构设计、底层原理
 - [HELP](doc/HELP.md) ：解决安装和部署过程中问题的帮助手册，包括镜像制作帮助、容器部署帮助等
 
-### <span id="42">2、参与项目</span>
+### <span id="52">2、参与项目</span>
 项目源码设计简单易懂，如有更好的想法，可参考[如何贡献](doc/CONTRIBUTING.md)文档，期待提出宝贵的 [Pull request](https://github.com/WGrape/esupdater/pulls)  。
 
 如果在了解和使用过程中，有任何疑问，也欢迎提出宝贵的 [Issue](https://github.com/WGrape/esupdater/issues/new) 。
 
 开源不易，如果支持本项目 **欢迎Star ！** 以激励维护和更新的动力。
 
-## <span id="5">五、贡献列表</span>
+## <span id="6">六、贡献列表</span>
 所有对本项目有过重要贡献的用户，会收录在此贡献者列表中。
 
 - 感谢 [sick-cat](https://github.com/sick-cat) 提出的Issue ：[启动配置](https://github.com/WGrape/esupdater/issues/41)
+- 感谢 [onser3](https://github.com/onser3) 提出的Issue ：[自动生成handler和service层](https://github.com/WGrape/esupdater/issues/44)
