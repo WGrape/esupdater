@@ -48,6 +48,8 @@
 > 1、在业务Service中可以自由的调用```common```应用下的```DBService```、```ESService```等服务
 >
 > 2、如果业务更复杂，可以考虑在应用目录下设计属于自己的业务分层，如```daos```、```services```等
+> 
+> 3、你可以直接选择使用 [AutoGenerateCallback扩展](/plugin/autogeneratecallback/) 实现事件回调模块的自动创建，免去手动操作此步的过程 ！
 
 ### <span id="14">4、注册事件回调</span>
 在```/config/event.php```配置文件中添加一个新的键值对，表示当```数据库.数据表```出现变更事件时，由对应的```事件Handler```响应处理。

@@ -15,6 +15,8 @@ php plugin/autogeneratecallback/autogeneratecallback.php {$namespace} {$moduleNa
 - 模块名称使用大驼峰命名，如```MyProfile```
 
 ### 2、使用示例
+项目中 [account](/app/alpha/account) 模块下的文件即是通过如下命令自动生成而来的。
+
 ```shell
  php plugin/autogeneratecallback/autogeneratecallback.php app\\alpha\\account Account
 ```
