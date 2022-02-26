@@ -83,7 +83,7 @@ ESUpdater的核心由```Consumer```进程和```Worker```进程组成，其中根
 - ```doc```目录 ：项目文档目录
 - ```framework```目录 ：项目的核心框架目录
 - ```install```目录 ：安装目录
-- ```runtime```目录 ：服务运行时产生的中间文件目录，如PID文件，但不包括日志文件
+- ```runtime```目录 ：服务运行时产生的中间文件目录，如PID文件，但不包括日志文件。设计思想基于[/proc/](https://en.wikipedia.org/wiki/Procfs)
 - ```test```目录 ：单元测试目录  
 - ```/```目录 ：根目录下存放所有上述目录，和必要的一级文件如```.gitignore```文件
 
