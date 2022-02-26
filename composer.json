@@ -1,4 +1,13 @@
 {
+    "name": "wgrape/esupdater",
+    "description": "A high-performance lightweight framework of PHP to achieve incremental update of ES documents.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "wgrape",
+            "email": "wgrapeu@gmail.com"
+        }
+    ],
     "require": {},
     "autoload": {
         "psr-4": {
