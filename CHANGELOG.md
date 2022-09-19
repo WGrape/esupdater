@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/WGrape/esupdater/compare/v2.1.0...v2.1.1) (2022-09-19)
+
+
+### Docs
+
+* fix version ([cc7f225](https://github.com/WGrape/esupdater/commit/cc7f225357253fbaa48028e9192666a6ebe89602))
+
 ## [2.1.0](https://github.com/WGrape/esupdater/compare/v2.0.5...v2.1.0) (2022-09-19)
 
 
