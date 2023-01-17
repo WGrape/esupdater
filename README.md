@@ -7,6 +7,7 @@
 </div>
 
 <p align="center">
+    <a href="https://www.oscs1024.com/project/oscs/WGrape/esupdater?ref=badge_small" alt="OSCS Status"><img src="https://www.oscs1024.com/platform/badge/WGrape/esupdater.svg?size=small"/></a>
     <img src="https://img.shields.io/badge/php-7.0+-blue.svg">
     <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/wgrape/esupdater">
     <img src="https://img.shields.io/badge/version-2.x-blue.svg">
